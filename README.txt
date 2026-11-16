@@ -3,8 +3,8 @@ IKY — DIGITAL PORTFOLIO
 
 ISI FOLDER
 - index.html
-- assets/iky-photo.jpg
-- assets/school-logo.jpg
+- iky-photo.jpg
+- school-logo.jpg
 
 CARA MENJALANKAN LOKAL
 1. Ekstrak ZIP.
@@ -16,15 +16,15 @@ PUBLIKASI KE GITHUB PAGES
 2. Upload SEMUA isi folder ini, bukan hanya index.html.
 3. Pastikan struktur repository tepat seperti ini:
    index.html
-   assets/iky-photo.jpg
-   assets/school-logo.jpg
+   iky-photo.jpg
+   school-logo.jpg
 4. Perhatikan huruf besar/kecil nama folder dan file. GitHub Pages berjalan di server Linux yang case-sensitive.
 5. Buka Settings > Pages, pastikan source dan branch yang dipilih benar (misalnya Deploy from a branch, branch main, folder /(root)).
 6. Setelah upload, tunggu deployment selesai di tab Actions / Pages, lalu refresh website. Coba hard refresh atau buka lewat mode samaran jika masih melihat versi cache.
 
 PEMANGGILAN FOTO DI HTML
-- Foto profil: ./assets/iky-photo.jpg
-- Logo sekolah: ./assets/school-logo.jpg
+- Foto profil: .iky-photo.jpg
+- Logo sekolah: .school-logo.jpg
 Nama file harus sama persis, termasuk ekstensi .jpg. Jangan mengganti nama hanya di GitHub atau hanya di HTML.
 
 JIKA FOTO MASIH TIDAK MUNCUL
