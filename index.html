@@ -87,11 +87,29 @@ footer{padding:28px 0 40px;text-align:center;color:#657691;font:9px "DM Mono";le
 @media(max-width:800px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:120px;gap:5px}.hero-copy{text-align:center}.hero-copy p{margin:0 auto}.hero-actions,.hero-note{justify-content:center}.id-stage{height:520px}.section-head{display:block}.section-head p{margin-top:12px}.about-grid,.achievement,.music-box{grid-template-columns:1fr}.project-grid{grid-template-columns:1fr 1fr}.award-art{min-height:210px}}
 @media(max-width:520px){.wrap{width:min(100% - 28px,1120px)}nav{top:10px}.hero h1{font-size:54px}.id-stage{height:485px}.card-wrap{width:255px;height:380px}.lanyard{height:190px}.clip{top:170px}.front-head{height:68px}.photo-frame{top:75px;bottom:73px}.front-overlay .name{font-size:17px}.project-grid{grid-template-columns:1fr}.about-main{padding:23px}.stats{gap:8px}.stat{padding:17px}.contact{padding:30px 18px}.education{grid-template-columns:65px 1fr}.education img{width:60px;height:60px}}
 
-/* Global transparent theme surfaces; the printed ID artwork itself remains opaque like real card stock. */
-body,main,header,footer,section,.hero,.about-main,.stat,.project,.contact-card{background-color:transparent!important}
-#loader{background:transparent!important}
-nav{background:rgba(8,14,28,.045)!important}
-.glass,.btn{background-color:transparent!important}
+/* PROFESSIONAL NATURE THEME — opaque, calm forest palette */
+:root{--bg:#edf2e8;--glass:rgba(255,255,255,.82);--line:rgba(49,82,59,.16);--muted:#617365;--blue:#326b4b;--cyan:#789b68;--white:#20352a}
+html{background:#edf2e8}
+body{background:linear-gradient(180deg,#e8efe3 0%,#f5f4eb 48%,#e7eee4 100%);color:#20352a}
+body:before{display:block;content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 12%,rgba(119,157,104,.22),transparent 32%),radial-gradient(ellipse at 92% 35%,rgba(174,194,143,.25),transparent 30%),radial-gradient(ellipse at 45% 92%,rgba(91,133,91,.14),transparent 35%),linear-gradient(135deg,transparent 0 48%,rgba(255,255,255,.22) 48.2% 48.5%,transparent 48.7%)}
+#loader{background:#edf2e8}
+.load-mark{background:linear-gradient(120deg,#234c35,#71965e);color:transparent;background-clip:text}
+.load-line{background:#d3dfd0}.load-line i{background:linear-gradient(90deg,#326b4b,#9ab27c)}.load-caption{color:#637665}
+nav{background:rgba(250,252,247,.94);border-color:#d4dfd1;box-shadow:0 12px 36px rgba(35,65,42,.12);backdrop-filter:blur(16px)}
+.brand span,.gradient{background:linear-gradient(100deg,#28583b,#78985d);color:transparent;background-clip:text}
+.navlinks{color:#536958}.navlinks a:hover{color:#326b4b}.nav-cta{border-color:#b9cbb7;color:#31583d}
+.hero p,.about-main p,.award-copy p,.music-box p{color:#586b5c}.hero-note,.scroll-cue{color:#718273}.hero-note span:before{color:#6e9661}
+.eyebrow{color:#527b4d}.hero h1,.section-head h2,.about-main h3,.project h3,.award-copy h3,.music-box h3,.contact h2{color:#20392a}
+.btn{background:#fff;border-color:#cbd9c7;color:#31583d;backdrop-filter:none}.btn.primary{background:linear-gradient(110deg,#2f6847,#71965e);color:#fff;box-shadow:0 8px 24px rgba(48,104,71,.22)}.btn:hover{border-color:#7e9d75}
+.glass{border:1px solid rgba(76,111,76,.18);background:rgba(255,255,255,.78);backdrop-filter:blur(12px);box-shadow:0 14px 38px rgba(42,70,45,.08)}
+section{background:transparent}.section-head p{color:#617365}.about-main p{color:#586b5c}.typed{color:#4e8050}.info-row{border-bottom-color:#dce5d8}.info-row span:first-child{color:#718273}.stat small{color:#718273}
+.project{background:rgba(255,255,255,.84)}.project .num{color:#63805c}.project p{color:#617365}.project .tag{color:#527b4d;border-color:#9eb99a}.project:after{background:#779b5c18}
+.award-art{background:radial-gradient(circle at 50% 40%,#78966a,#31583f 68%)}.award-art:before{border-color:#d8e7ce80;box-shadow:0 0 0 18px #e4f1df18,0 0 0 38px #e4f1df10}.award-seal{filter:drop-shadow(0 0 20px #d4e7bf)}.award-label{color:#66865b}
+.education h3{color:#294832}.education p{color:#617365}.music-box{background:rgba(255,255,255,.84)}.track{border-color:#dce5d8;background:#f5f8f2;color:#314b38}.track a{color:#47774d}.track a:hover{color:#234c35}
+.contact{background:radial-gradient(ellipse at top,rgba(133,164,111,.2),transparent 65%),rgba(255,255,255,.86)}.contact p{color:#617365}.socials a{border-color:#cbd9c7;background:#f7faf4;color:#31583d}.socials a:hover{background:#e7efe2}
+footer{color:#718273}
+/* Path relatif sengaja dipertahankan agar kompatibel dengan GitHub Pages pada root maupun subpath repo. */
+.badge-logo img,.back-brand img,.education img{background:#fff;border-radius:8px}
 @media(max-width:700px){.scroll-cue{display:none}}
 </style>
 </head>
@@ -114,8 +132,8 @@ nav{background:rgba(8,14,28,.045)!important}
   <div class="card-wrap" id="card" role="button" tabindex="0" aria-label="Tarik kartu identitas ke arah mana pun, atau ketuk sekali untuk melihat sisi belakang">
    <div class="id-card" id="idCard">
     <div class="face front">
-     <div class="badge-logo"><img src="assets/school-logo.jpg" alt="Logo sekolah"><div class="badge-logo-copy">PERSONAL ID<b>IKY</b></div></div>
-     <div class="badge-photo-ring"><img src="assets/iky-photo.jpg" alt="Foto Risqie Kamal"></div>
+     <div class="badge-logo"><img src="./assets/school-logo.jpg" alt="Logo sekolah"><div class="badge-logo-copy">PERSONAL ID<b>IKY</b></div></div>
+     <div class="badge-photo-ring"><img src="./assets/iky-photo.jpg" alt="Foto Risqie Kamal"></div>
      <div class="badge-green"></div>
      <div class="badge-name">RISQIE KAMAL</div>
      <div class="badge-role">CREATIVE DEVELOPER</div>
@@ -123,7 +141,7 @@ nav{background:rgba(8,14,28,.045)!important}
      <div class="badge-footer">IDEAS · DESIGN · INNOVATION</div>
     </div>
     <div class="face back">
-     <div class="back-green-cap"><div class="back-brand"><img src="assets/school-logo.jpg" alt=""><b>IKY</b></div></div>
+     <div class="back-green-cap"><div class="back-brand"><img src="./assets/school-logo.jpg" alt=""><b>IKY</b></div></div>
      <div class="back-content">
       <div class="qr-art" aria-hidden="true"></div>
       <div class="back-thanks">Thank You</div>
@@ -151,7 +169,7 @@ nav{background:rgba(8,14,28,.045)!important}
  <article class="project glass"><span class="num">MORE / SOON</span><h3>Next experiment</h3><p>Selalu ada ruang untuk ide baru, kolaborasi, dan tantangan berikutnya.</p><span class="tag">IN PROGRESS</span></article>
  </div></div></section>
 <section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass"><div class="award-seal">✦</div></div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
-<section id="education"><div class="wrap"><div class="section-head"><div><div class="eyebrow">04 / Education</div><h2>Where I <span class="gradient">learn.</span></h2></div></div><div class="education glass"><img src="assets/school-logo.jpg" alt="Logo SMAN 1 Kapuas Murung"><div><h3>SMAN 1 KAPUAS MURUNG</h3><p>Siswa kelas XII · Perjalanan belajar, bertumbuh, dan mengembangkan kreativitas di bidang teknologi.</p></div></div></div></section>
+<section id="education"><div class="wrap"><div class="section-head"><div><div class="eyebrow">04 / Education</div><h2>Where I <span class="gradient">learn.</span></h2></div></div><div class="education glass"><img src="./assets/school-logo.jpg" alt="Logo SMAN 1 Kapuas Murung"><div><h3>SMAN 1 KAPUAS MURUNG</h3><p>Siswa kelas XII · Perjalanan belajar, bertumbuh, dan mengembangkan kreativitas di bidang teknologi.</p></div></div></div></section>
 <section id="music"><div class="wrap"><div class="music-box glass"><div><div class="eyebrow">05 / Soundtrack</div><h3>Code with a little <span class="gradient">music.</span></h3><p>Empat lagu pilihanmu. Tekan tombol Open Music untuk membuka dan memutar lagu melalui Spotify.</p><a class="btn primary" href="https://open.spotify.com/track/5D5rrenyGqSbtmJCNz1Bt7" target="_blank" rel="noopener">♫ Open music on Spotify</a></div><div class="track-list">
  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5D5rrenyGqSbtmJCNz1Bt7?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify track 1"></iframe>
  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0OOW68PDC9hl9UCcWxmc8c?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify track 2"></iframe>
