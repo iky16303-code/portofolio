@@ -166,6 +166,26 @@ footer{padding-bottom:105px}
 .project .tag{align-self:flex-start}
 @media(max-width:520px){.project{padding:13px}.project-media{margin-bottom:14px;border-radius:12px}}
 
+
+/* VVIP ID CARD MATERIAL UPGRADE — emerald woven strap + clear PET sleeve */
+.badge-anchor{display:none!important}
+.tether-shadow{stroke:#000c;stroke-width:37;filter:blur(4px)}
+.tether-edge{stroke:#071b12;stroke-width:33}
+.tether-webbing{stroke:url(#nylonGradient);stroke-width:26}
+.tether-rib{stroke:#8db79a;stroke-width:1.05;stroke-dasharray:1 3;opacity:.34}
+.tether-seam{stroke:#d3bd82;stroke-width:1.15;stroke-dasharray:2 5;opacity:.8}
+.tether-highlight{stroke:#dce8d6;stroke-width:1.2;opacity:.52}
+.tether-stitch{stroke:#d9c99c;stroke-width:1.25;stroke-dasharray:2 7;opacity:.88}
+.tether-stitch-b{stroke:#06170f;stroke-width:1.5;stroke-dasharray:2 7;opacity:.9}
+.badge-clip{filter:drop-shadow(0 4px 5px #0009)}
+.face{border:2px solid rgba(255,255,255,.98);border-radius:14px;box-shadow:inset 0 0 0 1px #9ba9a1,inset 0 0 18px #fff9,0 5px 12px #0003,0 0 0 1px #d9e3dc}
+.front{background:linear-gradient(145deg,#fffefa 0%,#f5f7f1 48%,#eef2e9 100%)}
+.front:after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:12px;background:linear-gradient(112deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.25) 9%,transparent 24%,transparent 63%,rgba(255,255,255,.16) 78%,rgba(255,255,255,.66) 100%),linear-gradient(180deg,rgba(255,255,255,.34),transparent 18%,transparent 78%,rgba(255,255,255,.3)),linear-gradient(90deg,rgba(160,181,168,.12),transparent 8%,transparent 92%,rgba(160,181,168,.16));box-shadow:inset 0 0 0 2px rgba(255,255,255,.72),inset 0 0 12px rgba(255,255,255,.8)}
+.face:before{inset:5px;border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 0 0 1px rgba(118,145,126,.18),0 0 0 1px rgba(180,194,183,.28);border-radius:9px}
+.badge-logo-copy b{font-size:14px;letter-spacing:-.025em}
+.badge-details{font-size:8px}
+@media(max-width:700px){.tether-webbing{stroke-width:25}.tether-edge{stroke-width:32}}
+
 </style>
 </head>
 <body>
@@ -179,9 +199,9 @@ footer{padding-bottom:105px}
   <svg class="badge-tether" id="badgeTether" aria-hidden="true">
    <defs>
     <linearGradient id="nylonGradient" x1="0" y1="0" x2="1" y2="0">
-     <stop offset="0" stop-color="#111923"/><stop offset=".16" stop-color="#303b49"/>
-     <stop offset=".34" stop-color="#202a36"/><stop offset=".52" stop-color="#394554"/>
-     <stop offset=".72" stop-color="#202a36"/><stop offset="1" stop-color="#101720"/>
+     <stop offset="0" stop-color="#092719"/><stop offset=".16" stop-color="#1d5739"/>
+     <stop offset=".34" stop-color="#0d3b28"/><stop offset=".52" stop-color="#2d704a"/>
+     <stop offset=".72" stop-color="#12442e"/><stop offset="1" stop-color="#082719"/>
     </linearGradient>
    </defs>
    <path class="tether-shadow" id="tetherShadow"></path>
@@ -193,20 +213,20 @@ footer{padding-bottom:105px}
    <path class="tether-highlight" id="tetherHighlight"></path>
    <path class="tether-stitch" id="tetherStitchA"></path><path class="tether-stitch tether-stitch-b" id="tetherStitchB"></path>
   </svg>
-  <div class="badge-anchor"></div><div class="badge-clip" id="badgeClip"></div>
+  <div class="badge-clip" id="badgeClip" aria-hidden="true"></div>
   <div class="card-wrap" id="card" role="button" tabindex="0" aria-label="Tarik kartu identitas ke arah mana pun, atau ketuk sekali untuk melihat sisi belakang">
    <div class="id-card" id="idCard">
     <div class="face front">
-     <div class="badge-logo"><img src="./school-logo.jpg" alt="Logo sekolah"><div class="badge-logo-copy">PERSONAL ID<b>IKY</b></div></div>
+     <div class="badge-logo"><img src="./school-logo.jpg" alt="Logo sekolah"><div class="badge-logo-copy">PERSONAL ID<b>ID-016-2026</b></div></div>
      <div class="badge-photo-ring"><img src="./iky-photo.jpg" alt="Foto Risqie Kamal"></div>
      <div class="badge-green"></div>
      <div class="badge-name">RISQIE KAMAL</div>
      <div class="badge-role">CREATIVE DEVELOPER</div>
-     <div class="badge-details"><span>CALL NAME</span><b>IKY</b><span>FOCUS</span><b>WEB &amp; APPS</b><span>INTEREST</span><b>CODE · RUN · FISH</b><span>EST.</span><b>11 NOV 2026</b></div>
+     <div class="badge-details"><span>ID NUMBER</span><b>016-2026</b><span>FOCUS</span><b>WEB &amp; APPS</b><span>INTEREST</span><b>CODE · RUN · FISH</b><span>EST.</span><b>11 NOV 2026</b></div>
      <div class="badge-footer">IDEAS · DESIGN · INNOVATION</div>
     </div>
     <div class="face back">
-     <div class="back-green-cap"><div class="back-brand"><img src="./school-logo.jpg" alt=""><b>IKY</b></div></div>
+     <div class="back-green-cap"><div class="back-brand"><img src="./school-logo.jpg" alt=""><b>ID-016-2026</b></div></div>
      <div class="back-content">
       <div class="qr-art" aria-hidden="true"></div>
       <div class="back-thanks">Thank You</div>
@@ -222,14 +242,14 @@ footer{padding-bottom:105px}
 </section>
 <section id="about"><div class="wrap"><div class="section-head"><div><div class="eyebrow">01 / About me</div><h2>Curious mind.<br><span class="gradient">Creative process.</span></h2></div><p>Teknologi adalah ruang untuk bereksperimen, belajar, dan menciptakan sesuatu yang berguna.</p></div><div class="about-grid"><div class="about-main glass"><h3>Halo, saya IKY<span class="gradient">.</span></h3><p><span id="typed" class="typed"></span><span class="typed">|</span></p><p>Saya menyukai proses dari ide sederhana hingga menjadi produk digital yang bisa dicoba orang lain. Saya terus mengembangkan kemampuan di bidang pemrograman, desain antarmuka, dan eksplorasi teknologi.</p><div class="info-list"><div class="info-row"><span>Nama lengkap</span><b>Risqie Kamal</b></div><div class="info-row"><span>Nama panggilan</span><b>IKY</b></div><div class="info-row"><span>Usia</span><b>17 tahun</b></div><div class="info-row"><span>Pendidikan</span><b>SMA · Kelas XII</b></div><div class="info-row"><span>Hobi</span><b>Running · Coding · Fishing</b></div></div></div><div class="stats"><div class="stat glass"><strong>08<span class="gradient">+</span></strong><small>Project explorations</small></div><div class="stat glass"><strong>03</strong><small>Creative interests</small></div><div class="stat glass"><strong>∞</strong><small>Ideas to explore</small></div><div class="stat glass"><strong>2026</strong><small>Portfolio edition</small></div></div></div></div></section>
 <section id="work"><div class="wrap"><div class="section-head"><div><div class="eyebrow">02 / Selected works</div><h2>Things I’ve <span class="gradient">built.</span></h2></div><p>Eksperimen, aplikasi, dan proyek digital yang menjadi bagian dari perjalanan belajar saya.</p></div><div class="project-grid">
- <article class="project glass"><span class="num">PROJECT / 01</span><div class="project-media"><img src="./project-01-game-development.webp" alt="Preview konsep game platformer 2D" loading="lazy" decoding="async"></div><h3>2D Game Development</h3><p>Eksplorasi mekanik permainan, karakter, gerakan, dan pengalaman bermain dua dimensi.</p><span class="tag">GAME DEV</span></article>
- <article class="project glass"><span class="num">PROJECT / 02</span><div class="project-media"><img src="./project-02-gesture-particles.webp" alt="Visual partikel interaktif" loading="lazy" decoding="async"></div><h3>Gesture Particles</h3><p>Eksperimen interaksi visual berbasis gestur untuk mengendalikan partikel secara real-time.</p><span class="tag">INTERACTIVE</span></article>
- <article class="project glass"><span class="num">PROJECT / 03</span><div class="project-media"><img src="./project-03-digital-attendance.webp" alt="Dashboard konsep absensi digital" loading="lazy" decoding="async"></div><h3>Digital Attendance</h3><p>Konsep sistem absensi digital untuk membantu pencatatan kehadiran lebih praktis.</p><span class="tag">WEB APP</span></article>
- <article class="project glass"><span class="num">PROJECT / 04</span><div class="project-media"><img src="./project-04-tka-tryout.webp" alt="Antarmuka konsep ujian TKA" loading="lazy" decoding="async"></div><h3>Offline TKA Try Out</h3><p>Aplikasi latihan soal yang dirancang agar dapat digunakan tanpa koneksi internet.</p><span class="tag">EDTECH</span></article>
- <article class="project glass"><span class="num">PROJECT / 05</span><div class="project-media"><img src="./project-05-ai-agent.webp" alt="Dashboard konsep AI agent" loading="lazy" decoding="async"></div><h3>AI Agent</h3><p>Eksplorasi agen AI untuk membantu alur kerja dan interaksi digital secara lebih cerdas.</p><span class="tag">ARTIFICIAL INTELLIGENCE</span></article>
- <article class="project glass"><span class="num">PROJECT / 06</span><div class="project-media"><img src="./project-06-whatsapp-bot.webp" alt="Konsep antarmuka WhatsApp bot" loading="lazy" decoding="async"></div><h3>WhatsApp Bot</h3><p>Pengembangan bot modular dan otomasi percakapan untuk kebutuhan uji coba dan produktivitas.</p><span class="tag">AUTOMATION</span></article>
- <article class="project glass"><span class="num">PROJECT / 07</span><div class="project-media"><img src="./project-07-security-awareness.webp" alt="Dashboard edukasi keamanan digital" loading="lazy" decoding="async"></div><h3>Security Awareness Lab</h3><p>Simulasi edukasi keamanan web untuk memahami risiko phishing dan pentingnya perlindungan akun.</p><span class="tag">CYBER AWARENESS</span></article>
- <article class="project glass"><span class="num">PROJECT / 08</span><div class="project-media"><img src="./project-08-topup-platform.webp" alt="Konsep storefront platform top-up" loading="lazy" decoding="async"></div><h3>Top-up Platform</h3><p>Konsep layanan top-up berbasis aplikasi dan web dengan fokus pada alur pengguna.</p><span class="tag">APP & WEB</span></article>
+ <article class="project glass"><span class="num">PROJECT / 01</span><div class="project-media"><img src="assets/projects/project-01-game-development.webp" alt="Preview konsep game platformer 2D" loading="lazy" decoding="async"></div><h3>2D Game Development</h3><p>Eksplorasi mekanik permainan, karakter, gerakan, dan pengalaman bermain dua dimensi.</p><span class="tag">GAME DEV</span></article>
+ <article class="project glass"><span class="num">PROJECT / 02</span><div class="project-media"><img src="assets/projects/project-02-gesture-particles.webp" alt="Visual partikel interaktif" loading="lazy" decoding="async"></div><h3>Gesture Particles</h3><p>Eksperimen interaksi visual berbasis gestur untuk mengendalikan partikel secara real-time.</p><span class="tag">INTERACTIVE</span></article>
+ <article class="project glass"><span class="num">PROJECT / 03</span><div class="project-media"><img src="assets/projects/project-03-digital-attendance.webp" alt="Dashboard konsep absensi digital" loading="lazy" decoding="async"></div><h3>Digital Attendance</h3><p>Konsep sistem absensi digital untuk membantu pencatatan kehadiran lebih praktis.</p><span class="tag">WEB APP</span></article>
+ <article class="project glass"><span class="num">PROJECT / 04</span><div class="project-media"><img src="assets/projects/project-04-tka-tryout.webp" alt="Antarmuka konsep ujian TKA" loading="lazy" decoding="async"></div><h3>Offline TKA Try Out</h3><p>Aplikasi latihan soal yang dirancang agar dapat digunakan tanpa koneksi internet.</p><span class="tag">EDTECH</span></article>
+ <article class="project glass"><span class="num">PROJECT / 05</span><div class="project-media"><img src="assets/projects/project-05-ai-agent.webp" alt="Dashboard konsep AI agent" loading="lazy" decoding="async"></div><h3>AI Agent</h3><p>Eksplorasi agen AI untuk membantu alur kerja dan interaksi digital secara lebih cerdas.</p><span class="tag">ARTIFICIAL INTELLIGENCE</span></article>
+ <article class="project glass"><span class="num">PROJECT / 06</span><div class="project-media"><img src="assets/projects/project-06-whatsapp-bot.webp" alt="Konsep antarmuka WhatsApp bot" loading="lazy" decoding="async"></div><h3>WhatsApp Bot</h3><p>Pengembangan bot modular dan otomasi percakapan untuk kebutuhan uji coba dan produktivitas.</p><span class="tag">AUTOMATION</span></article>
+ <article class="project glass"><span class="num">PROJECT / 07</span><div class="project-media"><img src="assets/projects/project-07-security-awareness.webp" alt="Dashboard edukasi keamanan digital" loading="lazy" decoding="async"></div><h3>Security Awareness Lab</h3><p>Simulasi edukasi keamanan web untuk memahami risiko phishing dan pentingnya perlindungan akun.</p><span class="tag">CYBER AWARENESS</span></article>
+ <article class="project glass"><span class="num">PROJECT / 08</span><div class="project-media"><img src="assets/projects/project-08-topup-platform.webp" alt="Konsep storefront platform top-up" loading="lazy" decoding="async"></div><h3>Top-up Platform</h3><p>Konsep layanan top-up berbasis aplikasi dan web dengan fokus pada alur pengguna.</p><span class="tag">APP & WEB</span></article>
  <article class="project glass"><span class="num">MORE / SOON</span><h3>Next experiment</h3><p>Selalu ada ruang untuk ide baru, kolaborasi, dan tantangan berikutnya.</p><span class="tag">IN PROGRESS</span></article>
  </div></div></section>
 <section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass"><div class="award-seal">✦</div></div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
@@ -275,7 +295,7 @@ const tetherPaths=['tetherShadow','tetherEdge','tetherWebbing','tetherRib','teth
 let cardX=0,cardY=0,dragging=false,pointerId=null,startX=0,startY=0,originX=0,originY=0,hasMoved=false,lastTapTime=0;
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 function drawTether(){
- const w=stage.clientWidth,h=stage.clientHeight,anchorX=w/2,anchorY=9;
+ const w=stage.clientWidth,h=stage.clientHeight,anchorX=w/2,anchorY=2;
  const cardCenterX=w/2+cardX,cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY,clipX=cardCenterX,clipY=cardTop-34;
  const dx=clipX-anchorX,dy=clipY-anchorY;
  const bendX=anchorX+dx*.48 + clamp(dx*.16,-35,35);
