@@ -190,10 +190,11 @@ footer{padding-bottom:105px}
 /* IKY VVIP VIDEO EXPERIENCE — uploaded clips */
 html,body{background:#06120e!important}
 body{position:relative;isolation:isolate;color:#f3f5eb}
-.site-video-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:#06120e;pointer-events:none}
+.site-video-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#06120e;pointer-events:none}
+main,footer{position:relative;z-index:1}
+body:before{display:none!important}
 .site-video-bg video{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;object-position:center center;filter:saturate(.82) contrast(1.08);opacity:.43}
 .site-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,15,11,.70),rgba(3,18,13,.58) 38%,rgba(3,15,11,.80)),radial-gradient(ellipse at 50% 25%,rgba(34,83,57,.18),transparent 60%)}
-body:before{z-index:-1!important;background:radial-gradient(ellipse at 12% 18%,rgba(91,143,99,.16),transparent 38%),radial-gradient(ellipse at 90% 72%,rgba(180,151,83,.10),transparent 35%)!important}
 nav,.wave-dock{background:rgba(5,20,14,.76)!important;border-color:rgba(202,190,133,.34)!important;backdrop-filter:blur(22px) saturate(130%)!important;box-shadow:0 16px 48px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.08)!important}
 .glass,.project,.education,.music-box,.award-copy{background:rgba(8,30,21,.72)!important;border-color:rgba(199,190,143,.22)!important;backdrop-filter:blur(18px) saturate(125%)!important;box-shadow:0 18px 48px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.07)!important}
 .hero h1,.section-head h2,.about-main h3,.project h3,.award-copy h3,.music-box h3,.contact h2{color:#f4f2e7!important}
@@ -204,23 +205,23 @@ nav,.wave-dock{background:rgba(5,20,14,.76)!important;border-color:rgba(202,190,
 .btn.primary{background:linear-gradient(110deg,#9b8247,#587d57)!important;color:#fff!important}
 .award-art{min-height:300px!important;display:block!important;background:#07130e!important;border:1px solid rgba(201,190,139,.3)!important}
 .award-art:before{display:none!important}
-.milestone-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.9) contrast(1.06);transform:scale(1.015)}
-.milestone-video-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,14,10,.04),rgba(3,14,10,.18) 45%,rgba(3,14,10,.76))}
-.milestone-video-caption{position:absolute;left:22px;right:22px;bottom:20px;z-index:2;display:flex;flex-direction:column;gap:7px;color:#fff;text-shadow:0 2px 12px #0009}
-.milestone-video-caption span{font-size:9px;letter-spacing:.2em;color:#e4d6a1}
-.milestone-video-caption b{font-size:clamp(19px,3vw,27px);letter-spacing:-.045em}
+.project-media{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:15px;background:#07130e;border:1px solid rgba(215,189,131,.20);margin:14px 0 16px}
+.project-media img,.project-media video{display:block;width:100%;height:100%;object-fit:cover}
+.ai-video-media:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(3,14,10,.30))}
+.ai-agent-video{filter:saturate(.92) contrast(1.05)}
+.video-chip{position:absolute;z-index:2;left:10px;top:10px;padding:6px 9px;border:1px solid rgba(235,220,165,.35);border-radius:30px;background:rgba(5,20,14,.68);color:#e8d9a6;font:8px "DM Mono";letter-spacing:.12em;backdrop-filter:blur(8px)}
 #loader{background:rgba(4,17,12,.94)!important}
 .load-mark{background:linear-gradient(120deg,#f7f1d9,#c4b477,#7ea77d)!important;color:transparent!important;background-clip:text!important}
 .load-caption{color:#c4c8b5!important}
 footer{color:#a4b09f!important}
-@media(max-width:700px){.site-video-bg video{object-position:50% 45%;opacity:.36}.award-art{min-height:240px!important}.milestone-video-caption{left:17px;bottom:16px}}
-@media(prefers-reduced-motion:reduce){.site-video-bg video,.milestone-video{animation:none}}
+@media(max-width:700px){.site-video-bg video{object-position:50% 45%;opacity:.40}.award-art{min-height:240px!important}.project-media{aspect-ratio:16/10}}
+@media(prefers-reduced-motion:reduce){.site-video-bg video,.ai-agent-video{animation:none}}
 
 </style>
 </head>
 <body>
 <div class="site-video-bg" aria-hidden="true">
- <video id="siteBackgroundVideo" autoplay muted loop playsinline preload="metadata">
+ <video id="siteBackgroundVideo" autoplay muted loop playsinline preload="auto">
   <source src="./background-video.mp4" type="video/mp4">
  </video>
  <div class="site-video-overlay"></div>
@@ -278,23 +279,22 @@ footer{color:#a4b09f!important}
 </section>
 <section id="about"><div class="wrap"><div class="section-head"><div><div class="eyebrow">01 / About me</div><h2>Curious mind.<br><span class="gradient">Creative process.</span></h2></div><p>Teknologi adalah ruang untuk bereksperimen, belajar, dan menciptakan sesuatu yang berguna.</p></div><div class="about-grid"><div class="about-main glass"><h3>Halo, saya IKY<span class="gradient">.</span></h3><p><span id="typed" class="typed"></span><span class="typed">|</span></p><p>Saya menyukai proses dari ide sederhana hingga menjadi produk digital yang bisa dicoba orang lain. Saya terus mengembangkan kemampuan di bidang pemrograman, desain antarmuka, dan eksplorasi teknologi.</p><div class="info-list"><div class="info-row"><span>Nama lengkap</span><b>Risqie Kamal</b></div><div class="info-row"><span>Nama panggilan</span><b>IKY</b></div><div class="info-row"><span>Usia</span><b>17 tahun</b></div><div class="info-row"><span>Pendidikan</span><b>SMA · Kelas XII</b></div><div class="info-row"><span>Hobi</span><b>Running · Coding · Fishing</b></div></div></div><div class="stats"><div class="stat glass"><strong>08<span class="gradient">+</span></strong><small>Project explorations</small></div><div class="stat glass"><strong>03</strong><small>Creative interests</small></div><div class="stat glass"><strong>∞</strong><small>Ideas to explore</small></div><div class="stat glass"><strong>2026</strong><small>Portfolio edition</small></div></div></div></div></section>
 <section id="work"><div class="wrap"><div class="section-head"><div><div class="eyebrow">02 / Selected works</div><h2>Things I’ve <span class="gradient">built.</span></h2></div><p>Eksperimen, aplikasi, dan proyek digital yang menjadi bagian dari perjalanan belajar saya.</p></div><div class="project-grid">
- <article class="project glass"><span class="num">PROJECT / 01</span><div class="project-media"><img src="./project-01-game-development.webp" alt="Preview konsep game platformer 2D" loading="lazy" decoding="async"></div><h3>2D Game Development</h3><p>Eksplorasi mekanik permainan, karakter, gerakan, dan pengalaman bermain dua dimensi.</p><span class="tag">GAME DEV</span></article>
- <article class="project glass"><span class="num">PROJECT / 02</span><div class="project-media"><img src="./project-02-gesture-particles.webp" alt="Visual partikel interaktif" loading="lazy" decoding="async"></div><h3>Gesture Particles</h3><p>Eksperimen interaksi visual berbasis gestur untuk mengendalikan partikel secara real-time.</p><span class="tag">INTERACTIVE</span></article>
- <article class="project glass"><span class="num">PROJECT / 03</span><div class="project-media"><img src="./project-03-digital-attendance.webp" alt="Dashboard konsep absensi digital" loading="lazy" decoding="async"></div><h3>Digital Attendance</h3><p>Konsep sistem absensi digital untuk membantu pencatatan kehadiran lebih praktis.</p><span class="tag">WEB APP</span></article>
- <article class="project glass"><span class="num">PROJECT / 04</span><div class="project-media"><img src="./project-04-tka-tryout.webp" alt="Antarmuka konsep ujian TKA" loading="lazy" decoding="async"></div><h3>Offline TKA Try Out</h3><p>Aplikasi latihan soal yang dirancang agar dapat digunakan tanpa koneksi internet.</p><span class="tag">EDTECH</span></article>
- <article class="project glass"><span class="num">PROJECT / 05</span><div class="project-media"><img src="./project-05-ai-agent.webp" alt="Dashboard konsep AI agent" loading="lazy" decoding="async"></div><h3>AI Agent</h3><p>Eksplorasi agen AI untuk membantu alur kerja dan interaksi digital secara lebih cerdas.</p><span class="tag">ARTIFICIAL INTELLIGENCE</span></article>
- <article class="project glass"><span class="num">PROJECT / 06</span><div class="project-media"><img src="./project-06-whatsapp-bot.webp" alt="Konsep antarmuka WhatsApp bot" loading="lazy" decoding="async"></div><h3>WhatsApp Bot</h3><p>Pengembangan bot modular dan otomasi percakapan untuk kebutuhan uji coba dan produktivitas.</p><span class="tag">AUTOMATION</span></article>
- <article class="project glass"><span class="num">PROJECT / 07</span><div class="project-media"><img src="./project-07-security-awareness.webp" alt="Dashboard edukasi keamanan digital" loading="lazy" decoding="async"></div><h3>Security Awareness Lab</h3><p>Simulasi edukasi keamanan web untuk memahami risiko phishing dan pentingnya perlindungan akun.</p><span class="tag">CYBER AWARENESS</span></article>
- <article class="project glass"><span class="num">PROJECT / 08</span><div class="project-media"><img src="./project-08-topup-platform.webp" alt="Konsep storefront platform top-up" loading="lazy" decoding="async"></div><h3>Top-up Platform</h3><p>Konsep layanan top-up berbasis aplikasi dan web dengan fokus pada alur pengguna.</p><span class="tag">APP & WEB</span></article>
+ <article class="project glass"><span class="num">PROJECT / 01</span><div class="project-media"><img src="./assets/projects/project-01-game-development.webp" alt="Preview konsep game platformer 2D" loading="lazy" decoding="async"></div><h3>2D Game Development</h3><p>Eksplorasi mekanik permainan, karakter, gerakan, dan pengalaman bermain dua dimensi.</p><span class="tag">GAME DEV</span></article>
+ <article class="project glass"><span class="num">PROJECT / 02</span><div class="project-media"><img src="./assets/projects/project-02-gesture-particles.webp" alt="Visual partikel interaktif" loading="lazy" decoding="async"></div><h3>Gesture Particles</h3><p>Eksperimen interaksi visual berbasis gestur untuk mengendalikan partikel secara real-time.</p><span class="tag">INTERACTIVE</span></article>
+ <article class="project glass"><span class="num">PROJECT / 03</span><div class="project-media"><img src="./assets/projects/project-03-digital-attendance.webp" alt="Dashboard konsep absensi digital" loading="lazy" decoding="async"></div><h3>Digital Attendance</h3><p>Konsep sistem absensi digital untuk membantu pencatatan kehadiran lebih praktis.</p><span class="tag">WEB APP</span></article>
+ <article class="project glass"><span class="num">PROJECT / 04</span><div class="project-media"><img src="./assets/projects/project-04-tka-tryout.webp" alt="Antarmuka konsep ujian TKA" loading="lazy" decoding="async"></div><h3>Offline TKA Try Out</h3><p>Aplikasi latihan soal yang dirancang agar dapat digunakan tanpa koneksi internet.</p><span class="tag">EDTECH</span></article>
+ <article class="project glass"><span class="num">PROJECT / 05</span><div class="project-media ai-video-media">
+  <video class="ai-agent-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="./assets/projects/project-05-ai-agent.webp" aria-label="Video visual AI Agent">
+   <source src="./ai-agent-video.mp4" type="video/mp4">
+  </video>
+  <span class="video-chip">AI VISUAL / 02</span>
+ </div><h3>AI Agent</h3><p>Eksplorasi agen AI untuk membantu alur kerja dan interaksi digital secara lebih cerdas.</p><span class="tag">ARTIFICIAL INTELLIGENCE</span></article>
+ <article class="project glass"><span class="num">PROJECT / 06</span><div class="project-media"><img src="./assets/projects/project-06-whatsapp-bot.webp" alt="Konsep antarmuka WhatsApp bot" loading="lazy" decoding="async"></div><h3>WhatsApp Bot</h3><p>Pengembangan bot modular dan otomasi percakapan untuk kebutuhan uji coba dan produktivitas.</p><span class="tag">AUTOMATION</span></article>
+ <article class="project glass"><span class="num">PROJECT / 07</span><div class="project-media"><img src="./assets/projects/project-07-security-awareness.webp" alt="Dashboard edukasi keamanan digital" loading="lazy" decoding="async"></div><h3>Security Awareness Lab</h3><p>Simulasi edukasi keamanan web untuk memahami risiko phishing dan pentingnya perlindungan akun.</p><span class="tag">CYBER AWARENESS</span></article>
+ <article class="project glass"><span class="num">PROJECT / 08</span><div class="project-media"><img src="./assets/projects/project-08-topup-platform.webp" alt="Konsep storefront platform top-up" loading="lazy" decoding="async"></div><h3>Top-up Platform</h3><p>Konsep layanan top-up berbasis aplikasi dan web dengan fokus pada alur pengguna.</p><span class="tag">APP & WEB</span></article>
  <article class="project glass"><span class="num">MORE / SOON</span><h3>Next experiment</h3><p>Selalu ada ruang untuk ide baru, kolaborasi, dan tantangan berikutnya.</p><span class="tag">IN PROGRESS</span></article>
  </div></div></section>
-<section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass" aria-label="Video visual milestone">
- <video class="milestone-video" autoplay muted loop playsinline preload="metadata" poster="">
-  <source src="./milestone-video.mp4" type="video/mp4">
- </video>
- <div class="milestone-video-shade" aria-hidden="true"></div>
- <div class="milestone-video-caption"><span class="mono">IKY / VISUAL JOURNEY</span><b>Ideas in motion.</b></div>
- </div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
+<section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass"><div class="award-seal">✦</div></div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
 <section id="education"><div class="wrap"><div class="section-head"><div><div class="eyebrow">04 / Education</div><h2>Where I <span class="gradient">learn.</span></h2></div></div><div class="education glass"><img src="./school-logo.jpg" alt="Logo SMAN 1 Kapuas Murung"><div><h3>SMAN 1 KAPUAS MURUNG</h3><p>Siswa kelas XII · Perjalanan belajar, bertumbuh, dan mengembangkan kreativitas di bidang teknologi.</p></div></div></div></section>
 <section id="music"><div class="wrap"><div class="music-box glass"><div><div class="eyebrow">05 / Soundtrack</div><h3>Code with a little <span class="gradient">music.</span></h3><p>Empat lagu pilihanmu. Tekan tombol Open Music untuk membuka dan memutar lagu melalui Spotify.</p><a class="btn primary" href="https://open.spotify.com/track/5D5rrenyGqSbtmJCNz1Bt7" target="_blank" rel="noopener">♫ Open music on Spotify</a></div><div class="track-list">
  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5D5rrenyGqSbtmJCNz1Bt7?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify track 1"></iframe>
@@ -403,7 +403,16 @@ const phrases=['Saya suka coding, membuat website, aplikasi, dan bot.','Saya men
 let pi=0,ci=0,deleting=false;const typed=document.getElementById('typed');
 function type(){let s=phrases[pi];typed.textContent=s.slice(0,ci);if(!deleting&&ci<s.length){ci++;setTimeout(type,45)}else if(!deleting){deleting=true;setTimeout(type,1500)}else if(ci>0){ci--;setTimeout(type,22)}else{deleting=false;pi=(pi+1)%phrases.length;setTimeout(type,300)}}type();
 
-// VVIP motion layer: reveal sections, active wave dock, and image fallback diagnostics.
+// Start muted inline videos reliably where the browser permits autoplay.
+(function(){
+ document.querySelectorAll('.site-video-bg video,.ai-agent-video').forEach(video=>{
+  video.muted=true; video.defaultMuted=true; video.playsInline=true;
+  const tryPlay=()=>{const result=video.play();if(result&&typeof result.catch==='function')result.catch(()=>{});};
+  video.addEventListener('canplay',tryPlay,{once:true});
+  tryPlay();
+ });
+})();
+// VVIP motion layer: reveal sections and active wave dock.
 (function(){
  const dock=[...document.querySelectorAll('.wave-dock a')];
  const targets=[...document.querySelectorAll('main section')];
