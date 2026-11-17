@@ -186,9 +186,45 @@ footer{padding-bottom:105px}
 .badge-details{font-size:8px}
 @media(max-width:700px){.tether-webbing{stroke-width:25}.tether-edge{stroke-width:32}}
 
+
+/* IKY VVIP VIDEO EXPERIENCE — uploaded clips */
+html,body{background:#06120e!important}
+body{position:relative;isolation:isolate;color:#f3f5eb}
+.site-video-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:#06120e;pointer-events:none}
+.site-video-bg video{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;object-position:center center;filter:saturate(.82) contrast(1.08);opacity:.43}
+.site-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,15,11,.70),rgba(3,18,13,.58) 38%,rgba(3,15,11,.80)),radial-gradient(ellipse at 50% 25%,rgba(34,83,57,.18),transparent 60%)}
+body:before{z-index:-1!important;background:radial-gradient(ellipse at 12% 18%,rgba(91,143,99,.16),transparent 38%),radial-gradient(ellipse at 90% 72%,rgba(180,151,83,.10),transparent 35%)!important}
+nav,.wave-dock{background:rgba(5,20,14,.76)!important;border-color:rgba(202,190,133,.34)!important;backdrop-filter:blur(22px) saturate(130%)!important;box-shadow:0 16px 48px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.08)!important}
+.glass,.project,.education,.music-box,.award-copy{background:rgba(8,30,21,.72)!important;border-color:rgba(199,190,143,.22)!important;backdrop-filter:blur(18px) saturate(125%)!important;box-shadow:0 18px 48px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.07)!important}
+.hero h1,.section-head h2,.about-main h3,.project h3,.award-copy h3,.music-box h3,.contact h2{color:#f4f2e7!important}
+.hero p,.about-main p,.award-copy p,.music-box p,.section-head p,.project p,.education p{color:#bdc8bb!important}
+.eyebrow,.award-label,.project .num{color:#c6b77d!important}
+.gradient{background:linear-gradient(100deg,#f7f1d9,#c4b477 58%,#7ea77d)!important;color:transparent!important;background-clip:text!important}
+.btn{background:rgba(245,242,224,.08)!important;border-color:rgba(207,195,139,.34)!important;color:#f3efdc!important}
+.btn.primary{background:linear-gradient(110deg,#9b8247,#587d57)!important;color:#fff!important}
+.award-art{min-height:300px!important;display:block!important;background:#07130e!important;border:1px solid rgba(201,190,139,.3)!important}
+.award-art:before{display:none!important}
+.milestone-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.9) contrast(1.06);transform:scale(1.015)}
+.milestone-video-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,14,10,.04),rgba(3,14,10,.18) 45%,rgba(3,14,10,.76))}
+.milestone-video-caption{position:absolute;left:22px;right:22px;bottom:20px;z-index:2;display:flex;flex-direction:column;gap:7px;color:#fff;text-shadow:0 2px 12px #0009}
+.milestone-video-caption span{font-size:9px;letter-spacing:.2em;color:#e4d6a1}
+.milestone-video-caption b{font-size:clamp(19px,3vw,27px);letter-spacing:-.045em}
+#loader{background:rgba(4,17,12,.94)!important}
+.load-mark{background:linear-gradient(120deg,#f7f1d9,#c4b477,#7ea77d)!important;color:transparent!important;background-clip:text!important}
+.load-caption{color:#c4c8b5!important}
+footer{color:#a4b09f!important}
+@media(max-width:700px){.site-video-bg video{object-position:50% 45%;opacity:.36}.award-art{min-height:240px!important}.milestone-video-caption{left:17px;bottom:16px}}
+@media(prefers-reduced-motion:reduce){.site-video-bg video,.milestone-video{animation:none}}
+
 </style>
 </head>
 <body>
+<div class="site-video-bg" aria-hidden="true">
+ <video id="siteBackgroundVideo" autoplay muted loop playsinline preload="metadata">
+  <source src="./background-video.mp4" type="video/mp4">
+ </video>
+ <div class="site-video-overlay"></div>
+</div>
 <div id="loader"><div class="load-inner"><div class="load-mark">IKY.</div><div class="load-line"><i></i></div><div class="load-caption">Initializing creative universe · 2026</div></div></div>
 <nav><a class="brand" href="#home">IKY<span>.</span></a><div class="navlinks"><a href="#about">Tentang</a><a href="#work">Karya</a><a href="#achievement">Pencapaian</a><a href="#contact">Kontak</a></div><a class="nav-cta" href="#contact">Let's connect ↗</a></nav>
 <main>
@@ -252,7 +288,13 @@ footer{padding-bottom:105px}
  <article class="project glass"><span class="num">PROJECT / 08</span><div class="project-media"><img src="./project-08-topup-platform.webp" alt="Konsep storefront platform top-up" loading="lazy" decoding="async"></div><h3>Top-up Platform</h3><p>Konsep layanan top-up berbasis aplikasi dan web dengan fokus pada alur pengguna.</p><span class="tag">APP & WEB</span></article>
  <article class="project glass"><span class="num">MORE / SOON</span><h3>Next experiment</h3><p>Selalu ada ruang untuk ide baru, kolaborasi, dan tantangan berikutnya.</p><span class="tag">IN PROGRESS</span></article>
  </div></div></section>
-<section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass"><div class="award-seal">✦</div></div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
+<section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass" aria-label="Video visual milestone">
+ <video class="milestone-video" autoplay muted loop playsinline preload="metadata" poster="">
+  <source src="./milestone-video.mp4" type="video/mp4">
+ </video>
+ <div class="milestone-video-shade" aria-hidden="true"></div>
+ <div class="milestone-video-caption"><span class="mono">IKY / VISUAL JOURNEY</span><b>Ideas in motion.</b></div>
+ </div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
 <section id="education"><div class="wrap"><div class="section-head"><div><div class="eyebrow">04 / Education</div><h2>Where I <span class="gradient">learn.</span></h2></div></div><div class="education glass"><img src="./school-logo.jpg" alt="Logo SMAN 1 Kapuas Murung"><div><h3>SMAN 1 KAPUAS MURUNG</h3><p>Siswa kelas XII · Perjalanan belajar, bertumbuh, dan mengembangkan kreativitas di bidang teknologi.</p></div></div></div></section>
 <section id="music"><div class="wrap"><div class="music-box glass"><div><div class="eyebrow">05 / Soundtrack</div><h3>Code with a little <span class="gradient">music.</span></h3><p>Empat lagu pilihanmu. Tekan tombol Open Music untuk membuka dan memutar lagu melalui Spotify.</p><a class="btn primary" href="https://open.spotify.com/track/5D5rrenyGqSbtmJCNz1Bt7" target="_blank" rel="noopener">♫ Open music on Spotify</a></div><div class="track-list">
  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5D5rrenyGqSbtmJCNz1Bt7?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify track 1"></iframe>
