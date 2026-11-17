@@ -320,6 +320,54 @@ nav{background:linear-gradient(130deg,rgba(221,250,236,.13),rgba(12,38,27,.48) 4
 .lanyard-name{font-weight:900;letter-spacing:1.05px;fill:#fff;stroke:#101713;stroke-width:1px;paint-order:stroke fill;filter:drop-shadow(0 1px 2px #000);}
 @media(max-width:520px){.badge-hole{width:29px;height:14px}.face{border-width:3px}.id-card{box-shadow:0 1px 0 #fff,0 3px 0 #c5cec7,0 5px 0 #87938b,0 7px 11px #0007}}
 
+
+
+/* ===== IKY ULTRA STABLE VVIP PATCH ===== */
+/* Keep the floating navigation fixed without lifting active/hovered items. */
+.wave-dock {
+  transform: translate3d(-50%, 0, 0) !important;
+  will-change: auto !important;
+}
+.wave-dock a,
+.wave-dock a:hover,
+.wave-dock a:focus-visible,
+.wave-dock a.active,
+.wave-dock a.active:hover {
+  transform: none !important;
+}
+.wave-dock a {
+  transition: color .25s ease, background-color .25s ease,
+              background .25s ease, border-color .25s ease,
+              box-shadow .25s ease !important;
+}
+.wave-dock a:after {
+  transform: none !important;
+}
+/* Reveal content without translating it, preventing perceived page shifts. */
+.js-reveal,
+.js-reveal.is-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity .25s ease !important;
+}
+/* Avoid transform animation on the fixed top navigation. */
+nav {
+  will-change: auto !important;
+}
+/* Keep horizontal viewport position stable on narrow screens. */
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+@media (max-width: 700px) {
+  .wave-dock {
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+  .wave-dock a.active {
+    transform: none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -381,56 +429,16 @@ nav{background:linear-gradient(130deg,rgba(221,250,236,.13),rgba(12,38,27,.48) 4
      <div class="badge-green"></div>
      <div class="badge-name">RISQIE KAMAL</div>
      <div class="badge-role">CREATIVE DEVELOPER</div>
-     <div class="badge-details"><span>ID NUMBER</span><b>2579619</b><span>FOCUS</span><b>WEB &amp; APPS</b><span>INTEREST</span><b>CODE · RUN · FISH</b><span>VALIDITY PERIOD</span><b>INFINITE</b></div>
+     <div class="badge-details"><span>ID NUMBER</span><b>016-2026</b><span>FOCUS</span><b>WEB &amp; APPS</b><span>INTEREST</span><b>CODE · RUN · FISH</b><span>VALIDITY PERIOD</span><b>INFINITE</b></div>
      <div class="badge-footer">IDEAS · DESIGN · INNOVATION</div>
     </div>
     <div class="face back">
-     
-<div class="face back">
-
-  <!-- LUBANG PENGAIT 3D -->
-  <div class="badge-hole" aria-hidden="true">
-    <span class="hole-inner"></span>
-    <span class="hole-metal"></span>
-  </div>
-
-  <!-- HEADER HIJAU -->
-  <div class="back-green-cap">
-    <div class="back-brand">
-      <img src="./school-logo.jpg" alt="Logo sekolah">
-      <b>ID-016-2026</b>
-    </div>
-  </div>
-
-  <!-- KONTEN BELAKANG -->
-  <div class="back-content">
-
-    <!-- QR CODE -->
-    <div class="qr-art" aria-hidden="true"></div>
-
-    <div class="back-thanks">
-      Thank You
-    </div>
-
-    <p>
-      This identity represents curiosity,
-      creativity, and a passion for building
-      digital experiences.
-    </p>
-
-    <p>
-      Keep learning, keep creating, and turn
-      every idea into something meaningful.
-    </p>
-
-    <!-- FOOTER -->
-    <div class="back-bottom">
-      RISQIE KAMAL · PERSONAL IDENTITY
-    </div>
-
-  </div>
-</div>
-
+     <!-- THROUGH HOLE - BACK SIDE: aligned with front-side slot -->
+     <div class="badge-hole" aria-hidden="true"><span class="hole-inner"></span><span class="hole-metal"></span></div>
+     <div class="back-green-cap"><div class="back-brand"><img src="./school-logo.jpg" alt=""><b>2579619</b></div></div>
+     <div class="back-content">
+      <div class="qr-art" aria-hidden="true"></div>
+      <div class="back-thanks">Thank You</div>
       <p>This identity represents curiosity, creativity, and a passion for building digital experiences.</p>
       <p>Keep learning, keep creating, and turn every idea into something meaningful.</p>
       <div class="back-bottom">RISQIE KAMAL · PERSONAL IDENTITY</div>
@@ -451,7 +459,7 @@ nav{background:linear-gradient(130deg,rgba(221,250,236,.13),rgba(12,38,27,.48) 4
   <video class="ai-agent-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="./project-05-ai-agent.webp" aria-label="Video visual AI Agent">
    <source src="./ai-agent-video.mp4" type="video/mp4">
   </video>
-  <span class="video-chip">AI VISUAL</span>
+  <span class="video-chip">AI VISUAL REALISTIS</span>
  </div><h3>AI Agent</h3><p>Eksplorasi agen AI untuk membantu alur kerja dan interaksi digital secara lebih cerdas.</p><span class="tag">ARTIFICIAL INTELLIGENCE</span></article>
  <article class="project glass"><span class="num">PROJECT / 06</span><div class="project-media"><img src="./project-06-whatsapp-bot.webp" alt="Konsep antarmuka WhatsApp bot" loading="lazy" decoding="async"></div><h3>WhatsApp Bot</h3><p>Pengembangan bot modular dan otomasi percakapan untuk kebutuhan uji coba dan produktivitas.</p><span class="tag">AUTOMATION</span></article>
  <article class="project glass"><span class="num">PROJECT / 07</span><div class="project-media"><img src="./project-07-security-awareness.webp" alt="Dashboard edukasi keamanan digital" loading="lazy" decoding="async"></div><h3>Security Awareness Lab</h3><p>Simulasi edukasi keamanan web untuk memahami risiko phishing dan pentingnya perlindungan akun.</p><span class="tag">CYBER AWARENESS</span></article>
