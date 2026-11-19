@@ -445,7 +445,7 @@ html, body {
   transition:filter .25s ease;
 }
 #card.dragging{filter:drop-shadow(0 30px 30px rgba(0,0,0,.56)) drop-shadow(0 0 12px rgba(185,225,205,.12));}
-#badgeClip{transform-origin:50% 4px;will-change:transform,left,top;transition:none!important;}
+#badgeClip{transform-origin:50% 10px;will-change:transform,left,top;}
 #card{touch-action:none;}
 
 #card .id-card{transform-style:preserve-3d;backface-visibility:visible;}
@@ -466,7 +466,7 @@ html, body {
   width:62px!important;height:78px!important;
   transform-style:preserve-3d;
   transform-origin:50% 9px;
-  transition:none!important;
+  transition:transform .68s cubic-bezier(.2,.72,.22,1),filter .18s ease;
   filter:drop-shadow(0 5px 5px rgba(0,0,0,.55));
 }
 .badge-clip:before{
@@ -563,61 +563,6 @@ html, body {
  .clip-crimp{left:4px!important;width:58px!important;height:36px!important}
 }
 
-
-/* Lobster swivel snap hook based on supplied reference image */
-.badge-clip{
- position:absolute!important;left:50%;top:0;width:88px!important;height:150px!important;
- z-index:9;pointer-events:none;transform-origin:50% 8px;transform-style:preserve-3d;
- filter:drop-shadow(0 4px 5px rgba(0,0,0,.48));
-}
-.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
-.badge-clip .clip-crimp,.badge-clip .clip-loop,.badge-clip .clip-hook,.badge-clip .clip-ring{display:none!important}
-.snap-swivel-svg{display:block;width:100%;height:100%;overflow:visible}
-@media(max-width:520px){.badge-clip{width:78px!important;height:134px!important}}
-
-
-/* Reference badge connector: rectangular strap end-cap + vertical oval split ring */
-.badge-clip{
- position:absolute!important;left:50%;top:0;width:76px!important;height:126px!important;
- z-index:9;pointer-events:none;transform-origin:50% 8px;transform-style:preserve-3d;
- filter:drop-shadow(0 3px 4px rgba(0,0,0,.42));
-}
-.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
-.badge-clip .clip-crimp,.badge-clip .clip-loop,.badge-clip .clip-hook,.badge-clip .clip-ring{display:none!important}
-.strap-ring-svg{display:block;width:100%;height:100%;overflow:visible}
-@media(max-width:520px){.badge-clip{width:72px!important;height:120px!important}}
-
-
-/* ===== FINAL FIT: narrow strap cap + oval connector seated in badge slot ===== */
-.badge-clip{
- position:absolute!important;
- left:50%!important;
- top:0;
- width:56px!important;
- height:70px!important;
- z-index:9!important;
- pointer-events:none!important;
- transform-origin:50% 4px!important;
- transform-style:preserve-3d!important;
- filter:drop-shadow(0 2px 3px rgba(0,0,0,.42))!important;
- transition:transform .68s cubic-bezier(.2,.72,.22,1)!important;
-}
-.strap-ring-svg{
- display:block!important;
- width:100%!important;
- height:100%!important;
- overflow:visible!important;
- preserveAspectRatio:xMidYMid meet;
-}
-.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
-.badge-clip .clip-crimp,.badge-clip .clip-loop,.badge-clip .clip-hook,.badge-clip .clip-ring{display:none!important}
-@media(max-width:520px){
- .badge-clip{width:56px!important;height:70px!important}
-}
-
-
-/* Precision sync: the metal clip must stay phase-locked to the card. */
-.badge-clip,#badgeClip{transition:none!important;will-change:transform,left,top;}
 </style>
 </head>
 <body>
@@ -665,50 +610,10 @@ html, body {
    <text class="lanyard-name" id="lanyardName" text-anchor="middle" dominant-baseline="middle">RISQIE KAMAL</text>
   </svg>
   <div class="badge-clip" id="badgeClip" aria-hidden="true">
-   <svg class="strap-ring-svg" viewBox="0 0 100 126" role="presentation" aria-hidden="true">
-    <defs>
-     <linearGradient id="hookSteel" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#46515c"/><stop offset=".16" stop-color="#f8fbfd"/>
-      <stop offset=".34" stop-color="#8995a0"/><stop offset=".52" stop-color="#fff"/>
-      <stop offset=".72" stop-color="#78848f"/><stop offset=".9" stop-color="#f5f8fa"/>
-      <stop offset="1" stop-color="#4b5661"/>
-     </linearGradient>
-     <linearGradient id="hookCap" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff"/><stop offset=".28" stop-color="#e5ebef"/>
-      <stop offset=".68" stop-color="#9ca8b2"/><stop offset="1" stop-color="#596570"/>
-     </linearGradient>
-     <filter id="hookShadow" x="-40%" y="-25%" width="180%" height="160%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="1.7"/><feOffset dy="2"/>
-      <feComponentTransfer><feFuncA type="linear" slope=".48"/></feComponentTransfer>
-      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-     </filter>
-    </defs>
-    <g filter="url(#hookShadow)" stroke-linejoin="round" stroke-linecap="round">
-     <!-- Crimp sleeve gripping the woven lanyard -->
-     <rect x="14" y="2" width="72" height="27" rx="5" fill="url(#hookCap)" stroke="#eaf0f3" stroke-width="2"/>
-     <rect x="18" y="5" width="64" height="20" rx="3" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="1.3"/>
-     <path d="M20 22H80" stroke="#596570" stroke-opacity=".55" stroke-width="1.2"/>
-     <path d="M22 8H78" stroke="#fff" stroke-opacity=".8" stroke-width="1.2"/>
-     <!-- Swivel eye and short neck -->
-     <path d="M43 29V35Q43 40 50 40Q57 40 57 35V29" fill="none" stroke="#4c5863" stroke-width="7"/>
-     <path d="M43 29V35Q43 40 50 40Q57 40 57 35V29" fill="none" stroke="url(#hookSteel)" stroke-width="4"/>
-     <rect x="43" y="39" width="14" height="11" rx="4" fill="url(#hookCap)" stroke="#66727d" stroke-width="1.2"/>
-     <circle cx="50" cy="44" r="2" fill="#34404a" stroke="#f8fbfd" stroke-width=".8"/>
-     <!-- Lobster clasp body: rounded nose with an open throat -->
-     <path d="M43 49 C39 53 37 61 37 72 L37 91 C37 103 43 113 50 116 C58 113 64 103 64 91 L64 72 C64 60 61 53 57 49Z"
-       fill="url(#hookSteel)" stroke="#46525d" stroke-width="2.2"/>
-     <path d="M45 54 C42 61 42 72 42 91 C42 101 46 108 50 111 C55 108 59 101 59 91 L59 72 C59 62 57 56 55 54"
-       fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.5"/>
-     <!-- Spring gate on the right, leaving a visible opening at the hook tip -->
-     <path d="M60 62 C70 61 73 67 70 75 L62 86" fill="none" stroke="#4b5661" stroke-width="7"/>
-     <path d="M60 62 C70 61 73 67 70 75 L62 86" fill="none" stroke="url(#hookSteel)" stroke-width="4.2"/>
-     <path d="M62 86 L54 94" stroke="#fff" stroke-opacity=".85" stroke-width="2.2"/>
-     <circle cx="62" cy="61" r="3" fill="url(#hookCap)" stroke="#56616c" stroke-width="1"/>
-     <!-- Rounded lower nose sits inside the reinforced card eyelet -->
-     <path d="M39 91 C39 106 45 116 50 118 C56 116 62 106 62 91" fill="none" stroke="#46515c" stroke-width="7"/>
-     <path d="M39 91 C39 106 45 116 50 118 C56 116 62 106 62 91" fill="none" stroke="url(#hookSteel)" stroke-width="4.2"/>
-    </g>
-   </svg>
+   <span class="clip-crimp"><i></i><b></b></span>
+   <span class="clip-loop"></span>
+   <span class="clip-hook"></span>
+   <span class="clip-ring"></span>
   </div>
   <div class="card-wrap" id="card" role="button" tabindex="0" aria-label="Tarik kartu identitas ke arah mana pun, atau ketuk sekali untuk melihat sisi belakang">
    <div class="id-card" id="idCard">
@@ -796,41 +701,16 @@ const tetherPaths=['tetherShadow','tetherEdge','tetherWebbing','tetherRib','teth
 let cardX=0,cardY=0,velX=0,velY=0;
 let dragging=false,pointerId=null,startX=0,startY=0,lastPointerX=0,lastPointerY=0;
 let lastPointerTime=0,pointerVX=0,pointerVY=0,originX=0,originY=0,hasMoved=false;
-let yaw=0,pitch=0,roll=0,yawVelocity=0,pitchVelocity=0,rollVelocity=0;
+let yaw=0,pitch=0,roll=0,yawVelocity=.12,pitchVelocity=.025,rollVelocity=.035;
 let lastFrame=0,flipLock=false,lanyardFold=0;
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function drawTether(){
- const stageRect=stage.getBoundingClientRect();
- const anchorX=stage.clientWidth/2,anchorY=8;
- // Select the eyelet on the currently visible card face.
- const visibleFace=idCard.classList.contains('is-flipped')?'.face.back':'.face.front';
- const eyelet=card.querySelector(`${visibleFace} .badge-hole`);
- let eyeletX,eyeletY;
- if(eyelet && typeof eyelet.getBoxQuads==='function'){
-  // Quad points are the actual perspective-projected corners, unlike the
-  // axis-aligned bounding rectangle which drifts during 3D rotation.
-  const q=eyelet.getBoxQuads()[0];
-  if(q){
-   eyeletX=(q.p1.x+q.p2.x+q.p3.x+q.p4.x)/4-stageRect.left;
-   eyeletY=(q.p1.y+q.p2.y+q.p3.y+q.p4.y)/4-stageRect.top;
-  }
- }
- if(eyeletX===undefined || !Number.isFinite(eyeletX)){
-  const r=eyelet.getBoundingClientRect();
-  eyeletX=r.left+r.width/2-stageRect.left;
-  eyeletY=r.top+r.height/2-stageRect.top;
- }
- const clipX=eyeletX,clipY=eyeletY-66;
- // Match the clip's rotation pivot to the card's physical transform-origin.
- // This prevents the clip from orbiting around its own center while the card
- // rotates around a different point.
- const cardPivotX=stage.clientWidth/2+cardX;
- const cardPivotY=(card.offsetTop||214)+cardY-52;
- const clipOriginX=cardPivotX-clipX+31;
- const clipOriginY=cardPivotY-clipY;
- // The webbing terminates at the upper edge of the metal crimp.
- const endX=clipX,endY=clipY+9;
+ const w=stage.clientWidth,anchorX=w/2,anchorY=8;
+ const cardCenterX=w/2+cardX;
+ const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
+ const clipX=cardCenterX,clipY=cardTop-64;
+ const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
  const fold=clamp(lanyardFold,0,1);
@@ -934,10 +814,8 @@ function drawTether(){
  const clip=document.getElementById('badgeClip');
  if(clip){
   clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`;
-  clip.style.transformOrigin=`${clipOriginX}px ${clipOriginY}px`;
   const flip=idCard.classList.contains('is-flipped')?180:0;
-  // Use the same rotation stack and the stage's shared perspective as the card.
-  clip.style.transform=`translateX(-50%) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw+flip}deg)`;
+  clip.style.transform=`translateX(-50%) perspective(850px) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw+flip}deg)`;
  }
 }
 function placeCard(){
@@ -957,13 +835,11 @@ function animateCard(now){
   velX*=dampingX;velY*=dampingY;
   cardX+=velX*dt;cardY+=velY*dt;
   // Pendulum rotation is driven by lateral motion and gradually settles.
-  yawVelocity+=(-yaw*.028+velX*.022)*dt;
-  pitchVelocity+=(-pitch*.032-velY*.012)*dt;
-  rollVelocity+=(-roll*.038+velX*.012)*dt;
-  yawVelocity*=Math.pow(.90,dt);pitchVelocity*=Math.pow(.88,dt);rollVelocity*=Math.pow(.86,dt);
-  yaw=clamp(yaw+yawVelocity*dt,-28,28);
-  pitch=clamp(pitch+pitchVelocity*dt,-12,12);
-  roll=clamp(roll+rollVelocity*dt,-10,10);
+  yawVelocity+=(-yaw*.018+velX*.035)*dt;
+  pitchVelocity+=(-pitch*.022-velY*.018)*dt;
+  rollVelocity+=(-roll*.026+velX*.018)*dt;
+  yawVelocity*=Math.pow(.963,dt);pitchVelocity*=Math.pow(.958,dt);rollVelocity*=Math.pow(.945,dt);
+  yaw+=yawVelocity*dt;pitch+=pitchVelocity*dt;roll+=rollVelocity*dt;
   if(Math.abs(cardX)<.08&&Math.abs(velX)<.04)cardX=velX=0;
   if(Math.abs(cardY)<.08&&Math.abs(velY)<.04)cardY=velY=0;
   if(Math.abs(yaw)<.025&&Math.abs(yawVelocity)<.02)yaw=yawVelocity=0;
