@@ -516,6 +516,65 @@ html, body {
 .badge-tether .tether-seam{stroke-width:1!important;stroke-linecap:butt!important}
 .badge-tether .tether-stitch{stroke-width:.85!important;stroke-linecap:butt!important}
 
+
+/* ===== Reference-style ID lanyard clamp: flat crimp + small swivel ring ===== */
+.badge-clip{
+ position:absolute!important;left:50%;top:0;width:66px!important;height:78px!important;
+ transform:translateX(-50%);z-index:8;pointer-events:none;
+ filter:drop-shadow(0 3px 3px rgba(0,0,0,.58));
+ transform-style:preserve-3d;
+}
+.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
+.clip-crimp{
+ position:absolute;left:4px!important;top:0!important;width:58px!important;height:36px!important;
+ box-sizing:border-box;border:1.5px solid #e7edf1!important;border-radius:7px!important;
+ background:
+  linear-gradient(180deg,rgba(255,255,255,.85),transparent 20%,transparent 78%,rgba(22,30,39,.42)),
+  linear-gradient(90deg,#414b56 0%,#9ba7b2 10%,#edf2f5 23%,#77838f 39%,#dce3e8 54%,#8995a0 72%,#f5f7f8 88%,#515c67 100%)!important;
+ box-shadow:inset 0 1px 2px rgba(255,255,255,.95),inset 0 -3px 4px rgba(20,28,37,.55),0 2px 4px rgba(0,0,0,.55)!important;
+ overflow:hidden;
+}
+.clip-crimp:before{
+ content:"";position:absolute;inset:3px 4px!important;border:1px solid rgba(255,255,255,.38)!important;
+ border-radius:4px!important;box-shadow:inset 0 0 2px rgba(20,28,37,.38)!important;
+}
+.clip-crimp:after{
+ content:"";position:absolute;left:5px;right:5px;bottom:4px;height:1px;
+ background:rgba(255,255,255,.48);box-shadow:0 -1px 2px rgba(20,28,37,.35);
+}
+.clip-crimp i,.clip-crimp b{display:none!important}
+.clip-loop{
+ position:absolute;left:25px!important;top:32px!important;width:16px!important;height:29px!important;
+ box-sizing:border-box;border:3px solid #aeb9c3!important;border-top-color:#f7fafc!important;
+ border-radius:48% 48% 42% 42%!important;
+ background:linear-gradient(90deg,#56616c,#f7fafb 42%,#7e8994 72%,#e7edf1)!important;
+ box-shadow:inset 0 0 0 1px rgba(46,57,68,.6),0 1px 3px rgba(0,0,0,.55)!important;
+}
+.clip-hook{display:none!important}
+.clip-ring{
+ position:absolute;left:25px!important;top:55px!important;width:16px!important;height:16px!important;
+ box-sizing:border-box;border:3px solid #c4cdd5!important;border-radius:50%!important;
+ background:radial-gradient(circle at 32% 24%,#fff 0%,#d7dfe5 18%,#64717c 52%,#f3f6f8 78%,#65717c 100%)!important;
+ box-shadow:inset 0 0 0 1px #596570,0 2px 3px rgba(0,0,0,.65)!important;
+}
+/* Keep the compact clamp centered on the strap and let the ring enter the card eyelet. */
+@media(max-width:520px){
+ .badge-clip{width:66px!important;height:78px!important}
+ .clip-crimp{left:4px!important;width:58px!important;height:36px!important}
+}
+
+
+/* Lobster swivel snap hook based on supplied reference image */
+.badge-clip{
+ position:absolute!important;left:50%;top:0;width:88px!important;height:150px!important;
+ z-index:9;pointer-events:none;transform-origin:50% 8px;transform-style:preserve-3d;
+ filter:drop-shadow(0 4px 5px rgba(0,0,0,.48));
+}
+.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
+.badge-clip .clip-crimp,.badge-clip .clip-loop,.badge-clip .clip-hook,.badge-clip .clip-ring{display:none!important}
+.snap-swivel-svg{display:block;width:100%;height:100%;overflow:visible}
+@media(max-width:520px){.badge-clip{width:78px!important;height:134px!important}}
+
 </style>
 </head>
 <body>
@@ -563,10 +622,48 @@ html, body {
    <text class="lanyard-name" id="lanyardName" text-anchor="middle" dominant-baseline="middle">RISQIE KAMAL</text>
   </svg>
   <div class="badge-clip" id="badgeClip" aria-hidden="true">
-   <span class="clip-crimp"><i></i><b></b></span>
-   <span class="clip-loop"></span>
-   <span class="clip-hook"></span>
-   <span class="clip-ring"></span>
+   <svg class="snap-swivel-svg" viewBox="0 0 88 150" role="presentation">
+    <defs>
+     <linearGradient id="snapSteel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#53606b"/><stop offset=".16" stop-color="#f7fafc"/>
+      <stop offset=".34" stop-color="#aab5be"/><stop offset=".52" stop-color="#fff"/>
+      <stop offset=".72" stop-color="#87939e"/><stop offset=".9" stop-color="#f3f6f8"/>
+      <stop offset="1" stop-color="#596570"/>
+     </linearGradient>
+     <linearGradient id="snapEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff"/><stop offset=".48" stop-color="#9ba7b1"/>
+      <stop offset="1" stop-color="#4c5863"/>
+     </linearGradient>
+     <linearGradient id="snapRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff"/><stop offset=".38" stop-color="#aab5be"/>
+      <stop offset=".68" stop-color="#f7fafc"/><stop offset="1" stop-color="#56616d"/>
+     </linearGradient>
+     <filter id="snapShadow" x="-40%" y="-30%" width="180%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.2"/>
+      <feOffset dy="2"/><feComponentTransfer><feFuncA type="linear" slope=".55"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+     </filter>
+    </defs>
+    <g filter="url(#snapShadow)" stroke-linejoin="round">
+     <path d="M31 70 L17 28 C10 7 25 -2 43 3 C66 9 77 31 67 52 L58 73 L49 69 L59 48 C66 31 55 15 41 12 C28 9 20 17 25 31 L39 68 Z"
+       fill="url(#snapSteel)" stroke="url(#snapEdge)" stroke-width="2.4"/>
+     <path d="M29 29 C25 17 33 11 42 13 C56 16 63 29 57 44"
+       fill="none" stroke="#fff" stroke-opacity=".72" stroke-width="2.2"/>
+     <path d="M20 30 L32 66" fill="none" stroke="#596570" stroke-width="7"/>
+     <path d="M19 29 L31 65" fill="none" stroke="url(#snapSteel)" stroke-width="4.2"/>
+     <path d="M18 29 L24 27" fill="none" stroke="#fff" stroke-width="1.4"/>
+     <circle cx="44" cy="65" r="5.5" fill="url(#snapSteel)" stroke="#58646f" stroke-width="1.5"/>
+     <circle cx="44" cy="65" r="2" fill="#64717c"/>
+     <path d="M28 72 Q44 66 60 72 L58 84 Q44 91 30 84 Z"
+       fill="url(#snapSteel)" stroke="#68747f" stroke-width="1.8"/>
+     <path d="M32 74 Q44 71 56 74" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="2"/>
+     <rect x="34" y="83" width="20" height="12" rx="5" fill="url(#snapSteel)" stroke="#596570" stroke-width="1.5"/>
+     <circle cx="44" cy="119" r="26" fill="none" stroke="#4c5863" stroke-width="9"/>
+     <circle cx="44" cy="119" r="25" fill="none" stroke="url(#snapRing)" stroke-width="7.5"/>
+     <path d="M24 106 A24 24 0 0 1 62 101" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="2.1"/>
+     <path d="M25 132 A24 24 0 0 0 64 132" fill="none" stroke="#58646f" stroke-opacity=".7" stroke-width="1.6"/>
+    </g>
+   </svg>
   </div>
   <div class="card-wrap" id="card" role="button" tabindex="0" aria-label="Tarik kartu identitas ke arah mana pun, atau ketuk sekali untuk melihat sisi belakang">
    <div class="id-card" id="idCard">
@@ -662,7 +759,7 @@ function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
  const cardCenterX=w/2+cardX;
  const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
- const clipX=cardCenterX,clipY=cardTop-52;
+ const clipX=cardCenterX,clipY=cardTop-126;
  const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
