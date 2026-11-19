@@ -733,11 +733,36 @@ function drawTether(){
  setPath('tetherTipHighlight',`M ${sx+nx*5} ${sy+ny*5} L ${endX-ux*3+nx*4} ${endY-uy*3+ny*4}`);
  const name=document.getElementById('lanyardName');
  if(name){
-  const mx=anchorX+dx*.5,my=anchorY+dy*.5;
-  const angle=Math.atan2(dy,dx)*180/Math.PI;
-  name.setAttribute('x',mx);name.setAttribute('y',my);
-  name.setAttribute('transform',`rotate(${angle} ${mx} ${my})`);
-  name.style.opacity=String(1-fold*.35);
+  // Place every character on the ribbon's own centerline. Each glyph follows
+  // the local tangent and narrows with the same projected fabric twist, so
+  // the printed name never floats above a fold or stays flat while cloth turns.
+  const label='RISQIE KAMAL';
+  const count=label.length;
+  const from=.22,to=.66;
+  const tangentAngle=Math.atan2(dy,dx)*180/Math.PI;
+  name.replaceChildren();
+  name.setAttribute('x',0);
+  name.setAttribute('y',0);
+  name.removeAttribute('transform');
+  name.setAttribute('text-anchor','middle');
+  for(let i=0;i<count;i++){
+   const t=from+(to-from)*(count===1?0:i/(count-1));
+   const twist=Math.PI*fold*t;
+   const projected=Math.sqrt(Math.cos(twist)**2+.018);
+   const sideShift=Math.sin(twist)*2.2+Math.sin(Math.PI*t)*dynamicBow;
+   const gx=anchorX+dx*t+nx*sideShift;
+   const gy=anchorY+dy*t+ny*sideShift;
+   const glyph=document.createElementNS('http://www.w3.org/2000/svg','tspan');
+   glyph.textContent=label[i]===' '?'\u00a0':label[i];
+   glyph.setAttribute('x','0');
+   glyph.setAttribute('y','0');
+   glyph.setAttribute('text-anchor','middle');
+   glyph.setAttribute('dominant-baseline','middle');
+   glyph.setAttribute('transform',`translate(${gx.toFixed(2)} ${gy.toFixed(2)}) rotate(${tangentAngle.toFixed(2)}) scale(${projected.toFixed(3)} 1)`);
+   glyph.setAttribute('opacity',String(.22+.78*projected));
+   name.appendChild(glyph);
+  }
+  name.style.opacity='1';
  }
  const clip=document.getElementById('badgeClip');
  if(clip){
