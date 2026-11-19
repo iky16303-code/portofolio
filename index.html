@@ -453,6 +453,64 @@ html, body {
 #card .face.back{transform:rotateY(180deg);}
 @media(prefers-reduced-motion:reduce){#card.card-wrap{transition:none!important}}
 
+
+/* ===== REFINED SUSPENDED HARDWARE: STRAIGHT WEBBING + LINKED SWIVEL ===== */
+#badgeTether{
+  transform-origin:50% 8px;
+  transform-box:border-box;
+  transform-style:preserve-3d;
+  transition:transform .68s cubic-bezier(.2,.72,.22,1);
+  will-change:transform;
+}
+#stage.lanyard-flipped #badgeTether{
+  transform:perspective(900px) rotateY(180deg);
+}
+.badge-clip{
+  width:62px!important;height:78px!important;
+  transform-style:preserve-3d;
+  transform-origin:50% 9px;
+  transition:transform .68s cubic-bezier(.2,.72,.22,1),filter .18s ease;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.55));
+}
+.badge-clip:before{
+  left:18px!important;top:0!important;width:26px!important;height:29px!important;
+  box-sizing:border-box;border:5px solid #dce4e9!important;
+  border-top-color:#fff!important;border-radius:10px 10px 13px 13px!important;
+  background:linear-gradient(90deg,#39434d 0%,#aeb9c2 16%,#fff 31%,#697581 48%,#e9eef2 64%,#5b6671 82%,#f7fafc 100%)!important;
+  box-shadow:inset 0 0 0 2px #697580,inset 0 2px 3px #fff,0 3px 5px #000b!important;
+}
+.badge-clip:after{
+  left:23px!important;top:23px!important;width:16px!important;height:27px!important;
+  box-sizing:border-box;border:4px solid #d8e0e6!important;border-top:0!important;
+  border-radius:3px 3px 12px 12px!important;
+  background:linear-gradient(90deg,#4d5964,#f9fcff 34%,#82909c 58%,#fff 76%,#4a5661)!important;
+  box-shadow:inset 0 -3px 4px #35404a,0 3px 5px #000a!important;
+}
+.clip-crimp{
+  left:6px!important;top:1px!important;width:50px!important;height:23px!important;
+  border-radius:6px!important;
+  background:linear-gradient(90deg,#313b45,#b6c1ca 14%,#fff 27%,#687581 45%,#f4f7fa 61%,#6b7782 79%,#fff 91%,#3b4650)!important;
+  box-shadow:inset 0 2px 3px #fff,inset 0 -4px 5px #303943,0 3px 6px #000b!important;
+}
+.clip-loop{
+  left:21px!important;top:20px!important;width:20px!important;height:19px!important;
+  border-width:4px!important;border-color:#dfe7ec!important;border-top-color:#fff!important;
+  background:linear-gradient(90deg,#48545f,#fff 35%,#8995a0 62%,#f8fbfd)!important;
+  box-shadow:inset 0 0 0 1px #65717c,0 3px 4px #000a!important;
+}
+.clip-hook{
+  left:16px!important;top:34px!important;width:31px!important;height:29px!important;
+  border-width:4px!important;border-color:#dce4e9!important;border-top-color:transparent!important;
+  background:linear-gradient(90deg,#3d4852,#f9fcff 34%,#7d8994 58%,#fff 77%,#46525d)!important;
+  box-shadow:inset 0 -3px 4px #3c4650,0 3px 5px #000b!important;
+}
+.clip-ring{
+  left:22px!important;top:55px!important;width:20px!important;height:20px!important;
+  border-width:4px!important;border-color:#edf2f5!important;
+  background:radial-gradient(circle at 30% 24%,#fff 0%,#d9e1e7 20%,#687581 52%,#fff 76%,#53606c 100%)!important;
+  box-shadow:inset 0 0 0 1px #596570,0 3px 5px #000b!important;
+}
+
 </style>
 </head>
 <body>
@@ -599,38 +657,46 @@ function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
  const cardCenterX=w/2+cardX;
  const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
+ // The swivel/clip sits directly above the card's physical top attachment.
  const clipX=cardCenterX,clipY=cardTop-52;
  const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
- // Slack is visible at rest; when pulled down the webbing straightens and lengthens.
- const extension=Math.max(0,cardY);
- const slack=Math.max(2,17-extension*.085);
- const lateralBend=clamp(cardX*.035+roll*.22,-18,18);
- const midX=(anchorX+endX)/2+nx*slack+lateralBend;
- const midY=(anchorY+endY)/2+ny*slack;
+ // At rest the webbing is perfectly straight. Small dynamic bow appears only while moving.
+ const dynamicBow=clamp(cardX*.012+velX*.42+roll*.10,-9,9);
+ const midX=(anchorX+endX)/2+nx*dynamicBow;
+ const midY=(anchorY+endY)/2+ny*dynamicBow;
  const bodyPath=`M ${anchorX} ${anchorY} Q ${midX} ${midY} ${endX} ${endY}`;
  const offsetPath=(o)=>`M ${anchorX+nx*o} ${anchorY+ny*o} Q ${midX+nx*o} ${midY+ny*o} ${endX+nx*o} ${endY+ny*o}`;
  const setPath=(id,d)=>{const el=document.getElementById(id);if(el)el.setAttribute('d',d)};
  tetherPaths.slice(0,3).forEach(el=>el&&el.setAttribute('d',bodyPath));
- setPath('tetherRib',offsetPath(0));setPath('tetherSeamLeft',offsetPath(-13));
- setPath('tetherSeamRight',offsetPath(13));setPath('tetherHighlight',offsetPath(-9));
- setPath('tetherStitchA',offsetPath(-15));setPath('tetherStitchB',offsetPath(15));
+ setPath('tetherRib',offsetPath(0));
+ setPath('tetherSeamLeft',offsetPath(-13));
+ setPath('tetherSeamRight',offsetPath(13));
+ setPath('tetherHighlight',offsetPath(-9));
+ setPath('tetherStitchA',offsetPath(-15));
+ setPath('tetherStitchB',offsetPath(15));
  const tipLength=Math.min(25,len*.22),sx=endX-ux*tipLength,sy=endY-uy*tipLength;
  const polygon=(a,b,shift=0)=>{
   const x1=sx+nx*shift,y1=sy+ny*shift,x2=endX-ux*2+nx*shift,y2=endY-uy*2+ny*shift;
   return `M ${x1+nx*a} ${y1+ny*a} L ${x2+nx*b} ${y2+ny*b} L ${x2-nx*b} ${y2-ny*b} L ${x1-nx*a} ${y1-ny*a} Z`;
  };
- setPath('tetherTipShadow',polygon(18,12,2));setPath('tetherTipEdge',polygon(16,10));
+ setPath('tetherTipShadow',polygon(18,12,2));
+ setPath('tetherTipEdge',polygon(16,10));
  setPath('tetherTipFill',polygon(13.5,8.5));
  setPath('tetherTipHighlight',`M ${sx+nx*10} ${sy+ny*10} L ${endX-ux*3+nx*6} ${endY-uy*3+ny*6}`);
  const name=document.getElementById('lanyardName');
- if(name){const mx=anchorX+dx*.5,my=anchorY+dy*.5,angle=Math.atan2(dy,dx)*180/Math.PI;
-  name.setAttribute('x',mx);name.setAttribute('y',my);name.setAttribute('transform',`rotate(${angle} ${mx} ${my})`)}
+ if(name){
+  const mx=anchorX+dx*.5,my=anchorY+dy*.5;
+  const angle=Math.atan2(dy,dx)*180/Math.PI;
+  name.setAttribute('x',mx);name.setAttribute('y',my);
+  name.setAttribute('transform',`rotate(${angle} ${mx} ${my})`);
+ }
  const clip=document.getElementById('badgeClip');
  if(clip){
   clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`;
-  clip.style.transform=`translateX(-50%) perspective(700px) rotateZ(${roll*.72}deg) rotateX(${pitch*.55}deg) rotateY(${yaw*.72}deg)`;
+  const flip=idCard.classList.contains('is-flipped')?180:0;
+  clip.style.transform=`translateX(-50%) perspective(850px) rotateZ(${roll*.72}deg) rotateX(${pitch*.55}deg) rotateY(${yaw*.72+flip}deg)`;
  }
 }
 function placeCard(){
@@ -661,6 +727,12 @@ function animateCard(now){
  }
  requestAnimationFrame(animateCard);
 }
+function toggleCardFlip(){
+ idCard.classList.toggle('is-flipped');
+ stage.classList.toggle('lanyard-flipped',idCard.classList.contains('is-flipped'));
+ // The webbing and clip rotate as a linked physical assembly, not as static decoration.
+ drawTether();
+}
 card.addEventListener('pointerdown',e=>{
  if(e.pointerType==='mouse'&&e.button!==0)return;
  dragging=true;hasMoved=false;pointerId=e.pointerId;
@@ -690,7 +762,7 @@ function finishDrag(e){
  if(!dragging||(e&&e.pointerId!==pointerId))return;
  dragging=false;pointerId=null;card.classList.remove('dragging');
  if(!hasMoved){
-  if(!flipLock){flipLock=true;idCard.classList.toggle('is-flipped');setTimeout(()=>flipLock=false,700)}
+  if(!flipLock){flipLock=true;toggleCardFlip();setTimeout(()=>flipLock=false,700)}
  }else{
   // Release impulse + elastic recoil makes the card spring back and overshoot naturally.
   velX=clamp(pointerVX*.72,-15,15);
@@ -703,7 +775,7 @@ function finishDrag(e){
 }
 card.addEventListener('pointerup',finishDrag);card.addEventListener('pointercancel',finishDrag);
 card.addEventListener('lostpointercapture',()=>{if(dragging)finishDrag()});
-card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();idCard.classList.toggle('is-flipped')}});
+card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleCardFlip()}});
 window.addEventListener('resize',placeCard);
 placeCard();requestAnimationFrame(animateCard);
 const phrases=['Saya suka coding, membuat website, aplikasi, dan bot.','Saya menikmati running, coding, dan fishing.','Saya percaya ide hebat tumbuh dari rasa ingin tahu.'];
