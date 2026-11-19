@@ -438,13 +438,16 @@ html, body {
 /* ===== PHYSICS-BASED SUSPENDED 3D BADGE UPGRADE ===== */
 #stage{perspective:1500px;perspective-origin:50% 8%;}
 #card.card-wrap{
-  transform-origin:50% -48px !important;
+  transform-origin:50% -52px !important;
   transform-style:preserve-3d !important;
   backface-visibility:visible;
   will-change:transform;
   transition:filter .25s ease;
 }
 #card.dragging{filter:drop-shadow(0 30px 30px rgba(0,0,0,.56)) drop-shadow(0 0 12px rgba(185,225,205,.12));}
+#badgeClip{transform-origin:50% 10px;will-change:transform,left,top;}
+#card{touch-action:none;}
+
 #card .id-card{transform-style:preserve-3d;backface-visibility:visible;}
 #card .face{backface-visibility:hidden;}
 #card .face.back{transform:rotateY(180deg);}
@@ -583,37 +586,52 @@ const stage=document.getElementById('stage');
 const card=document.getElementById('card');
 const idCard=document.getElementById('idCard');
 const tetherPaths=['tetherShadow','tetherEdge','tetherWebbing','tetherRib','tetherSeamLeft','tetherSeamRight','tetherHighlight','tetherStitchA','tetherStitchB'].map(id=>document.getElementById(id));
-let cardX=0,cardY=0,dragging=false,pointerId=null,startX=0,startY=0,originX=0,originY=0,hasMoved=false;
-let yaw=0,pitch=0,roll=0,yawVelocity=.13,pitchVelocity=.055,rollVelocity=.035;
-let lastPointerX=0,lastPointerY=0,lastFrame=0,flipLock=false;
+// Elastic suspended-card physics: pointer drag moves the whole badge in screen space,
+// while the lanyard, clip and badge follow the same moving attachment point.
+let cardX=0,cardY=0,velX=0,velY=0;
+let dragging=false,pointerId=null,startX=0,startY=0,lastPointerX=0,lastPointerY=0;
+let lastPointerTime=0,pointerVX=0,pointerVY=0,originX=0,originY=0,hasMoved=false;
+let yaw=0,pitch=0,roll=0,yawVelocity=.12,pitchVelocity=.025,rollVelocity=.035;
+let lastFrame=0,flipLock=false;
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
- const cardCenterX=w/2+cardX,cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
+ const cardCenterX=w/2+cardX;
+ const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
  const clipX=cardCenterX,clipY=cardTop-52;
- const strapEndX=clipX,strapEndY=clipY+17;
- const dx=strapEndX-anchorX,dy=strapEndY-anchorY,len=Math.max(1,Math.hypot(dx,dy));
- const ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
- const tipLength=Math.min(25,len*.22);
- const tipStartX=strapEndX-ux*tipLength,tipStartY=strapEndY-uy*tipLength;
- const bend=Math.sin((yaw+roll)*Math.PI/180)*Math.min(18,len*.08);
- const midX=(anchorX+tipStartX)/2+nx*bend,midY=(anchorY+tipStartY)/2+ny*bend;
- const bodyPath=`M ${anchorX} ${anchorY} Q ${midX} ${midY} ${tipStartX} ${tipStartY}`;
- const offsetPath=(offset)=>`M ${anchorX+nx*offset} ${anchorY+ny*offset} Q ${midX+nx*offset} ${midY+ny*offset} ${tipStartX+nx*offset} ${tipStartY+ny*offset}`;
- tetherPaths.slice(0,3).forEach(p=>p&&p.setAttribute('d',bodyPath));
+ const endX=clipX,endY=clipY+18;
+ const dx=endX-anchorX,dy=endY-anchorY;
+ const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
+ // Slack is visible at rest; when pulled down the webbing straightens and lengthens.
+ const extension=Math.max(0,cardY);
+ const slack=Math.max(2,17-extension*.085);
+ const lateralBend=clamp(cardX*.035+roll*.22,-18,18);
+ const midX=(anchorX+endX)/2+nx*slack+lateralBend;
+ const midY=(anchorY+endY)/2+ny*slack;
+ const bodyPath=`M ${anchorX} ${anchorY} Q ${midX} ${midY} ${endX} ${endY}`;
+ const offsetPath=(o)=>`M ${anchorX+nx*o} ${anchorY+ny*o} Q ${midX+nx*o} ${midY+ny*o} ${endX+nx*o} ${endY+ny*o}`;
  const setPath=(id,d)=>{const el=document.getElementById(id);if(el)el.setAttribute('d',d)};
- setPath('tetherRib',offsetPath(0));setPath('tetherSeamLeft',offsetPath(-13));setPath('tetherSeamRight',offsetPath(13));setPath('tetherHighlight',offsetPath(-9));setPath('tetherStitchA',offsetPath(-15));setPath('tetherStitchB',offsetPath(15));
- const polygon=(startHalf,endHalf,shift=0)=>{
-  const sx=tipStartX+nx*shift,sy=tipStartY+ny*shift,ex=strapEndX-ux*2+nx*shift,ey=strapEndY-uy*2+ny*shift;
-  return `M ${sx+nx*startHalf} ${sy+ny*startHalf} L ${ex+nx*endHalf} ${ey+ny*endHalf} L ${ex-nx*endHalf} ${ey-ny*endHalf} L ${sx-nx*startHalf} ${sy-ny*startHalf} Z`;
+ tetherPaths.slice(0,3).forEach(el=>el&&el.setAttribute('d',bodyPath));
+ setPath('tetherRib',offsetPath(0));setPath('tetherSeamLeft',offsetPath(-13));
+ setPath('tetherSeamRight',offsetPath(13));setPath('tetherHighlight',offsetPath(-9));
+ setPath('tetherStitchA',offsetPath(-15));setPath('tetherStitchB',offsetPath(15));
+ const tipLength=Math.min(25,len*.22),sx=endX-ux*tipLength,sy=endY-uy*tipLength;
+ const polygon=(a,b,shift=0)=>{
+  const x1=sx+nx*shift,y1=sy+ny*shift,x2=endX-ux*2+nx*shift,y2=endY-uy*2+ny*shift;
+  return `M ${x1+nx*a} ${y1+ny*a} L ${x2+nx*b} ${y2+ny*b} L ${x2-nx*b} ${y2-ny*b} L ${x1-nx*a} ${y1-ny*a} Z`;
  };
- setPath('tetherTipShadow',polygon(18,12,2));setPath('tetherTipEdge',polygon(16,10));setPath('tetherTipFill',polygon(13.5,8.5));
- const hx1=tipStartX+nx*10,hy1=tipStartY+ny*10,hx2=strapEndX-ux*3+nx*6,hy2=strapEndY-uy*3+ny*6;
- setPath('tetherTipHighlight',`M ${hx1} ${hy1} L ${hx2} ${hy2}`);
- const midNameX=anchorX+dx*.50,midNameY=anchorY+dy*.50,angle=Math.atan2(dy,dx)*180/Math.PI;
- const name=document.getElementById('lanyardName');if(name){name.setAttribute('x',midNameX);name.setAttribute('y',midNameY);name.setAttribute('transform',`rotate(${angle} ${midNameX} ${midNameY})`)}
- const clip=document.getElementById('badgeClip');if(clip){clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`}
+ setPath('tetherTipShadow',polygon(18,12,2));setPath('tetherTipEdge',polygon(16,10));
+ setPath('tetherTipFill',polygon(13.5,8.5));
+ setPath('tetherTipHighlight',`M ${sx+nx*10} ${sy+ny*10} L ${endX-ux*3+nx*6} ${endY-uy*3+ny*6}`);
+ const name=document.getElementById('lanyardName');
+ if(name){const mx=anchorX+dx*.5,my=anchorY+dy*.5,angle=Math.atan2(dy,dx)*180/Math.PI;
+  name.setAttribute('x',mx);name.setAttribute('y',my);name.setAttribute('transform',`rotate(${angle} ${mx} ${my})`)}
+ const clip=document.getElementById('badgeClip');
+ if(clip){
+  clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`;
+  clip.style.transform=`translateX(-50%) perspective(700px) rotateZ(${roll*.72}deg) rotateX(${pitch*.55}deg) rotateY(${yaw*.72}deg)`;
+ }
 }
 function placeCard(){
  card.style.transform=`translate3d(calc(-50% + ${cardX}px),${cardY}px,0) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw}deg)`;
@@ -623,10 +641,19 @@ function animateCard(now){
  if(!lastFrame)lastFrame=now;
  const dt=Math.min((now-lastFrame)/16.667,2.5);lastFrame=now;
  if(!dragging&&!reducedMotion){
-  // Damped pendulum: gravity-like pull toward center with a little natural sway.
-  yawVelocity+=(-yaw*.018)*dt; pitchVelocity+=(-pitch*.021)*dt; rollVelocity+=(-roll*.025)*dt;
-  yawVelocity*=Math.pow(.965,dt);pitchVelocity*=Math.pow(.958,dt);rollVelocity*=Math.pow(.94,dt);
+  // Elastic recoil: the displaced badge accelerates back like a stretched rubber band.
+  const springX=.026,springY=.031,dampingX=Math.pow(.982,dt),dampingY=Math.pow(.988,dt);
+  velX+=(-cardX*springX)*dt;velY+=(-cardY*springY)*dt;
+  velX*=dampingX;velY*=dampingY;
+  cardX+=velX*dt;cardY+=velY*dt;
+  // Pendulum rotation is driven by lateral motion and gradually settles.
+  yawVelocity+=(-yaw*.018+velX*.035)*dt;
+  pitchVelocity+=(-pitch*.022-velY*.018)*dt;
+  rollVelocity+=(-roll*.026+velX*.018)*dt;
+  yawVelocity*=Math.pow(.963,dt);pitchVelocity*=Math.pow(.958,dt);rollVelocity*=Math.pow(.945,dt);
   yaw+=yawVelocity*dt;pitch+=pitchVelocity*dt;roll+=rollVelocity*dt;
+  if(Math.abs(cardX)<.08&&Math.abs(velX)<.04)cardX=velX=0;
+  if(Math.abs(cardY)<.08&&Math.abs(velY)<.04)cardY=velY=0;
   if(Math.abs(yaw)<.025&&Math.abs(yawVelocity)<.02)yaw=yawVelocity=0;
   if(Math.abs(pitch)<.025&&Math.abs(pitchVelocity)<.02)pitch=pitchVelocity=0;
   if(Math.abs(roll)<.025&&Math.abs(rollVelocity)<.02)roll=rollVelocity=0;
@@ -636,19 +663,28 @@ function animateCard(now){
 }
 card.addEventListener('pointerdown',e=>{
  if(e.pointerType==='mouse'&&e.button!==0)return;
- dragging=true;hasMoved=false;pointerId=e.pointerId;startX=lastPointerX=e.clientX;startY=lastPointerY=e.clientY;originX=cardX;originY=cardY;
- yawVelocity=pitchVelocity=rollVelocity=0;card.classList.add('dragging');card.setPointerCapture(pointerId);e.preventDefault();
+ dragging=true;hasMoved=false;pointerId=e.pointerId;
+ startX=lastPointerX=e.clientX;startY=lastPointerY=e.clientY;
+ originX=cardX;originY=cardY;lastPointerTime=performance.now();pointerVX=pointerVY=0;
+ velX=velY=yawVelocity=pitchVelocity=rollVelocity=0;
+ card.classList.add('dragging');card.setPointerCapture(pointerId);e.preventDefault();
 });
 card.addEventListener('pointermove',e=>{
  if(!dragging||e.pointerId!==pointerId)return;
- const dx=e.clientX-startX,dy=e.clientY-startY,stepX=e.clientX-lastPointerX,stepY=e.clientY-lastPointerY;
+ const dx=e.clientX-startX,dy=e.clientY-startY;
+ const stepX=e.clientX-lastPointerX,stepY=e.clientY-lastPointerY;
+ const now=performance.now(),elapsed=Math.max(8,now-lastPointerTime);
  if(Math.hypot(dx,dy)>5)hasMoved=true;
- // Dragging the badge turns it around the suspended eyelet, not around its center.
- yaw=clamp(yaw+stepX*.72,-72,72);pitch=clamp(pitch-stepY*.46,-38,38);roll=clamp(roll+stepX*.12,-16,16);
- yawVelocity=stepX*.12;pitchVelocity=-stepY*.075;rollVelocity=stepX*.018;
- cardX=clamp(originX+dx*.12,-stage.clientWidth*.12,stage.clientWidth*.12);
- cardY=clamp(originY+dy*.08,-24,stage.clientHeight-455);
- lastPointerX=e.clientX;lastPointerY=e.clientY;placeCard();
+ // The finger displacement directly moves the badge down/up/sideways.
+ cardX=clamp(originX+dx,-stage.clientWidth*.38,stage.clientWidth*.38);
+ cardY=clamp(originY+dy,-70,Math.min(260,stage.clientHeight-330));
+ pointerVX=stepX/elapsed*16.667;pointerVY=stepY/elapsed*16.667;
+ // Tilt follows the card's actual swing, not the vertical drag as a backwards flip.
+ yaw=clamp(yaw+stepX*.20,-48,48);
+ roll=clamp(roll+stepX*.10,-24,24);
+ pitch=clamp(pitch-stepY*.035,-12,12);
+ lastPointerX=e.clientX;lastPointerY=e.clientY;lastPointerTime=now;
+ placeCard();
 });
 function finishDrag(e){
  if(!dragging||(e&&e.pointerId!==pointerId))return;
@@ -656,9 +692,13 @@ function finishDrag(e){
  if(!hasMoved){
   if(!flipLock){flipLock=true;idCard.classList.toggle('is-flipped');setTimeout(()=>flipLock=false,700)}
  }else{
-  // Keep the angular momentum, then let the damped pendulum settle naturally.
-  yawVelocity=clamp(yawVelocity,-5,5);pitchVelocity=clamp(pitchVelocity,-3.5,3.5);rollVelocity=clamp(rollVelocity,-1.5,1.5);
-  cardX*=.25;cardY*=.25;
+  // Release impulse + elastic recoil makes the card spring back and overshoot naturally.
+  velX=clamp(pointerVX*.72,-15,15);
+  velY=clamp(pointerVY*.82,-18,18);
+  if(Math.abs(cardY)>10)velY+=Math.sign(-cardY)*Math.min(5,Math.abs(cardY)*.035);
+  yawVelocity=clamp(pointerVX*.30,-6,6);
+  pitchVelocity=clamp(-pointerVY*.12,-3.5,3.5);
+  rollVelocity=clamp(pointerVX*.10,-2.5,2.5);
  }
 }
 card.addEventListener('pointerup',finishDrag);card.addEventListener('pointercancel',finishDrag);
