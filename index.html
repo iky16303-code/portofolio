@@ -665,55 +665,48 @@ html, body {
    <text class="lanyard-name" id="lanyardName" text-anchor="middle" dominant-baseline="middle">RISQIE KAMAL</text>
   </svg>
   <div class="badge-clip" id="badgeClip" aria-hidden="true">
-   <svg class="strap-ring-svg" viewBox="0 0 100 126" role="presentation">
+   <svg class="strap-ring-svg" viewBox="0 0 100 126" role="presentation" aria-hidden="true">
     <defs>
-     <linearGradient id="ringSteel" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#59636d"/>
-      <stop offset=".13" stop-color="#f7f9fa"/>
-      <stop offset=".31" stop-color="#aab4bd"/>
-      <stop offset=".5" stop-color="#ffffff"/>
-      <stop offset=".7" stop-color="#89949e"/>
-      <stop offset=".88" stop-color="#f5f7f8"/>
-      <stop offset="1" stop-color="#59636d"/>
+     <linearGradient id="hookSteel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#46515c"/><stop offset=".16" stop-color="#f8fbfd"/>
+      <stop offset=".34" stop-color="#8995a0"/><stop offset=".52" stop-color="#fff"/>
+      <stop offset=".72" stop-color="#78848f"/><stop offset=".9" stop-color="#f5f8fa"/>
+      <stop offset="1" stop-color="#4b5661"/>
      </linearGradient>
-     <linearGradient id="ringCap" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset=".18" stop-color="#e4e9ed"/>
-      <stop offset=".62" stop-color="#aab4bd"/>
-      <stop offset="1" stop-color="#68737e"/>
+     <linearGradient id="hookCap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff"/><stop offset=".28" stop-color="#e5ebef"/>
+      <stop offset=".68" stop-color="#9ca8b2"/><stop offset="1" stop-color="#596570"/>
      </linearGradient>
-     <filter id="ringHardwareShadow" x="-35%" y="-30%" width="170%" height="170%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="1.8"/>
-      <feOffset dy="2"/>
+     <filter id="hookShadow" x="-40%" y="-25%" width="180%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.7"/><feOffset dy="2"/>
       <feComponentTransfer><feFuncA type="linear" slope=".48"/></feComponentTransfer>
       <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
      </filter>
     </defs>
-    <g filter="url(#ringHardwareShadow)" stroke-linejoin="round">
-     <!-- Rectangular metal strap end cap / crimp -->
-     <rect x="13" y="2" width="74" height="30" rx="5.5"
-       fill="url(#ringCap)" stroke="#596570" stroke-width="1.8"/>
-     <rect x="16" y="4" width="68" height="25" rx="3.5"
-       fill="none" stroke="#fff" stroke-opacity=".88" stroke-width="1.25"/>
-     <path d="M19 26 H81" stroke="#64707b" stroke-opacity=".55" stroke-width="1.2"/>
-     <path d="M20 7 H80" stroke="#fff" stroke-opacity=".72" stroke-width="1.2"/>
-     <!-- Small circular connector eye under the cap -->
-     <path d="M43 30 C43 36 46 39 50 39 C54 39 57 36 57 30"
-       fill="none" stroke="#56616c" stroke-width="6"/>
-     <path d="M43 30 C43 36 46 39 50 39 C54 39 57 36 57 30"
-       fill="none" stroke="url(#ringSteel)" stroke-width="3.6"/>
-     <!-- Narrow oval split ring, hanging through the badge slot -->
-     <ellipse cx="50" cy="80" rx="17.5" ry="37"
-       fill="none" stroke="#4d5862" stroke-width="7.5"/>
-     <ellipse cx="50" cy="80" rx="17.5" ry="37"
-       fill="none" stroke="url(#ringSteel)" stroke-width="5.5"/>
-     <!-- Metallic highlight and subtle split-ring seam -->
-     <path d="M38 54 C31 67 31 91 39 105"
-       fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.7"/>
-     <path d="M63 57 C69 71 68 91 61 103"
-       fill="none" stroke="#5d6872" stroke-opacity=".75" stroke-width="1.1"/>
-     <path d="M38 105 C43 114 56 117 63 105"
-       fill="none" stroke="#f8fafb" stroke-opacity=".68" stroke-width="1"/>
+    <g filter="url(#hookShadow)" stroke-linejoin="round" stroke-linecap="round">
+     <!-- Crimp sleeve gripping the woven lanyard -->
+     <rect x="14" y="2" width="72" height="27" rx="5" fill="url(#hookCap)" stroke="#eaf0f3" stroke-width="2"/>
+     <rect x="18" y="5" width="64" height="20" rx="3" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="1.3"/>
+     <path d="M20 22H80" stroke="#596570" stroke-opacity=".55" stroke-width="1.2"/>
+     <path d="M22 8H78" stroke="#fff" stroke-opacity=".8" stroke-width="1.2"/>
+     <!-- Swivel eye and short neck -->
+     <path d="M43 29V35Q43 40 50 40Q57 40 57 35V29" fill="none" stroke="#4c5863" stroke-width="7"/>
+     <path d="M43 29V35Q43 40 50 40Q57 40 57 35V29" fill="none" stroke="url(#hookSteel)" stroke-width="4"/>
+     <rect x="43" y="39" width="14" height="11" rx="4" fill="url(#hookCap)" stroke="#66727d" stroke-width="1.2"/>
+     <circle cx="50" cy="44" r="2" fill="#34404a" stroke="#f8fbfd" stroke-width=".8"/>
+     <!-- Lobster clasp body: rounded nose with an open throat -->
+     <path d="M43 49 C39 53 37 61 37 72 L37 91 C37 103 43 113 50 116 C58 113 64 103 64 91 L64 72 C64 60 61 53 57 49Z"
+       fill="url(#hookSteel)" stroke="#46525d" stroke-width="2.2"/>
+     <path d="M45 54 C42 61 42 72 42 91 C42 101 46 108 50 111 C55 108 59 101 59 91 L59 72 C59 62 57 56 55 54"
+       fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.5"/>
+     <!-- Spring gate on the right, leaving a visible opening at the hook tip -->
+     <path d="M60 62 C70 61 73 67 70 75 L62 86" fill="none" stroke="#4b5661" stroke-width="7"/>
+     <path d="M60 62 C70 61 73 67 70 75 L62 86" fill="none" stroke="url(#hookSteel)" stroke-width="4.2"/>
+     <path d="M62 86 L54 94" stroke="#fff" stroke-opacity=".85" stroke-width="2.2"/>
+     <circle cx="62" cy="61" r="3" fill="url(#hookCap)" stroke="#56616c" stroke-width="1"/>
+     <!-- Rounded lower nose sits inside the reinforced card eyelet -->
+     <path d="M39 91 C39 106 45 116 50 118 C56 116 62 106 62 91" fill="none" stroke="#46515c" stroke-width="7"/>
+     <path d="M39 91 C39 106 45 116 50 118 C56 116 62 106 62 91" fill="none" stroke="url(#hookSteel)" stroke-width="4.2"/>
     </g>
    </svg>
   </div>
@@ -828,7 +821,7 @@ function drawTether(){
   eyeletX=r.left+r.width/2-stageRect.left;
   eyeletY=r.top+r.height/2-stageRect.top;
  }
- const clipX=eyeletX,clipY=eyeletY-64;
+ const clipX=eyeletX,clipY=eyeletY-66;
  // Match the clip's rotation pivot to the card's physical transform-origin.
  // This prevents the clip from orbiting around its own center while the card
  // rotates around a different point.
