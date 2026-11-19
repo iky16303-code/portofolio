@@ -575,6 +575,18 @@ html, body {
 .snap-swivel-svg{display:block;width:100%;height:100%;overflow:visible}
 @media(max-width:520px){.badge-clip{width:78px!important;height:134px!important}}
 
+
+/* Reference badge connector: rectangular strap end-cap + vertical oval split ring */
+.badge-clip{
+ position:absolute!important;left:50%;top:0;width:76px!important;height:126px!important;
+ z-index:9;pointer-events:none;transform-origin:50% 8px;transform-style:preserve-3d;
+ filter:drop-shadow(0 3px 4px rgba(0,0,0,.42));
+}
+.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
+.badge-clip .clip-crimp,.badge-clip .clip-loop,.badge-clip .clip-hook,.badge-clip .clip-ring{display:none!important}
+.strap-ring-svg{display:block;width:100%;height:100%;overflow:visible}
+@media(max-width:520px){.badge-clip{width:72px!important;height:120px!important}}
+
 </style>
 </head>
 <body>
@@ -622,46 +634,55 @@ html, body {
    <text class="lanyard-name" id="lanyardName" text-anchor="middle" dominant-baseline="middle">RISQIE KAMAL</text>
   </svg>
   <div class="badge-clip" id="badgeClip" aria-hidden="true">
-   <svg class="snap-swivel-svg" viewBox="0 0 88 150" role="presentation">
+   <svg class="strap-ring-svg" viewBox="0 0 100 126" role="presentation">
     <defs>
-     <linearGradient id="snapSteel" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#53606b"/><stop offset=".16" stop-color="#f7fafc"/>
-      <stop offset=".34" stop-color="#aab5be"/><stop offset=".52" stop-color="#fff"/>
-      <stop offset=".72" stop-color="#87939e"/><stop offset=".9" stop-color="#f3f6f8"/>
-      <stop offset="1" stop-color="#596570"/>
+     <linearGradient id="ringSteel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#59636d"/>
+      <stop offset=".13" stop-color="#f7f9fa"/>
+      <stop offset=".31" stop-color="#aab4bd"/>
+      <stop offset=".5" stop-color="#ffffff"/>
+      <stop offset=".7" stop-color="#89949e"/>
+      <stop offset=".88" stop-color="#f5f7f8"/>
+      <stop offset="1" stop-color="#59636d"/>
      </linearGradient>
-     <linearGradient id="snapEdge" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff"/><stop offset=".48" stop-color="#9ba7b1"/>
-      <stop offset="1" stop-color="#4c5863"/>
+     <linearGradient id="ringCap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".18" stop-color="#e4e9ed"/>
+      <stop offset=".62" stop-color="#aab4bd"/>
+      <stop offset="1" stop-color="#68737e"/>
      </linearGradient>
-     <linearGradient id="snapRing" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#fff"/><stop offset=".38" stop-color="#aab5be"/>
-      <stop offset=".68" stop-color="#f7fafc"/><stop offset="1" stop-color="#56616d"/>
-     </linearGradient>
-     <filter id="snapShadow" x="-40%" y="-30%" width="180%" height="170%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="2.2"/>
-      <feOffset dy="2"/><feComponentTransfer><feFuncA type="linear" slope=".55"/></feComponentTransfer>
+     <filter id="ringHardwareShadow" x="-35%" y="-30%" width="170%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.8"/>
+      <feOffset dy="2"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".48"/></feComponentTransfer>
       <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
      </filter>
     </defs>
-    <g filter="url(#snapShadow)" stroke-linejoin="round">
-     <path d="M31 70 L17 28 C10 7 25 -2 43 3 C66 9 77 31 67 52 L58 73 L49 69 L59 48 C66 31 55 15 41 12 C28 9 20 17 25 31 L39 68 Z"
-       fill="url(#snapSteel)" stroke="url(#snapEdge)" stroke-width="2.4"/>
-     <path d="M29 29 C25 17 33 11 42 13 C56 16 63 29 57 44"
-       fill="none" stroke="#fff" stroke-opacity=".72" stroke-width="2.2"/>
-     <path d="M20 30 L32 66" fill="none" stroke="#596570" stroke-width="7"/>
-     <path d="M19 29 L31 65" fill="none" stroke="url(#snapSteel)" stroke-width="4.2"/>
-     <path d="M18 29 L24 27" fill="none" stroke="#fff" stroke-width="1.4"/>
-     <circle cx="44" cy="65" r="5.5" fill="url(#snapSteel)" stroke="#58646f" stroke-width="1.5"/>
-     <circle cx="44" cy="65" r="2" fill="#64717c"/>
-     <path d="M28 72 Q44 66 60 72 L58 84 Q44 91 30 84 Z"
-       fill="url(#snapSteel)" stroke="#68747f" stroke-width="1.8"/>
-     <path d="M32 74 Q44 71 56 74" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="2"/>
-     <rect x="34" y="83" width="20" height="12" rx="5" fill="url(#snapSteel)" stroke="#596570" stroke-width="1.5"/>
-     <circle cx="44" cy="119" r="26" fill="none" stroke="#4c5863" stroke-width="9"/>
-     <circle cx="44" cy="119" r="25" fill="none" stroke="url(#snapRing)" stroke-width="7.5"/>
-     <path d="M24 106 A24 24 0 0 1 62 101" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="2.1"/>
-     <path d="M25 132 A24 24 0 0 0 64 132" fill="none" stroke="#58646f" stroke-opacity=".7" stroke-width="1.6"/>
+    <g filter="url(#ringHardwareShadow)" stroke-linejoin="round">
+     <!-- Rectangular metal strap end cap / crimp -->
+     <rect x="13" y="2" width="74" height="30" rx="5.5"
+       fill="url(#ringCap)" stroke="#596570" stroke-width="1.8"/>
+     <rect x="16" y="4" width="68" height="25" rx="3.5"
+       fill="none" stroke="#fff" stroke-opacity=".88" stroke-width="1.25"/>
+     <path d="M19 26 H81" stroke="#64707b" stroke-opacity=".55" stroke-width="1.2"/>
+     <path d="M20 7 H80" stroke="#fff" stroke-opacity=".72" stroke-width="1.2"/>
+     <!-- Small circular connector eye under the cap -->
+     <path d="M43 30 C43 36 46 39 50 39 C54 39 57 36 57 30"
+       fill="none" stroke="#56616c" stroke-width="6"/>
+     <path d="M43 30 C43 36 46 39 50 39 C54 39 57 36 57 30"
+       fill="none" stroke="url(#ringSteel)" stroke-width="3.6"/>
+     <!-- Narrow oval split ring, hanging through the badge slot -->
+     <ellipse cx="50" cy="80" rx="17.5" ry="37"
+       fill="none" stroke="#4d5862" stroke-width="7.5"/>
+     <ellipse cx="50" cy="80" rx="17.5" ry="37"
+       fill="none" stroke="url(#ringSteel)" stroke-width="5.5"/>
+     <!-- Metallic highlight and subtle split-ring seam -->
+     <path d="M38 54 C31 67 31 91 39 105"
+       fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.7"/>
+     <path d="M63 57 C69 71 68 91 61 103"
+       fill="none" stroke="#5d6872" stroke-opacity=".75" stroke-width="1.1"/>
+     <path d="M38 105 C43 114 56 117 63 105"
+       fill="none" stroke="#f8fafb" stroke-opacity=".68" stroke-width="1"/>
     </g>
    </svg>
   </div>
@@ -759,7 +780,7 @@ function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
  const cardCenterX=w/2+cardX;
  const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
- const clipX=cardCenterX,clipY=cardTop-126;
+ const clipX=cardCenterX,clipY=cardTop-112;
  const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
