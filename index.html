@@ -508,6 +508,14 @@ html, body {
   box-shadow:inset 0 0 0 1px #596570,0 3px 5px #000b!important;
 }
 
+
+/* Refined flat woven lanyard: narrow fabric ribbon with visible stitched edges. */
+.badge-tether .tether-shadow{stroke-width:3!important;filter:blur(3px)!important}
+.badge-tether .tether-edge,.badge-tether .tether-webbing{stroke:none!important;stroke-width:0!important;stroke-linecap:butt!important}
+.badge-tether .tether-rib{stroke-width:.65!important}
+.badge-tether .tether-seam{stroke-width:1!important;stroke-linecap:butt!important}
+.badge-tether .tether-stitch{stroke-width:.85!important;stroke-linecap:butt!important}
+
 </style>
 </head>
 <body>
@@ -654,69 +662,87 @@ function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
  const cardCenterX=w/2+cardX;
  const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
- // The swivel/clip sits directly above the card's physical top attachment.
  const clipX=cardCenterX,clipY=cardTop-52;
  const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
- // Flat woven fabric hangs straight at rest. On the reverse side it develops
- // a soft S-fold near the clip, like a real ribbon being turned over by the badge.
- const dynamicBow=clamp(cardX*.004+velX*.20+roll*.035,-4.5,4.5);
- const fold=lanyardFold;
- const foldStart=.66, foldEnd=.91;
- const makeRibbonPath=(o)=>{
-  const ax=anchorX+nx*o, ay=anchorY+ny*o;
-  const ex=endX+nx*o, ey=endY+ny*o;
-  const fx=anchorX+dx*foldStart+nx*o;
-  const fy=anchorY+dy*foldStart+ny*o;
-  const gx=anchorX+dx*foldEnd+nx*o;
-  const gy=anchorY+dy*foldEnd+ny*o;
-  const bow=dynamicBow;
-  const side=nx*(25*fold), sideY=ny*(25*fold);
-  const midX=(ax+ex)/2+nx*bow, midY=(ay+ey)/2+ny*bow;
-  return `M ${ax} ${ay}
-   C ${ax+dx*.24+nx*bow} ${ay+dy*.24+ny*bow},
-     ${midX-nx*side*.10} ${midY-ny*side*.10},
-     ${fx} ${fy}
-   C ${fx+dx*.10+side} ${fy+dy*.10+sideY},
-     ${gx-dx*.10+side*.55} ${gy-dy*.10+sideY*.55},
-     ${gx} ${gy}
-   C ${gx+dx*.045-side*.65} ${gy+dy*.045-sideY*.65},
-     ${ex-dx*.025} ${ey-dy*.025},
-     ${ex} ${ey}`;
+ const fold=clamp(lanyardFold,0,1);
+ const dynamicBow=clamp(cardX*.0015+velX*.08+roll*.012,-1.2,1.2);
+ const setPath=(id,d,fill)=>{
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.setAttribute('d',d);
+  if(fill!==undefined)el.setAttribute('fill',fill);
  };
- const bodyPath=makeRibbonPath(0);
- const offsetPath=(o)=>makeRibbonPath(o);
- const setPath=(id,d)=>{const el=document.getElementById(id);if(el)el.setAttribute('d',d)};
- tetherPaths.slice(0,3).forEach(el=>el&&el.setAttribute('d',bodyPath));
- setPath('tetherRib',offsetPath(0));
- setPath('tetherSeamLeft',offsetPath(-13));
- setPath('tetherSeamRight',offsetPath(13));
- setPath('tetherHighlight',offsetPath(-9));
- setPath('tetherStitchA',offsetPath(-15));
- setPath('tetherStitchB',offsetPath(15));
+ // A flat woven ribbon twists progressively from its fixed upper end to the
+ // rotating clip. At half-turn its middle becomes edge-on; it never forms an
+ // artificial sideways loop or S-shaped cable bend.
+ const samples=36,halfWidth=8.2;
+ const left=[],right=[],center=[];
+ for(let i=0;i<=samples;i++){
+  const t=i/samples;
+  const twist=Math.PI*fold*t;
+  const projectedWidth=halfWidth*Math.sqrt(Math.cos(twist)**2+.018);
+  const sideShift=Math.sin(twist)*2.2 + Math.sin(Math.PI*t)*dynamicBow;
+  const x=anchorX+dx*t+nx*sideShift;
+  const y=anchorY+dy*t+ny*sideShift;
+  center.push([x,y]);
+  left.push([x+nx*projectedWidth,y+ny*projectedWidth]);
+  right.push([x-nx*projectedWidth,y-ny*projectedWidth]);
+ }
+ const pathFrom=(pts,close=false)=>"M "+pts.map(p=>`${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join(" L ")+(close?" Z":"");
+ const ribbon=pathFrom([...left,...right.slice().reverse()],true);
+ const centerPath=pathFrom(center);
+ const leftEdge=pathFrom(left),rightEdge=pathFrom(right);
+ // Layered fabric body: dark woven face, stitched borders, and soft edge shadow.
+ setPath('tetherShadow',centerPath);
+ setPath('tetherEdge',ribbon,'#080d15');
+ setPath('tetherWebbing',ribbon,'url(#nylonGradient)');
+ setPath('tetherRib',centerPath);
+ setPath('tetherSeamLeft',leftEdge);
+ setPath('tetherSeamRight',rightEdge);
+ setPath('tetherHighlight',leftEdge);
+ setPath('tetherStitchA',leftEdge);
+ setPath('tetherStitchB',rightEdge);
+ const shadow=document.getElementById('tetherShadow');
+ if(shadow)shadow.setAttribute('style','fill:none;stroke:#000b;stroke-width:3;stroke-linecap:round;filter:blur(3px)');
+ const edge=document.getElementById('tetherEdge');
+ if(edge)edge.setAttribute('style','stroke:none;fill:#080d15');
+ const webbing=document.getElementById('tetherWebbing');
+ if(webbing)webbing.setAttribute('style','stroke:none;fill:url(#nylonGradient)');
+ const rib=document.getElementById('tetherRib');
+ if(rib)rib.setAttribute('style','fill:none;stroke:#758292;stroke-width:.65;stroke-dasharray:1 4;opacity:.48');
+ for(const [id,stroke,width,dash,opacity] of [
+  ['tetherSeamLeft','#05090e',1.1,'','0.9'],
+  ['tetherSeamRight','#05090e',1.1,'','0.9'],
+  ['tetherHighlight','#c2ccd5',.7,'','0.32'],
+  ['tetherStitchA','#c1c9d1',.85,'1.5 4','0.82'],
+  ['tetherStitchB','#080c12',.85,'1.5 4','0.9']
+ ]){
+  const el=document.getElementById(id);
+  if(el)el.setAttribute('style',`fill:none;stroke:${stroke};stroke-width:${width};${dash?`stroke-dasharray:${dash};`:''}opacity:${opacity};stroke-linecap:butt`);
+ }
  const tipLength=Math.min(25,len*.22),sx=endX-ux*tipLength,sy=endY-uy*tipLength;
  const polygon=(a,b,shift=0)=>{
   const x1=sx+nx*shift,y1=sy+ny*shift,x2=endX-ux*2+nx*shift,y2=endY-uy*2+ny*shift;
   return `M ${x1+nx*a} ${y1+ny*a} L ${x2+nx*b} ${y2+ny*b} L ${x2-nx*b} ${y2-ny*b} L ${x1-nx*a} ${y1-ny*a} Z`;
  };
- setPath('tetherTipShadow',polygon(18,12,2));
- setPath('tetherTipEdge',polygon(16,10));
- setPath('tetherTipFill',polygon(13.5,8.5));
- setPath('tetherTipHighlight',`M ${sx+nx*10} ${sy+ny*10} L ${endX-ux*3+nx*6} ${endY-uy*3+ny*6}`);
+ setPath('tetherTipShadow',polygon(10,7,1),'#0009');
+ setPath('tetherTipEdge',polygon(8.5,6),'#080d15');
+ setPath('tetherTipFill',polygon(7,5),'url(#nylonTipGradient)');
+ setPath('tetherTipHighlight',`M ${sx+nx*5} ${sy+ny*5} L ${endX-ux*3+nx*4} ${endY-uy*3+ny*4}`);
  const name=document.getElementById('lanyardName');
  if(name){
   const mx=anchorX+dx*.5,my=anchorY+dy*.5;
   const angle=Math.atan2(dy,dx)*180/Math.PI;
   name.setAttribute('x',mx);name.setAttribute('y',my);
   name.setAttribute('transform',`rotate(${angle} ${mx} ${my})`);
+  name.style.opacity=String(1-fold*.35);
  }
  const clip=document.getElementById('badgeClip');
  if(clip){
   clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`;
   const flip=idCard.classList.contains('is-flipped')?180:0;
-  // Match the card wrapper's complete orientation so the clip never drifts
-  // out of alignment with the card's top attachment during swing or flip.
   clip.style.transform=`translateX(-50%) perspective(850px) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw+flip}deg)`;
  }
 }
