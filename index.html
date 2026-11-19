@@ -445,7 +445,7 @@ html, body {
   transition:filter .25s ease;
 }
 #card.dragging{filter:drop-shadow(0 30px 30px rgba(0,0,0,.56)) drop-shadow(0 0 12px rgba(185,225,205,.12));}
-#badgeClip{transform-origin:50% 10px;will-change:transform,left,top;}
+#badgeClip{transform-origin:50% 4px;will-change:transform,left,top;transition:none!important;}
 #card{touch-action:none;}
 
 #card .id-card{transform-style:preserve-3d;backface-visibility:visible;}
@@ -615,6 +615,13 @@ html, body {
  .badge-clip{width:56px!important;height:70px!important}
 }
 
+
+/* Precision sync: animated hardware must never ease behind the moving card. */
+.badge-clip{
+  transition:none!important;
+  transform-origin:50% 4px!important;
+  will-change:transform,left,top;
+}
 </style>
 </head>
 <body>
@@ -800,16 +807,22 @@ const tetherPaths=['tetherShadow','tetherEdge','tetherWebbing','tetherRib','teth
 let cardX=0,cardY=0,velX=0,velY=0;
 let dragging=false,pointerId=null,startX=0,startY=0,lastPointerX=0,lastPointerY=0;
 let lastPointerTime=0,pointerVX=0,pointerVY=0,originX=0,originY=0,hasMoved=false;
-let yaw=0,pitch=0,roll=0,yawVelocity=.12,pitchVelocity=.025,rollVelocity=.035;
+let yaw=0,pitch=0,roll=0,yawVelocity=0,pitchVelocity=0,rollVelocity=0;
 let lastFrame=0,flipLock=false,lanyardFold=0;
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function drawTether(){
- const w=stage.clientWidth,anchorX=w/2,anchorY=8;
- const cardCenterX=w/2+cardX;
- const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
- const clipX=cardCenterX,clipY=cardTop-43;
- const endX=clipX,endY=clipY+2;
+ const stageRect=stage.getBoundingClientRect();
+ const anchorX=stage.clientWidth/2,anchorY=8;
+ // Read the real transformed eyelet position. This keeps the metal connector
+ // registered to the card even while it is translated, tilted or flipped.
+ const eyelet=card.querySelector('.face.front .badge-hole');
+ const eyeletRect=eyelet.getBoundingClientRect();
+ const eyeletX=eyeletRect.left+eyeletRect.width/2-stageRect.left;
+ const eyeletY=eyeletRect.top+eyeletRect.height/2-stageRect.top;
+ const clipX=eyeletX,clipY=eyeletY-64;
+ // The webbing terminates at the upper edge of the metal crimp.
+ const endX=clipX,endY=clipY+9;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
  const fold=clamp(lanyardFold,0,1);
@@ -934,11 +947,13 @@ function animateCard(now){
   velX*=dampingX;velY*=dampingY;
   cardX+=velX*dt;cardY+=velY*dt;
   // Pendulum rotation is driven by lateral motion and gradually settles.
-  yawVelocity+=(-yaw*.018+velX*.035)*dt;
-  pitchVelocity+=(-pitch*.022-velY*.018)*dt;
-  rollVelocity+=(-roll*.026+velX*.018)*dt;
-  yawVelocity*=Math.pow(.963,dt);pitchVelocity*=Math.pow(.958,dt);rollVelocity*=Math.pow(.945,dt);
-  yaw+=yawVelocity*dt;pitch+=pitchVelocity*dt;roll+=rollVelocity*dt;
+  yawVelocity+=(-yaw*.028+velX*.022)*dt;
+  pitchVelocity+=(-pitch*.032-velY*.012)*dt;
+  rollVelocity+=(-roll*.038+velX*.012)*dt;
+  yawVelocity*=Math.pow(.90,dt);pitchVelocity*=Math.pow(.88,dt);rollVelocity*=Math.pow(.86,dt);
+  yaw=clamp(yaw+yawVelocity*dt,-28,28);
+  pitch=clamp(pitch+pitchVelocity*dt,-12,12);
+  roll=clamp(roll+rollVelocity*dt,-10,10);
   if(Math.abs(cardX)<.08&&Math.abs(velX)<.04)cardX=velX=0;
   if(Math.abs(cardY)<.08&&Math.abs(velY)<.04)cardY=velY=0;
   if(Math.abs(yaw)<.025&&Math.abs(yawVelocity)<.02)yaw=yawVelocity=0;
