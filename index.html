@@ -192,7 +192,7 @@ body{position:relative;isolation:isolate;color:#f3f5eb}
 .site-video-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#06120e;pointer-events:none}
 main,footer{position:relative;z-index:1}
 body:before{display:none!important}
-.site-video-bg video{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;object-position:center center;filter:saturate(.82) contrast(1.08);opacity:.43}
+.site-video-bg video{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;object-position:center center;filter:saturate(.82) contrast(1.08);opacity:.43;transition:opacity .35s ease}
 .site-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,15,11,.70),rgba(3,18,13,.58) 38%,rgba(3,15,11,.80)),radial-gradient(ellipse at 50% 25%,rgba(34,83,57,.18),transparent 60%)}
 nav,.wave-dock{background:rgba(5,20,14,.76)!important;border-color:rgba(202,190,133,.34)!important;backdrop-filter:blur(22px) saturate(130%)!important;box-shadow:0 16px 48px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.08)!important}
 .glass,.project,.education,.music-box,.award-copy{background:rgba(8,30,21,.72)!important;border-color:rgba(199,190,143,.22)!important;backdrop-filter:blur(18px) saturate(125%)!important;box-shadow:0 18px 48px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.07)!important}
@@ -1299,15 +1299,15 @@ html, body {
 </head>
 <body>
 <div class="site-video-bg" aria-hidden="true">
- <video id="siteBackgroundVideo" autoplay muted loop playsinline preload="auto">
+ <video id="siteBackgroundVideo" autoplay muted loop playsinline preload="auto" fetchpriority="high">
   <source src="./background-video.mp4" type="video/mp4">
  </video>
  <div class="site-video-overlay"></div>
 </div>
 <div class="bubble-atmosphere" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<audio id="ambientMusic" src="./musik.mp3" loop preload="auto"></audio>
+<audio id="ambientMusic" src="./musik.mp3" loop preload="none"></audio>
 <button class="sound-orb" id="soundOrb" type="button" aria-label="Putar musik latar" aria-pressed="false"><span class="sound-orb-core"><span class="sound-icon">♫</span><span class="sound-bars"><i></i><i></i><i></i><i></i></span></span><span class="sound-label">SOUND OFF</span></button>
-<div id="loader"><div class="load-inner"><div class="load-mark">LOADING</div><div class="load-line"><i></i></div><div class="load-caption">Initializing creative universe · 2026</div></div></div>
+<div id="loader"><div class="load-inner"><div class="load-mark">PROCES DATA</div><div class="load-line"><i></i></div><div class="load-caption">Initializing creative universe · 2026</div></div></div>
 <nav><a class="brand" href="#home">ID<span>CARD</span></a><div class="navlinks"><a href="#about">Tentang</a><a href="#work">Karya</a><a href="#achievement">Pencapaian</a><a href="#contact">Kontak</a></div><a class="nav-cta" href="#contact">Let's connect ↗</a></nav>
 <main>
 <section class="hero wrap" id="home">
@@ -1391,7 +1391,7 @@ html, body {
  <article class="project glass"><span class="num">PROJECT / 03</span><div class="project-media"><img src="./project-03-digital-attendance.webp" alt="Dashboard konsep absensi digital" loading="lazy" decoding="async"></div><h3>Digital Attendance</h3><p>Konsep sistem absensi digital untuk membantu pencatatan kehadiran lebih praktis.</p><span class="tag">WEB APP</span></article>
  <article class="project glass"><span class="num">PROJECT / 04</span><div class="project-media"><img src="./project-04-tka-tryout.webp" alt="Antarmuka konsep ujian TKA" loading="lazy" decoding="async"></div><h3>Offline TKA Try Out</h3><p>Aplikasi latihan soal yang dirancang agar dapat digunakan tanpa koneksi internet.</p><span class="tag">EDTECH</span></article>
  <article class="project glass"><span class="num">PROJECT / 05</span><div class="project-media ai-video-media">
-  <video class="ai-agent-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="./project-05-ai-agent.webp" aria-label="Video visual AI Agent">
+  <video class="ai-agent-video" autoplay muted loop playsinline webkit-playsinline preload="none" poster="./project-05-ai-agent.webp" aria-label="Video visual AI Agent">
    <source src="./ai-agent-video.mp4" type="video/mp4">
   </video>
   <span class="video-chip">AI VISUAL REALISTIS</span>
@@ -1401,7 +1401,7 @@ html, body {
  <article class="project glass"><span class="num">PROJECT / 08</span><div class="project-media"><img src="./project-08-topup-platform.webp" alt="Konsep storefront platform top-up" loading="lazy" decoding="async"></div><h3>Top-up Platform</h3><p>Konsep layanan top-up berbasis aplikasi dan web dengan fokus pada alur pengguna.</p><span class="tag">APP & WEB</span></article>
  <article class="project glass"><span class="num">MORE / SOON</span><h3>Next experiment</h3><p>Selalu ada ruang untuk ide baru, kolaborasi, dan tantangan berikutnya.</p><span class="tag">IN PROGRESS</span></article>
  </div></div></section>
-<section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass"><video class="milestone-video" src="./milestone-video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video artwork Milestone IKY"></video></div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
+<section id="achievement"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Milestone</div><h2>Progress is an <span class="gradient">achievement.</span></h2></div><p>Satu pencapaian personal yang merangkum semangat eksplorasi dan proses belajar.</p></div><div class="achievement"><div class="award-art glass"><video class="milestone-video" src="./milestone-video.mp4" autoplay muted loop playsinline preload="none" aria-label="Video artwork Milestone IKY"></video></div><div class="award-copy glass"><div class="award-label">PERSONAL TECH MILESTONE · 2026</div><h3>Independent Digital Builder</h3><p>Mengembangkan berbagai prototipe digital secara mandiri, termasuk bot WhatsApp modular serta eksperimen edukasi keamanan digital. Pencapaian ini menjadi bukti proses belajar, rasa ingin tahu, dan keberanian mencoba teknologi baru — bukan klaim penghargaan atau sertifikasi resmi dari lembaga tertentu.</p><span class="tag">SELF-DOCUMENTED MILESTONE</span></div></div></div></section>
 <section id="education"><div class="wrap"><div class="section-head"><div><div class="eyebrow">04 / Education</div><h2>Where I <span class="gradient">learn.</span></h2></div></div><div class="education glass"><img src="./school-logo.jpg" alt="Logo SMAN 1 Kapuas Murung"><div><h3>SMAN 1 KAPUAS MURUNG</h3><p>Siswa kelas XII · Perjalanan belajar, bertumbuh, dan mengembangkan kreativitas di bidang teknologi.</p></div></div></div></section>
 <section id="music"><div class="wrap"><div class="music-box glass"><div><div class="eyebrow">05 / Personal Soundtrack</div><h3>Your vibe. Your <span class="gradient">sound.</span></h3><p>Musik pilihan pribadi IKY. Gunakan tombol gelembung musik yang mengambang untuk memutar atau menghentikan soundtrack. Musik akan berulang selama halaman dibuka.</p><span class="tag">PERSONAL AUDIO · LOOP ENABLED</span></div><div class="track-list"><div class="track"><span>♫&nbsp; Musik pilihan IKY</span><strong>MP3 · LOOP</strong></div><p style="margin:0">Jika browser memblokir autoplay, sentuh layar sekali atau tekan tombol musik mengambang untuk mulai mendengarkan.</p></div></div></div></section>
 <section id="contact"><div class="wrap"><div class="contact glass"><div class="eyebrow">06 / Get in touch</div><h2>Let’s create<br><span class="gradient">something great.</span></h2><p>Terbuka untuk berbagi ide, belajar bersama, dan kolaborasi positif.</p><div class="socials"><a href="https://www.instagram.com/rootuser_0266/" target="_blank" rel="noopener">◎ Instagram · @rootuser_0266</a><a href="https://github.com/iky1603-code" target="_blank" rel="noopener">⌘ GitHub · iky1603-code</a></div></div></div></section>
@@ -1646,14 +1646,55 @@ const phrases=['Saya suka coding, membuat website, aplikasi, dan bot.','Saya men
 let pi=0,ci=0,deleting=false;const typed=document.getElementById('typed');
 function type(){let s=phrases[pi];typed.textContent=s.slice(0,ci);if(!deleting&&ci<s.length){ci++;setTimeout(type,45)}else if(!deleting){deleting=true;setTimeout(type,1500)}else if(ci>0){ci--;setTimeout(type,22)}else{deleting=false;pi=(pi+1)%phrases.length;setTimeout(type,300)}}type();
 
-// Start muted inline videos reliably where the browser permits autoplay.
+// Prioritaskan video latar; video konten lain dimuat saat mendekati viewport.
 (function(){
- document.querySelectorAll('.site-video-bg video,.ai-agent-video,.milestone-video').forEach(video=>{
-  video.muted=true; video.defaultMuted=true; video.playsInline=true;
-  const tryPlay=()=>{const result=video.play();if(result&&typeof result.catch==='function')result.catch(()=>{});};
+ const backgroundVideo=document.getElementById('siteBackgroundVideo');
+ const contentVideos=[...document.querySelectorAll('.ai-agent-video,.milestone-video')];
+
+ const prepareVideo=video=>{
+  video.muted=true;
+  video.defaultMuted=true;
+  video.playsInline=true;
+  const tryPlay=()=>{
+   const result=video.play();
+   if(result&&typeof result.catch==='function')result.catch(()=>{});
+  };
   video.addEventListener('canplay',tryPlay,{once:true});
+  video.load();
   tryPlay();
- });
+ };
+
+ if(backgroundVideo){
+  backgroundVideo.muted=true;
+  backgroundVideo.defaultMuted=true;
+  backgroundVideo.playsInline=true;
+  // Background is the only video that receives immediate network priority.
+  backgroundVideo.preload='auto';
+  const startBackground=()=>{
+   const result=backgroundVideo.play();
+   if(result&&typeof result.catch==='function')result.catch(()=>{});
+  };
+  backgroundVideo.addEventListener('loadeddata',()=>{
+   backgroundVideo.classList.add('video-ready');
+  },{once:true});
+  backgroundVideo.addEventListener('canplay',startBackground,{once:true});
+  startBackground();
+ }
+
+ if('IntersectionObserver' in window){
+  const videoObserver=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+    if(entry.isIntersecting){
+     const video=entry.target;
+     videoObserver.unobserve(video);
+     prepareVideo(video);
+    }
+   });
+  },{rootMargin:'300px 0px',threshold:0.01});
+  contentVideos.forEach(video=>videoObserver.observe(video));
+ }else{
+  contentVideos.forEach(prepareVideo);
+ }
 })();
 // VVIP motion layer: reveal sections and active wave dock.
 (function(){
