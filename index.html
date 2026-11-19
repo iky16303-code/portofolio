@@ -456,14 +456,11 @@ html, body {
 
 /* ===== REFINED SUSPENDED HARDWARE: STRAIGHT WEBBING + LINKED SWIVEL ===== */
 #badgeTether{
+  /* The upper webbing stays anchored; only the card-side hardware follows the badge. */
+  transform:none!important;
   transform-origin:50% 8px;
   transform-box:border-box;
-  transform-style:preserve-3d;
-  transition:transform .68s cubic-bezier(.2,.72,.22,1);
-  will-change:transform;
-}
-#stage.lanyard-flipped #badgeTether{
-  transform:perspective(900px) rotateY(180deg);
+  will-change:auto;
 }
 .badge-clip{
   width:62px!important;height:78px!important;
@@ -663,7 +660,9 @@ function drawTether(){
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
  // At rest the webbing is perfectly straight. Small dynamic bow appears only while moving.
- const dynamicBow=clamp(cardX*.012+velX*.42+roll*.10,-9,9);
+ // Keep the strap calm and physically connected: only a small lag is allowed
+ // while the badge is actually moving, never a permanent sideways twist.
+ const dynamicBow=clamp(cardX*.004+velX*.20+roll*.035,-4.5,4.5);
  const midX=(anchorX+endX)/2+nx*dynamicBow;
  const midY=(anchorY+endY)/2+ny*dynamicBow;
  const bodyPath=`M ${anchorX} ${anchorY} Q ${midX} ${midY} ${endX} ${endY}`;
@@ -696,7 +695,9 @@ function drawTether(){
  if(clip){
   clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`;
   const flip=idCard.classList.contains('is-flipped')?180:0;
-  clip.style.transform=`translateX(-50%) perspective(850px) rotateZ(${roll*.72}deg) rotateX(${pitch*.55}deg) rotateY(${yaw*.72+flip}deg)`;
+  // Match the card wrapper's complete orientation so the clip never drifts
+  // out of alignment with the card's top attachment during swing or flip.
+  clip.style.transform=`translateX(-50%) perspective(850px) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw+flip}deg)`;
  }
 }
 function placeCard(){
@@ -730,7 +731,8 @@ function animateCard(now){
 function toggleCardFlip(){
  idCard.classList.toggle('is-flipped');
  stage.classList.toggle('lanyard-flipped',idCard.classList.contains('is-flipped'));
- // The webbing and clip rotate as a linked physical assembly, not as static decoration.
+ // The strap remains anchored and does not spin with the card; the clip follows
+ // the exact card rotation from drawTether().
  drawTether();
 }
 card.addEventListener('pointerdown',e=>{
