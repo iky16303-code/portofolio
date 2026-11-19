@@ -530,13 +530,13 @@ html, body {
   <svg class="badge-tether" id="badgeTether" aria-hidden="true">
    <defs>
     <linearGradient id="nylonGradient" x1="0" y1="0" x2="1" y2="0">
-     <stop offset="0" stop-color="#092719"/><stop offset=".16" stop-color="#1d5739"/>
-     <stop offset=".34" stop-color="#0d3b28"/><stop offset=".52" stop-color="#2d704a"/>
-     <stop offset=".72" stop-color="#12442e"/><stop offset="1" stop-color="#082719"/>
+     <stop offset="0" stop-color="#090c11"/><stop offset=".16" stop-color="#252c36"/>
+     <stop offset=".34" stop-color="#111720"/><stop offset=".52" stop-color="#343d49"/>
+     <stop offset=".72" stop-color="#171e28"/><stop offset="1" stop-color="#080b10"/>
     </linearGradient>
     <linearGradient id="nylonTipGradient" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0" stop-color="#2d704a" stop-opacity=".98"/>
-     <stop offset=".58" stop-color="#17432d" stop-opacity=".88"/>
+     <stop offset="0" stop-color="#343d49" stop-opacity=".98"/>
+     <stop offset=".58" stop-color="#151b24" stop-opacity=".9"/>
      <stop offset="1" stop-color="#a5b5a4" stop-opacity=".38"/>
     </linearGradient>
    </defs>
@@ -659,31 +659,34 @@ function drawTether(){
  const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
- // At rest the webbing is perfectly straight. Small dynamic bow appears only while moving.
- // Keep the strap calm and physically connected: only a small lag is allowed
- // while the badge is actually moving, never a permanent sideways twist.
+ // Flat woven fabric hangs straight at rest. On the reverse side it develops
+ // a soft S-fold near the clip, like a real ribbon being turned over by the badge.
  const dynamicBow=clamp(cardX*.004+velX*.20+roll*.035,-4.5,4.5);
- const midX=(anchorX+endX)/2+nx*dynamicBow;
- const midY=(anchorY+endY)/2+ny*dynamicBow;
- // When the badge turns to its back, the lower webbing visibly folds/tucks
- // near the clip instead of remaining like a rigid, straight cable.
  const fold=lanyardFold;
- const foldT=.70;
- const fx=anchorX+dx*foldT, fy=anchorY+dy*foldT;
- const foldReach=22*fold;
- const foldSide=nx*foldReach, foldSideY=ny*foldReach;
- const makeStrapPath=(o)=>{
+ const foldStart=.66, foldEnd=.91;
+ const makeRibbonPath=(o)=>{
   const ax=anchorX+nx*o, ay=anchorY+ny*o;
-  const mx=midX+nx*o, my=midY+ny*o;
-  const sx=fx+nx*o, sy=fy+ny*o;
   const ex=endX+nx*o, ey=endY+ny*o;
-  const bendX=foldSide, bendY=foldSideY;
-  const c1x=sx+dx*.12+bendX, c1y=sy+dy*.12+bendY;
-  const c2x=sx+dx*.02-bendX*.72, c2y=sy+dy*.02-bendY*.72;
-  return `M ${ax} ${ay} Q ${mx} ${my} ${sx} ${sy} C ${c1x} ${c1y} ${c2x} ${c2y} ${ex} ${ey}`;
+  const fx=anchorX+dx*foldStart+nx*o;
+  const fy=anchorY+dy*foldStart+ny*o;
+  const gx=anchorX+dx*foldEnd+nx*o;
+  const gy=anchorY+dy*foldEnd+ny*o;
+  const bow=dynamicBow;
+  const side=nx*(25*fold), sideY=ny*(25*fold);
+  const midX=(ax+ex)/2+nx*bow, midY=(ay+ey)/2+ny*bow;
+  return `M ${ax} ${ay}
+   C ${ax+dx*.24+nx*bow} ${ay+dy*.24+ny*bow},
+     ${midX-nx*side*.10} ${midY-ny*side*.10},
+     ${fx} ${fy}
+   C ${fx+dx*.10+side} ${fy+dy*.10+sideY},
+     ${gx-dx*.10+side*.55} ${gy-dy*.10+sideY*.55},
+     ${gx} ${gy}
+   C ${gx+dx*.045-side*.65} ${gy+dy*.045-sideY*.65},
+     ${ex-dx*.025} ${ey-dy*.025},
+     ${ex} ${ey}`;
  };
- const bodyPath=makeStrapPath(0);
- const offsetPath=(o)=>makeStrapPath(o);
+ const bodyPath=makeRibbonPath(0);
+ const offsetPath=(o)=>makeRibbonPath(o);
  const setPath=(id,d)=>{const el=document.getElementById(id);if(el)el.setAttribute('d',d)};
  tetherPaths.slice(0,3).forEach(el=>el&&el.setAttribute('d',bodyPath));
  setPath('tetherRib',offsetPath(0));
@@ -725,7 +728,7 @@ function animateCard(now){
  if(!lastFrame)lastFrame=now;
  const dt=Math.min((now-lastFrame)/16.667,2.5);lastFrame=now;
  const foldTarget=idCard.classList.contains('is-flipped')?1:0;
- lanyardFold += (foldTarget-lanyardFold)*(1-Math.pow(.84,dt));
+ lanyardFold+=(foldTarget-lanyardFold)*(1-Math.pow(.86,dt));
  if(Math.abs(foldTarget-lanyardFold)<.001)lanyardFold=foldTarget;
  if(!dragging&&!reducedMotion){
   // Elastic recoil: the displaced badge accelerates back like a stretched rubber band.
@@ -746,7 +749,7 @@ function animateCard(now){
   if(Math.abs(roll)<.025&&Math.abs(rollVelocity)<.02)roll=rollVelocity=0;
   placeCard();
  }
- if(dragging || Math.abs((idCard.classList.contains('is-flipped')?1:0)-lanyardFold)>.001) drawTether();
+ if(Math.abs((idCard.classList.contains('is-flipped')?1:0)-lanyardFold)>.001)drawTether();
  requestAnimationFrame(animateCard);
 }
 function toggleCardFlip(){
