@@ -587,6 +587,34 @@ html, body {
 .strap-ring-svg{display:block;width:100%;height:100%;overflow:visible}
 @media(max-width:520px){.badge-clip{width:72px!important;height:120px!important}}
 
+
+/* ===== FINAL FIT: narrow strap cap + oval connector seated in badge slot ===== */
+.badge-clip{
+ position:absolute!important;
+ left:50%!important;
+ top:0;
+ width:56px!important;
+ height:70px!important;
+ z-index:9!important;
+ pointer-events:none!important;
+ transform-origin:50% 4px!important;
+ transform-style:preserve-3d!important;
+ filter:drop-shadow(0 2px 3px rgba(0,0,0,.42))!important;
+ transition:transform .68s cubic-bezier(.2,.72,.22,1)!important;
+}
+.strap-ring-svg{
+ display:block!important;
+ width:100%!important;
+ height:100%!important;
+ overflow:visible!important;
+ preserveAspectRatio:xMidYMid meet;
+}
+.badge-clip:before,.badge-clip:after{display:none!important;content:none!important}
+.badge-clip .clip-crimp,.badge-clip .clip-loop,.badge-clip .clip-hook,.badge-clip .clip-ring{display:none!important}
+@media(max-width:520px){
+ .badge-clip{width:56px!important;height:70px!important}
+}
+
 </style>
 </head>
 <body>
@@ -780,8 +808,8 @@ function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
  const cardCenterX=w/2+cardX;
  const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
- const clipX=cardCenterX,clipY=cardTop-112;
- const endX=clipX,endY=clipY+18;
+ const clipX=cardCenterX,clipY=cardTop-43;
+ const endX=clipX,endY=clipY+2;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
  const fold=clamp(lanyardFold,0,1);
