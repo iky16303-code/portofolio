@@ -466,7 +466,7 @@ html, body {
   width:62px!important;height:78px!important;
   transform-style:preserve-3d;
   transform-origin:50% 9px;
-  transition:transform .68s cubic-bezier(.2,.72,.22,1),filter .18s ease;
+  transition:none!important;
   filter:drop-shadow(0 5px 5px rgba(0,0,0,.55));
 }
 .badge-clip:before{
@@ -616,12 +616,8 @@ html, body {
 }
 
 
-/* Precision sync: animated hardware must never ease behind the moving card. */
-.badge-clip{
-  transition:none!important;
-  transform-origin:50% 4px!important;
-  will-change:transform,left,top;
-}
+/* Precision sync: the metal clip must stay phase-locked to the card. */
+.badge-clip,#badgeClip{transition:none!important;will-change:transform,left,top;}
 </style>
 </head>
 <body>
@@ -814,13 +810,32 @@ const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matche
 function drawTether(){
  const stageRect=stage.getBoundingClientRect();
  const anchorX=stage.clientWidth/2,anchorY=8;
- // Read the real transformed eyelet position. This keeps the metal connector
- // registered to the card even while it is translated, tilted or flipped.
- const eyelet=card.querySelector('.face.front .badge-hole');
- const eyeletRect=eyelet.getBoundingClientRect();
- const eyeletX=eyeletRect.left+eyeletRect.width/2-stageRect.left;
- const eyeletY=eyeletRect.top+eyeletRect.height/2-stageRect.top;
+ // Select the eyelet on the currently visible card face.
+ const visibleFace=idCard.classList.contains('is-flipped')?'.face.back':'.face.front';
+ const eyelet=card.querySelector(`${visibleFace} .badge-hole`);
+ let eyeletX,eyeletY;
+ if(eyelet && typeof eyelet.getBoxQuads==='function'){
+  // Quad points are the actual perspective-projected corners, unlike the
+  // axis-aligned bounding rectangle which drifts during 3D rotation.
+  const q=eyelet.getBoxQuads()[0];
+  if(q){
+   eyeletX=(q.p1.x+q.p2.x+q.p3.x+q.p4.x)/4-stageRect.left;
+   eyeletY=(q.p1.y+q.p2.y+q.p3.y+q.p4.y)/4-stageRect.top;
+  }
+ }
+ if(eyeletX===undefined || !Number.isFinite(eyeletX)){
+  const r=eyelet.getBoundingClientRect();
+  eyeletX=r.left+r.width/2-stageRect.left;
+  eyeletY=r.top+r.height/2-stageRect.top;
+ }
  const clipX=eyeletX,clipY=eyeletY-64;
+ // Match the clip's rotation pivot to the card's physical transform-origin.
+ // This prevents the clip from orbiting around its own center while the card
+ // rotates around a different point.
+ const cardPivotX=stage.clientWidth/2+cardX;
+ const cardPivotY=(card.offsetTop||214)+cardY-52;
+ const clipOriginX=cardPivotX-clipX+31;
+ const clipOriginY=cardPivotY-clipY;
  // The webbing terminates at the upper edge of the metal crimp.
  const endX=clipX,endY=clipY+9;
  const dx=endX-anchorX,dy=endY-anchorY;
@@ -926,8 +941,10 @@ function drawTether(){
  const clip=document.getElementById('badgeClip');
  if(clip){
   clip.style.left=`${clipX}px`;clip.style.top=`${clipY}px`;
+  clip.style.transformOrigin=`${clipOriginX}px ${clipOriginY}px`;
   const flip=idCard.classList.contains('is-flipped')?180:0;
-  clip.style.transform=`translateX(-50%) perspective(850px) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw+flip}deg)`;
+  // Use the same rotation stack and the stage's shared perspective as the card.
+  clip.style.transform=`translateX(-50%) rotateZ(${roll}deg) rotateX(${pitch}deg) rotateY(${yaw+flip}deg)`;
  }
 }
 function placeCard(){
