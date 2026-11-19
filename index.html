@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050914">
 <meta name="description" content="Portofolio Risqie Kamal (IKY) — 3D Creative Developer, pelajar dan pengembang digital.">
-<title>IKY — Digital Portfolio</title>
+<title>INFORMATION— Digital Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -563,6 +563,738 @@ html, body {
  .clip-crimp{left:4px!important;width:58px!important;height:36px!important}
 }
 
+
+/* ===== PROFESSIONAL ID BADGE HARDWARE: SWIVEL SNAP HOOK =====
+   Replaces the decorative loop with a compact metal strap clamp,
+   swivel joint and functional-looking trigger snap clasp. */
+.badge-clip{
+  width:68px!important;
+  height:88px!important;
+  transform-style:preserve-3d!important;
+  filter:drop-shadow(0 4px 4px rgba(0,0,0,.62))!important;
+}
+.clip-crimp{
+  left:9px!important;top:0!important;
+  width:50px!important;height:22px!important;
+  border:1px solid #f0f4f6!important;
+  border-radius:4px!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0) 35%,rgba(15,22,30,.38)),
+    linear-gradient(90deg,#46515d 0%,#f7fafc 18%,#8996a2 36%,#fff 53%,#687581 72%,#f4f7f9 88%,#414c57 100%)!important;
+  box-shadow:inset 0 1px 2px #fff,inset 0 -2px 3px #303a44,0 2px 4px #0009!important;
+}
+.clip-crimp:before{
+  inset:3px 5px!important;
+  border:1px solid rgba(255,255,255,.5)!important;
+  border-radius:2px!important;
+}
+.clip-loop{
+  left:27px!important;top:19px!important;
+  width:14px!important;height:15px!important;
+  border:3px solid #dce4e9!important;
+  border-top-color:#fff!important;
+  border-radius:50%!important;
+  background:linear-gradient(90deg,#596570,#fff 40%,#77838e 72%,#f8fafb)!important;
+  box-shadow:inset 0 0 0 1px #66727d,0 2px 3px #0009!important;
+}
+.clip-hook{
+  display:block!important;
+  position:absolute!important;
+  left:21px!important;top:31px!important;
+  width:27px!important;height:34px!important;
+  box-sizing:border-box!important;
+  border:4px solid #d9e1e7!important;
+  border-top:4px solid transparent!important;
+  border-left-color:#f7fafc!important;
+  border-radius:5px 5px 13px 13px!important;
+  background:linear-gradient(90deg,#46525e 0%,#f8fbfd 28%,#7b8792 55%,#fff 76%,#4b5661 100%)!important;
+  box-shadow:inset 0 -3px 4px #3b4650,0 2px 4px #000a!important;
+}
+.clip-hook:before{
+  content:""!important;
+  position:absolute!important;
+  display:block!important;
+  width:12px!important;height:4px!important;
+  top:-4px!important;right:-4px!important;
+  border:1px solid #eef3f6!important;
+  border-radius:2px!important;
+  background:linear-gradient(180deg,#fff,#8995a0 65%,#46515c)!important;
+  transform:rotate(34deg)!important;
+  transform-origin:right center!important;
+}
+.clip-hook:after{
+  content:""!important;
+  position:absolute!important;
+  display:block!important;
+  width:7px!important;height:7px!important;
+  right:-5px!important;top:1px!important;
+  border-right:2px solid #f7fafc!important;
+  border-top:2px solid #f7fafc!important;
+  border-radius:0 4px 0 0!important;
+}
+.clip-ring{
+  left:27px!important;top:59px!important;
+  width:14px!important;height:14px!important;
+  border:3px solid #e5ebef!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle at 30% 22%,#fff 0%,#dce4e9 22%,#687581 54%,#fff 78%,#4f5b66 100%)!important;
+  box-shadow:inset 0 0 0 1px #596570,0 2px 4px #000a!important;
+}
+@media(max-width:520px){
+  .badge-clip{width:68px!important;height:88px!important}
+}
+
+
+
+/* ==========================================================
+   IKY SIGNATURE IDENTITY SYSTEM — PREMIUM REALISTIC REVISION
+   Custom personal credential concept; not a government ID.
+   ========================================================== */
+
+/* Woven lanyard: deep midnight textile, twin satin edge-lines,
+   subtle diagonal weave and warm metallic identity print. */
+#badgeTether .tether-shadow{stroke:#000!important;stroke-width:4!important;opacity:.72!important;filter:blur(3px)!important}
+#badgeTether .tether-edge{fill:#080e18!important}
+#badgeTether .tether-webbing{
+  fill:url(#ikyLanyardWeave)!important;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.55));
+}
+#badgeTether .tether-rib{stroke:#aeb9c8!important;stroke-width:.65!important;stroke-dasharray:1 3!important;opacity:.36!important}
+#badgeTether .tether-seam{stroke:#03070d!important;stroke-width:1.1!important;opacity:.95!important}
+#badgeTether .tether-highlight{stroke:#d9e4ef!important;stroke-width:.8!important;opacity:.42!important}
+#badgeTether .tether-stitch{stroke:#c8a96a!important;stroke-width:.8!important;stroke-dasharray:1.3 3.8!important;opacity:.9!important}
+.lanyard-name{
+  fill:#f5e2b7!important;
+  stroke:#111a27!important;
+  stroke-width:1.25px!important;
+  paint-order:stroke fill!important;
+  font:900 8px "DM Mono",monospace!important;
+  letter-spacing:1.25px!important;
+  filter:drop-shadow(0 1px 2px #000)!important;
+}
+
+/* Card shell: precision-milled edge, laminated polycarbonate,
+   dark ink field, reflective security foil and realistic depth. */
+#card.card-wrap{
+  width:266px!important;height:430px!important;
+  filter:drop-shadow(0 25px 30px rgba(0,0,0,.58))!important;
+  transform-style:preserve-3d!important;
+}
+#card .id-card{
+  border-radius:17px!important;
+  transform-style:preserve-3d!important;
+}
+#card .face{
+  border:1px solid rgba(231,239,247,.94)!important;
+  border-radius:17px!important;
+  color:#eef4fa!important;
+  background:
+    radial-gradient(ellipse at 8% 12%,rgba(93,160,180,.22),transparent 36%),
+    radial-gradient(ellipse at 92% 84%,rgba(192,157,91,.16),transparent 34%),
+    linear-gradient(145deg,#172638 0%,#0d1725 48%,#111f2e 100%)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.18),
+    inset 0 0 22px rgba(153,195,220,.08),
+    inset 0 -10px 22px rgba(0,0,0,.24),
+    0 2px 7px rgba(0,0,0,.34)!important;
+}
+#card .face:before{
+  inset:6px!important;
+  border:1px solid rgba(211,187,133,.48)!important;
+  border-radius:12px!important;
+  background:
+    repeating-linear-gradient(135deg,transparent 0 8px,rgba(208,222,234,.035) 8px 9px),
+    radial-gradient(circle at 50% 50%,transparent 0 38%,rgba(210,188,143,.055) 38.2% 38.7%,transparent 39%)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)!important;
+  z-index:3!important;
+}
+#card .face:after{
+  background:
+    linear-gradient(112deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,.10) 8%,transparent 23%,transparent 70%,rgba(255,255,255,.08) 84%,rgba(255,255,255,.28) 100%),
+    linear-gradient(175deg,rgba(255,255,255,.12),transparent 24%,transparent 78%,rgba(255,255,255,.08)),
+    linear-gradient(125deg,transparent 32%,rgba(119,197,209,.09) 42%,transparent 52%)!important;
+  mix-blend-mode:screen!important;
+  z-index:6!important;
+}
+
+/* Top identity masthead and custom school/portfolio mark. */
+#card .badge-logo{
+  top:20px!important;left:20px!important;right:20px!important;
+  min-height:48px!important;
+  gap:11px!important;
+  align-items:center!important;
+  padding:0 0 11px!important;
+  border-bottom:1px solid rgba(214,185,124,.55)!important;
+  z-index:4!important;
+}
+#card .badge-logo img{
+  width:39px!important;height:39px!important;
+  padding:4px!important;
+  border-radius:10px!important;
+  object-fit:contain!important;
+  background:linear-gradient(145deg,#f4f1e7,#c7d2d5)!important;
+  border:1px solid rgba(255,255,255,.75)!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.3),inset 0 1px 2px #fff!important;
+  mix-blend-mode:normal!important;
+}
+#card .badge-logo-copy{
+  color:#d5c49c!important;
+  font:700 7px "DM Mono",monospace!important;
+  letter-spacing:.2em!important;
+  line-height:1.6!important;
+}
+#card .badge-logo-copy b{
+  color:#f7f4ec!important;
+  font:800 14px Manrope,sans-serif!important;
+  letter-spacing:.035em!important;
+}
+
+/* Portrait window: rectangular photo with layered metal frame,
+   like a contemporary access/identity credential. */
+#card .badge-photo-ring{
+  top:91px!important;left:20px!important;
+  width:104px!important;height:130px!important;
+  padding:4px!important;
+  transform:none!important;
+  border-radius:9px!important;
+  background:linear-gradient(135deg,#f4e6c5 0%,#9f895b 20%,#f5e7c9 43%,#6d7d8a 70%,#e8d8b3 100%)!important;
+  box-shadow:0 5px 13px rgba(0,0,0,.42),inset 0 0 0 1px rgba(255,255,255,.68)!important;
+  z-index:4!important;
+}
+#card .badge-photo-ring img{
+  width:100%!important;height:100%!important;
+  border:1px solid rgba(255,255,255,.8)!important;
+  border-radius:5px!important;
+  object-fit:cover!important;
+  object-position:center 34%!important;
+  filter:contrast(1.035) saturate(.9)!important;
+}
+
+/* Security-field artwork: restrained guilloche-style arcs and foil glints. */
+#card .badge-green{
+  top:232px!important;bottom:0!important;left:0!important;right:0!important;
+  clip-path:none!important;
+  background:
+    radial-gradient(circle at 80% 30%,rgba(111,174,177,.20),transparent 36%),
+    repeating-radial-gradient(ellipse at 86% 55%,transparent 0 12px,rgba(207,183,128,.11) 12.5px 13.2px,transparent 13.8px 20px),
+    linear-gradient(145deg,#1c3546 0%,#102435 54%,#0b1928 100%)!important;
+  border-top:1px solid rgba(219,190,132,.72)!important;
+  z-index:1!important;
+}
+#card .badge-green:before,#card .badge-green:after{display:none!important}
+#card .badge-name{
+  top:245px!important;left:137px!important;right:13px!important;
+  text-align:left!important;
+  color:#fff!important;
+  font-size:15px!important;line-height:1.16!important;
+  letter-spacing:-.035em!important;
+  text-shadow:0 2px 5px rgba(0,0,0,.45)!important;
+  z-index:4!important;
+}
+#card .badge-role{
+  top:282px!important;left:137px!important;right:13px!important;
+  text-align:left!important;
+  color:#d9c18e!important;
+  font:700 7px "DM Mono",monospace!important;
+  letter-spacing:.12em!important;
+  z-index:4!important;
+}
+#card .badge-details{
+  top:303px!important;left:20px!important;right:18px!important;
+  grid-template-columns:1fr 1.45fr!important;
+  gap:8px 12px!important;
+  color:#e7edf3!important;
+  font:7px "DM Mono",monospace!important;
+  z-index:4!important;
+}
+#card .badge-details span:nth-child(odd){color:#aebdca!important;opacity:1!important;letter-spacing:.08em!important}
+#card .badge-details b{color:#fff!important;font-weight:700!important;letter-spacing:.025em!important}
+#card .badge-footer{
+  bottom:12px!important;left:15px!important;right:15px!important;
+  color:#d6c398!important;
+  font:600 5.5px "DM Mono",monospace!important;
+  letter-spacing:.12em!important;
+  z-index:4!important;
+}
+
+/* Reverse face becomes a clean credential verification / profile panel. */
+#card .face.back{
+  background:
+    radial-gradient(circle at 80% 12%,rgba(100,159,174,.16),transparent 34%),
+    linear-gradient(145deg,#15283a,#0b1725 72%,#172b3a)!important;
+}
+#card .back-green-cap{
+  height:126px!important;
+  background:
+    repeating-radial-gradient(ellipse at 50% 10%,transparent 0 11px,rgba(221,194,137,.12) 11.5px 12px,transparent 12.5px 19px),
+    linear-gradient(135deg,#23495a,#10283b 58%,#172b3d)!important;
+  border-bottom:1px solid rgba(218,190,133,.65)!important;
+}
+#card .back-green-cap:after{
+  display:none!important;
+}
+#card .back-brand{color:#f1e5c8!important}
+#card .back-brand b{color:#f7f3e9!important}
+#card .back-content{
+  top:143px!important;left:19px!important;right:19px!important;bottom:18px!important;
+  color:#e9eff5!important;
+}
+#card .back-content .qris-image{
+  width:104px!important;height:104px!important;
+  border:5px solid #f1eee5!important;
+  border-radius:8px!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.35)!important;
+}
+#card .back-content .qris-label{
+  color:#d7c49a!important;
+  font:700 7px "DM Mono",monospace!important;
+  letter-spacing:.12em!important;
+}
+#card .back-content .back-thanks{color:#fff!important}
+#card .back-content p{color:#b9c7d2!important}
+#card .back-content p:before{color:#d7bd83!important}
+#card .back-content .back-bottom{
+  color:#d7c49a!important;
+  border-top:1px solid rgba(215,196,154,.28)!important;
+}
+
+/* New precision snap hook: metal swivel, forged hook body and spring gate. */
+#badgeClip.badge-clip{
+  width:72px!important;height:94px!important;
+  transform-style:preserve-3d!important;
+  filter:drop-shadow(0 7px 7px rgba(0,0,0,.62))!important;
+}
+#badgeClip .clip-crimp{
+  left:8px!important;top:0!important;width:56px!important;height:25px!important;
+  border:1px solid #f5f8fa!important;border-radius:5px!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.95),transparent 34%,rgba(12,20,29,.45)),
+    linear-gradient(90deg,#3d4855 0%,#e8eef2 16%,#7c8995 30%,#fff 47%,#aab5be 61%,#f8fafb 78%,#46515d 100%)!important;
+  box-shadow:inset 0 1px 2px #fff,inset 0 -3px 4px #293541,0 2px 5px #000a!important;
+}
+#badgeClip .clip-crimp:before{
+  inset:3px 5px!important;border:1px solid rgba(255,255,255,.62)!important;
+  border-radius:2px!important;
+}
+#badgeClip .clip-loop{
+  left:27px!important;top:22px!important;width:18px!important;height:17px!important;
+  border:3px solid #e0e7ec!important;border-top-color:#fff!important;
+  border-radius:50%!important;
+  background:linear-gradient(90deg,#53616e,#fff 35%,#87939e 68%,#f7fafc)!important;
+  box-shadow:inset 0 0 0 1px #64717c,0 2px 4px #000b!important;
+}
+#badgeClip .clip-hook{
+  display:block!important;position:absolute!important;
+  left:20px!important;top:36px!important;width:32px!important;height:42px!important;
+  box-sizing:border-box!important;
+  border:5px solid #dfe6eb!important;
+  border-top:4px solid transparent!important;
+  border-left-color:#fff!important;
+  border-radius:5px 5px 15px 15px!important;
+  background:linear-gradient(90deg,#46525f 0%,#f8fbfd 24%,#7d8995 48%,#fff 70%,#4b5865 100%)!important;
+  box-shadow:inset 0 -4px 5px #303b46,0 3px 5px #000b!important;
+}
+#badgeClip .clip-hook:before{
+  content:""!important;display:block!important;position:absolute!important;
+  width:14px!important;height:5px!important;top:-5px!important;right:-5px!important;
+  border:1px solid #f5f8fa!important;border-radius:2px!important;
+  background:linear-gradient(180deg,#fff,#9ba7b1 65%,#46515c)!important;
+  transform:rotate(32deg)!important;transform-origin:right center!important;
+}
+#badgeClip .clip-hook:after{
+  content:""!important;display:block!important;position:absolute!important;
+  width:9px!important;height:9px!important;right:-6px!important;top:2px!important;
+  border-right:2px solid #fff!important;border-top:2px solid #fff!important;
+  border-radius:0 4px 0 0!important;
+}
+#badgeClip .clip-ring{
+  left:28px!important;top:72px!important;width:16px!important;height:16px!important;
+  border:3px solid #e8eef2!important;border-radius:50%!important;
+  background:radial-gradient(circle at 30% 22%,#fff 0%,#dce4e9 22%,#65727e 54%,#fff 78%,#4e5a66 100%)!important;
+  box-shadow:inset 0 0 0 1px #596570,0 2px 4px #000b!important;
+}
+@media(max-width:700px){
+  #card.card-wrap{width:245px!important;height:400px!important}
+  #card .badge-logo{top:18px!important}
+  #card .badge-photo-ring{top:86px!important;width:96px!important;height:118px!important}
+  #card .badge-green{top:220px!important}
+  #card .badge-name{top:232px!important;left:126px!important;font-size:13px!important}
+  #card .badge-role{top:266px!important;left:126px!important;font-size:6px!important}
+  #card .badge-details{top:286px!important;gap:7px 9px!important;font-size:6.3px!important}
+  #card .badge-footer{font-size:5px!important}
+}
+@media(max-width:520px){
+  #badgeClip.badge-clip{width:72px!important;height:94px!important}
+  #card .face{border-radius:15px!important}
+}
+
+
+/* ==========================================================
+   IKY ATELIER — FULL HARDWARE & MATERIAL PASS
+   A bespoke, photoreal-inspired wearable credential system.
+   ========================================================== */
+#badgeTether .tether-webbing{
+  stroke-linejoin:round!important;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.72)) drop-shadow(0 0 1px rgba(225,235,245,.3))!important;
+}
+#badgeTether .tether-rib{stroke:#d5deea!important;stroke-width:.42!important;stroke-dasharray:.7 1.65!important;opacity:.27!important}
+#badgeTether .tether-stitch{stroke:#e4c98d!important;stroke-width:.95!important;stroke-dasharray:1.4 2.9!important;opacity:.98!important}
+#badgeTether .tether-highlight{stroke:#fff!important;stroke-width:1.15!important;opacity:.34!important}
+.lanyard-name{
+  fill:#fff0c9!important;stroke:#111a25!important;stroke-width:1.8px!important;
+  font:900 8.4px "DM Mono",monospace!important;letter-spacing:1.55px!important;
+  filter:drop-shadow(0 1px 1px #000)!important;
+}
+#badgeClip.badge-clip{
+  width:84px!important;height:116px!important;
+  filter:drop-shadow(0 8px 8px rgba(0,0,0,.6))!important;
+  transform-style:preserve-3d!important;
+}
+#badgeClip .clip-crimp{
+  left:24px!important;top:0!important;width:36px!important;height:18px!important;
+  border:1px solid #f4f6f8!important;border-radius:5px 5px 3px 3px!important;
+  background:
+   repeating-linear-gradient(90deg,transparent 0 3px,rgba(20,28,38,.35) 3px 4px),
+   linear-gradient(90deg,#303c49,#f9fbfc 18%,#8a98a5 34%,#fff 50%,#64717d 73%,#e9eef2 88%,#293541)!important;
+  box-shadow:inset 0 1px 2px #fff, inset 0 -3px 4px #26313b,0 2px 4px #0009!important;
+}
+#badgeClip .clip-crimp:before{
+  content:"IKY • 316L"!important;position:absolute!important;left:0;right:0;top:5px;
+  color:#283542!important;text-align:center;font:800 4px "DM Mono",monospace!important;letter-spacing:.4px;
+}
+#badgeClip .clip-crimp i,#badgeClip .clip-crimp b{
+  position:absolute!important;display:block!important;width:3px!important;height:3px!important;
+  top:7px!important;border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#fff,#7b8792 60%,#26313b)!important;
+  box-shadow:0 0 0 1px #53606b!important;
+}
+#badgeClip .clip-crimp i{left:4px!important}#badgeClip .clip-crimp b{right:4px!important}
+#badgeClip .clip-loop{
+  left:35px!important;top:14px!important;width:15px!important;height:24px!important;
+  border:4px solid #9daab5!important;border-top-color:#f9fcff!important;border-bottom-color:#53616e!important;
+  border-radius:8px!important;background:transparent!important;
+  box-shadow:inset 0 0 0 1px #26313b,0 1px 2px #000!important;
+}
+#badgeClip .clip-hook{
+  position:absolute!important;left:18px!important;top:31px!important;width:49px!important;height:64px!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  transform-style:preserve-3d!important;
+}
+#badgeClip .clip-hook:before{
+  content:""!important;position:absolute!important;left:12px!important;top:0!important;
+  width:23px!important;height:48px!important;border-radius:12px 12px 16px 16px!important;
+  border:5px solid transparent!important;
+  background:linear-gradient(135deg,#f8fbff 0%,#778591 17%,#e9eef2 31%,#596673 52%,#fff 69%,#46525f 87%,#dce3e9 100%) border-box!important;
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0)!important;
+  -webkit-mask-composite:xor!important;mask-composite:exclude!important;
+  box-shadow:0 3px 5px #0009,inset 0 0 4px #fff!important;
+}
+#badgeClip .clip-hook:after{
+  content:""!important;position:absolute!important;left:20px!important;top:8px!important;
+  width:10px!important;height:29px!important;border-radius:0 0 8px 8px!important;
+  border-right:3px solid #f8fbff!important;border-bottom:3px solid #8d9aa5!important;
+  transform:rotate(-7deg)!important;
+}
+#badgeClip .hook-neck{position:absolute!important;left:19px!important;top:-3px!important;width:11px!important;height:13px!important;border-radius:4px!important;background:linear-gradient(90deg,#3d4955,#f8fbff 32%,#7b8792 68%,#fff)!important;z-index:3}
+#badgeClip .hook-barrel{position:absolute!important;left:17px!important;top:1px!important;width:16px!important;height:11px!important;border-radius:5px!important;background:linear-gradient(180deg,#fff,#8996a1 35%,#35424f 72%,#dce3e9)!important;box-shadow:0 1px 3px #000!important;z-index:4}
+#badgeClip .hook-body{position:absolute!important;left:17px!important;top:13px!important;width:17px!important;height:35px!important;border-radius:8px 8px 10px 10px!important;background:linear-gradient(90deg,#34414e,#f7fafc 18%,#8996a1 37%,#fff 52%,#65727e 77%,#e8edf1)!important;box-shadow:inset 0 0 0 1px #f4f7fa,0 3px 4px #0009!important;z-index:2}
+#badgeClip .hook-gate{position:absolute!important;left:31px!important;top:21px!important;width:12px!important;height:23px!important;border-right:3px solid #f8fbff!important;border-top:2px solid #aeb9c2!important;border-radius:0 8px 0 0!important;transform:rotate(16deg)!important;z-index:5}
+#badgeClip .hook-pin{position:absolute!important;left:31px!important;top:18px!important;width:5px!important;height:5px!important;border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#fff,#5d6974 65%,#202a33)!important;box-shadow:0 0 0 1px #e9eef2!important;z-index:6}
+#badgeClip .hook-nose{position:absolute!important;left:29px!important;top:44px!important;width:15px!important;height:9px!important;border-radius:2px 2px 8px 2px!important;background:linear-gradient(180deg,#fff,#9ca8b2 45%,#394550)!important;transform:rotate(-22deg)!important;z-index:4}
+#badgeClip .clip-ring{
+  left:31px!important;top:86px!important;width:22px!important;height:22px!important;
+  border:4px solid transparent!important;border-radius:50%!important;
+  background:linear-gradient(#101a25,#101a25) padding-box,linear-gradient(135deg,#fff,#697783 24%,#f5f8fa 44%,#45515d 68%,#eaf0f4) border-box!important;
+  box-shadow:0 3px 5px #000b,inset 0 0 0 1px #dce4ea!important;
+}
+/* Precision-finished card body: bevel, corner glints and layered foil. */
+#card.card-wrap{width:278px!important;height:448px!important;filter:drop-shadow(0 28px 35px rgba(0,0,0,.66))!important}
+#card .face{border-radius:19px!important;border:1px solid rgba(244,237,218,.9)!important}
+#card .face:before{inset:5px!important;border-radius:14px!important;border:1px solid rgba(220,194,139,.58)!important;
+ background:
+  repeating-conic-gradient(from 0deg at 50% 48%,rgba(232,207,158,.055) 0deg 1deg,transparent 1deg 4deg),
+  repeating-linear-gradient(45deg,transparent 0 5px,rgba(255,255,255,.025) 5px 6px),
+  radial-gradient(ellipse at 50% 45%,transparent 0 31%,rgba(228,201,151,.09) 31.3% 31.7%,transparent 32% 44%,rgba(228,201,151,.06) 44.2% 44.6%,transparent 45%)!important}
+#card .face:after{background:
+ linear-gradient(118deg,rgba(255,255,255,.48),rgba(255,255,255,.08) 11%,transparent 28%,transparent 67%,rgba(255,255,255,.11) 82%,rgba(255,255,255,.3)),
+ linear-gradient(35deg,transparent 40%,rgba(120,207,216,.11) 49%,transparent 58%)!important}
+#card .badge-hole{filter:drop-shadow(0 2px 2px #000)!important}
+#card .badge-photo-ring{border-radius:7px!important;background:linear-gradient(135deg,#fff4d7,#9a8050 17%,#fff1ce 34%,#526474 68%,#f5e6c6)!important}
+#card .badge-name{letter-spacing:-.045em!important;text-shadow:0 2px 7px #0009!important}
+#card .badge-details{line-height:1.25!important}
+#card .badge-footer{border-top:1px solid rgba(221,196,145,.28)!important;padding-top:7px!important}
+#card .back-green-cap{height:132px!important}
+@media(max-width:520px){
+ #card.card-wrap{width:252px!important;height:410px!important}
+ #badgeClip.badge-clip{width:76px!important;height:106px!important}
+ #badgeClip .clip-crimp{left:20px!important}
+ #badgeClip .clip-loop{left:31px!important}
+ #badgeClip .clip-hook{left:14px!important}
+ #badgeClip .clip-ring{left:27px!important;top:84px!important}
+}
+
+
+
+/* Recovered final hardware overrides that were accidentally placed after </html>. */
+/* ==========================================================
+   IKY SIGNATURE — CORRECT TOP-EYELET ASSEMBLY
+   Webbing > crimp > swivel > snap-hook nose > card eyelet.
+   Hardware is kept above the card face; only the hook nose
+   enters the reinforced slot.
+   ========================================================== */
+#badgeClip.badge-clip{
+  width:76px!important;height:58px!important;
+  overflow:visible!important;
+  z-index:8!important;
+  transform-origin:50% 8px!important;
+  filter:drop-shadow(0 4px 4px rgba(0,0,0,.58))!important;
+}
+#badgeClip .clip-crimp{
+  left:13px!important;top:0!important;width:50px!important;height:15px!important;
+  box-sizing:border-box!important;border:1px solid #f7fbff!important;
+  border-radius:4px 4px 3px 3px!important;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 3px,rgba(18,27,37,.32) 3px 4px),
+    linear-gradient(90deg,#26323e 0%,#dce4eb 13%,#fff 27%,#75828e 43%,#f9fbfd 59%,#596672 78%,#eaf0f4 100%)!important;
+  box-shadow:inset 0 1px 2px #fff,inset 0 -2px 3px #26313c,0 2px 4px #000a!important;
+}
+#badgeClip .clip-crimp:before{
+  content:"IKY • 316L"!important;position:absolute!important;inset:4px 0 auto!important;
+  color:#273542!important;text-align:center!important;
+  font:800 4px "DM Mono",monospace!important;letter-spacing:.45px!important;
+}
+#badgeClip .clip-crimp i,#badgeClip .clip-crimp b{
+  position:absolute!important;top:5px!important;width:3px!important;height:3px!important;
+  border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#fff,#75818d 65%,#202a34)!important;
+  box-shadow:0 0 0 1px #65727d!important;
+}
+#badgeClip .clip-crimp i{left:4px!important}#badgeClip .clip-crimp b{right:4px!important}
+#badgeClip .clip-loop{
+  left:31px!important;top:11px!important;width:14px!important;height:15px!important;
+  box-sizing:border-box!important;border:3px solid #b5c0c9!important;
+  border-top-color:#fff!important;border-bottom-color:#596672!important;
+  border-radius:7px!important;background:transparent!important;
+  box-shadow:inset 0 0 0 1px #283440,0 1px 2px #0009!important;
+}
+#badgeClip .clip-hook{
+  position:absolute!important;left:13px!important;top:21px!important;
+  width:50px!important;height:36px!important;border:0!important;border-radius:0!important;
+  background:transparent!important;z-index:4!important;transform:none!important;
+}
+#badgeClip .clip-hook:before{
+  content:""!important;position:absolute!important;left:13px!important;top:0!important;
+  width:24px!important;height:31px!important;box-sizing:border-box!important;
+  border:5px solid transparent!important;border-radius:12px 12px 10px 10px!important;
+  background:linear-gradient(110deg,#26333f 0%,#f9fcff 17%,#7f8c98 33%,#fff 48%,#66737f 67%,#eef3f6 84%,#34414d 100%) border-box!important;
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0)!important;
+  -webkit-mask-composite:xor!important;mask-composite:exclude!important;
+  filter:drop-shadow(0 2px 2px #0009)!important;
+}
+#badgeClip .clip-hook:after{
+  content:""!important;position:absolute!important;left:29px!important;top:11px!important;
+  width:10px!important;height:20px!important;box-sizing:border-box!important;
+  border-right:3px solid #f9fcff!important;border-bottom:3px solid #778591!important;
+  border-radius:0 0 8px 0!important;transform:rotate(-8deg)!important;
+}
+#badgeClip .hook-neck{position:absolute!important;left:19px!important;top:-3px!important;width:12px!important;height:10px!important;border-radius:3px!important;background:linear-gradient(90deg,#394652,#fff 35%,#77848f 70%,#f8fbfd)!important;z-index:3!important}
+#badgeClip .hook-barrel{position:absolute!important;left:17px!important;top:2px!important;width:16px!important;height:8px!important;border-radius:4px!important;background:linear-gradient(180deg,#fff,#8e9aa5 45%,#35414c)!important;box-shadow:0 1px 3px #000!important;z-index:5!important}
+#badgeClip .hook-body{position:absolute!important;left:18px!important;top:9px!important;width:17px!important;height:24px!important;border-radius:8px 8px 9px 9px!important;background:linear-gradient(90deg,#33404c,#f9fcff 18%,#8c99a4 39%,#fff 54%,#5e6b77 80%,#e6edf2)!important;box-shadow:inset 0 0 0 1px #f6f9fb,0 2px 3px #0009!important;z-index:2!important}
+#badgeClip .hook-gate{position:absolute!important;left:31px!important;top:15px!important;width:11px!important;height:17px!important;border-right:3px solid #fff!important;border-bottom:2px solid #85929d!important;border-radius:0 0 7px 0!important;transform:rotate(-7deg)!important;z-index:6!important}
+#badgeClip .hook-pin{position:absolute!important;left:30px!important;top:12px!important;width:5px!important;height:5px!important;border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#fff,#65727e 65%,#202a34)!important;box-shadow:0 0 0 1px #eaf0f4!important;z-index:7!important}
+#badgeClip .hook-nose{
+  position:absolute!important;left:24px!important;top:28px!important;width:11px!important;height:8px!important;
+  border-radius:1px 1px 6px 6px!important;
+  background:linear-gradient(180deg,#fff,#9ba7b1 48%,#3b4854)!important;
+  transform:rotate(4deg)!important;z-index:8!important;
+}
+/* No dangling lower ring: the snap hook itself is the connector through the slot. */
+#badgeClip .clip-ring{display:none!important}
+#card .badge-hole{
+  top:-1px!important;left:50%!important;width:30px!important;height:15px!important;
+  z-index:7!important;border-radius:0 0 8px 8px!important;
+  background:linear-gradient(180deg,#101923,#02060b 65%,#18232e)!important;
+  box-shadow:inset 0 3px 5px #000,inset 0 -1px 1px #fff4!important;
+}
+#card .hole-metal{
+  inset:-3px -3px -2px!important;border:2px solid #cbd5de!important;
+  border-top-color:#fff!important;border-radius:0 0 10px 10px!important;
+  box-shadow:inset 0 1px 2px #fff,0 2px 3px #0008!important;
+}
+#card .hole-inner{inset:2px 4px 3px!important;background:#02060a!important}
+/* The hook overlaps only the slot/upper lip, never the portrait or text field. */
+@media(max-width:520px){
+  #badgeClip.badge-clip{width:72px!important;height:56px!important}
+  #badgeClip .clip-crimp{left:11px!important}
+  #badgeClip .clip-loop{left:29px!important}
+  #badgeClip .clip-hook{left:11px!important}
+}
+
+
+/* ===== FINAL FIT: SNAP HOOK INSERTED THROUGH TOP EYELET ===== */
+#badgeClip.badge-clip{
+  width:76px!important;height:58px!important;
+  overflow:visible!important;z-index:12!important;
+  pointer-events:none!important;
+}
+#badgeClip .clip-crimp{top:0!important}
+#badgeClip .clip-loop{top:11px!important}
+#badgeClip .clip-hook{top:21px!important}
+#badgeClip .hook-body{height:24px!important}
+#badgeClip .hook-nose{
+  left:24px!important;top:28px!important;width:11px!important;height:8px!important;
+  border-radius:1px 1px 6px 6px!important;
+  transform:rotate(4deg)!important;
+  z-index:10!important;
+}
+/* Eyelet sits above card artwork; the hook nose penetrates its upper opening. */
+#card .badge-hole{
+  top:-1px!important;left:50%!important;width:30px!important;height:15px!important;
+  z-index:6!important;overflow:visible!important;
+}
+#card .hole-metal{z-index:2!important}
+#card .hole-inner{z-index:1!important}
+
+
+/* ==========================================================
+   REBUILT HARDWARE ASSEMBLY — EYELET MOUNT V2
+   Remove legacy pseudo hardware (the dark square/ghost clip),
+   then render one compact swivel + snap hook. The clasp body
+   stays above the card; only its narrow locking nose enters
+   the reinforced top-center eyelet.
+   ========================================================== */
+#badgeClip.badge-clip{
+  position:absolute!important;
+  width:72px!important;height:72px!important;
+  background:transparent!important;
+  border:0!important;border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  z-index:12!important;
+  pointer-events:none!important;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.48))!important;
+}
+#badgeClip.badge-clip::before,
+#badgeClip.badge-clip::after{
+  content:none!important;display:none!important;
+}
+#badgeClip .clip-crimp{
+  position:absolute!important;left:11px!important;top:0!important;
+  width:50px!important;height:15px!important;
+  box-sizing:border-box!important;border:1px solid #e8eef2!important;
+  border-radius:4px 4px 3px 3px!important;
+  background:repeating-linear-gradient(90deg,transparent 0 3px,rgba(12,20,29,.28) 3px 4px),
+    linear-gradient(90deg,#35414d,#f7fafc 18%,#8d9aa5 34%,#fff 50%,#687580 76%,#edf2f5)!important;
+  box-shadow:inset 0 1px 2px #fff,inset 0 -2px 3px #293540,0 1px 3px #0008!important;
+}
+#badgeClip .clip-crimp::before{
+  content:"IKY • 316L"!important;position:absolute!important;left:0!important;right:0!important;top:4px!important;
+  color:#283542!important;text-align:center!important;font:800 4px "DM Mono",monospace!important;letter-spacing:.4px!important;
+}
+#badgeClip .clip-crimp i,#badgeClip .clip-crimp b{
+  position:absolute!important;top:5px!important;width:3px!important;height:3px!important;
+  border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#fff,#75818d 65%,#202a34)!important;
+  box-shadow:0 0 0 1px #64717d!important;
+}
+#badgeClip .clip-crimp i{left:4px!important}#badgeClip .clip-crimp b{right:4px!important}
+#badgeClip .clip-loop{
+  position:absolute!important;left:30px!important;top:12px!important;
+  width:12px!important;height:16px!important;box-sizing:border-box!important;
+  border:3px solid #c5ced6!important;border-top-color:#fff!important;border-bottom-color:#66737e!important;
+  border-radius:7px!important;background:transparent!important;
+  box-shadow:inset 0 0 0 1px #283440,0 1px 2px #0008!important;
+}
+#badgeClip .clip-hook{
+  position:absolute!important;left:10px!important;top:26px!important;
+  width:52px!important;height:45px!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+}
+#badgeClip .clip-hook::before{
+  content:""!important;position:absolute!important;left:13px!important;top:0!important;
+  width:25px!important;height:37px!important;box-sizing:border-box!important;
+  border:5px solid transparent!important;border-radius:13px 13px 10px 10px!important;
+  background:linear-gradient(105deg,#384550 0%,#f8fbfd 18%,#8996a1 35%,#fff 52%,#687580 75%,#edf2f5 100%) border-box!important;
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0)!important;
+  -webkit-mask-composite:xor!important;mask-composite:exclude!important;
+  filter:drop-shadow(0 2px 2px #0008)!important;
+}
+#badgeClip .clip-hook::after{
+  content:""!important;position:absolute!important;left:31px!important;top:12px!important;
+  width:10px!important;height:22px!important;box-sizing:border-box!important;
+  border-right:3px solid #f9fcff!important;border-bottom:3px solid #84919c!important;
+  border-radius:0 0 8px 0!important;transform:rotate(-8deg)!important;
+}
+#badgeClip .hook-neck{position:absolute!important;left:19px!important;top:-2px!important;width:12px!important;height:10px!important;border-radius:3px!important;background:linear-gradient(90deg,#35424d,#fff 34%,#7b8792 70%,#f8fbfd)!important;z-index:3!important}
+#badgeClip .hook-barrel{position:absolute!important;left:17px!important;top:3px!important;width:16px!important;height:8px!important;border-radius:4px!important;background:linear-gradient(180deg,#fff,#8e9aa5 45%,#35414c)!important;box-shadow:0 1px 3px #000!important;z-index:5!important}
+#badgeClip .hook-body{position:absolute!important;left:18px!important;top:11px!important;width:17px!important;height:28px!important;border-radius:8px 8px 9px 9px!important;background:linear-gradient(90deg,#33404c,#f9fcff 18%,#8c99a4 39%,#fff 54%,#5e6b77 80%,#e6edf2)!important;box-shadow:inset 0 0 0 1px #f6f9fb,0 2px 3px #0008!important;z-index:2!important}
+#badgeClip .hook-gate{position:absolute!important;left:31px!important;top:15px!important;width:11px!important;height:19px!important;border-right:3px solid #fff!important;border-bottom:2px solid #85929d!important;border-radius:0 0 7px 0!important;transform:rotate(-7deg)!important;z-index:6!important}
+#badgeClip .hook-pin{position:absolute!important;left:30px!important;top:12px!important;width:5px!important;height:5px!important;border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#fff,#65727e 65%,#202a34)!important;box-shadow:0 0 0 1px #eaf0f4!important;z-index:7!important}
+#badgeClip .hook-nose{
+  position:absolute!important;left:25px!important;top:34px!important;width:7px!important;height:22px!important;
+  border-radius:2px 2px 4px 4px!important;
+  background:linear-gradient(90deg,#596672,#fff 35%,#9ba7b1 68%,#394550)!important;
+  box-shadow:0 1px 2px #0008!important;transform:rotate(1deg)!important;z-index:9!important;
+}
+/* Remove the legacy lower ring and all stray card-covering hardware. */
+#badgeClip .clip-ring{display:none!important}
+#card .badge-hole{
+  top:-1px!important;left:50%!important;width:30px!important;height:15px!important;
+  z-index:5!important;overflow:visible!important;
+  border-radius:0 0 8px 8px!important;
+}
+#card .hole-metal{z-index:2!important}
+#card .hole-inner{z-index:1!important}
+@media(max-width:520px){
+  #badgeClip.badge-clip{width:68px!important;height:70px!important}
+  #badgeClip .clip-crimp{left:9px!important}
+  #badgeClip .clip-loop{left:28px!important}
+  #badgeClip .clip-hook{left:8px!important}
+}
+
+/* FINAL CLEANUP: transparent hardware silhouette, no square backing plate. */
+#badgeClip.badge-clip{
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  border:0!important;outline:0!important;box-shadow:none!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.42))!important;
+  isolation:isolate!important;
+}
+#badgeClip.badge-clip::before,#badgeClip.badge-clip::after{content:none!important;display:none!important;background:none!important;box-shadow:none!important}
+#badgeClip .clip-hook{
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  border:0!important;box-shadow:none!important;outline:0!important;
+}
+#badgeClip .clip-hook::before{background:linear-gradient(105deg,#384550 0%,#f8fbfd 18%,#8996a1 35%,#fff 52%,#687580 75%,#edf2f5 100%) border-box!important;}
+/* The latch nose only enters the reinforced eyelet; it must not hang across the card face. */
+#badgeClip .hook-nose{
+  left:25px!important;top:34px!important;width:7px!important;height:9px!important;
+  border-radius:2px 2px 4px 4px!important;
+  background:linear-gradient(90deg,#596672,#fff 35%,#9ba7b1 68%,#394550)!important;
+  box-shadow:0 1px 2px #0008!important;transform:rotate(1deg)!important;z-index:9!important;
+}
+
+
+/* FINAL FIX: make the snap-hook's actual O-shaped nose visibly pass into the card eyelet. */
+#badgeClip .hook-nose{
+  position:absolute!important;
+  left:16px!important;top:31px!important;
+  width:18px!important;height:24px!important;
+  box-sizing:border-box!important;
+  border:4px solid #dce5eb!important;
+  border-top-color:#fdfefe!important;
+  border-left-color:#87949f!important;
+  border-radius:50%!important;
+  background:transparent!important;
+  box-shadow:inset 0 0 0 1px rgba(45,56,67,.75),0 1px 3px #0009!important;
+  transform:none!important;
+  z-index:15!important;
+}
+#badgeClip .hook-nose::after{
+  content:""!important;position:absolute!important;
+  left:2px!important;right:2px!important;top:-5px!important;height:8px!important;
+  border-radius:50% 50% 0 0!important;
+  border-top:2px solid #fff!important;
+  background:transparent!important;
+}
+#card .badge-hole{overflow:visible!important}
 </style>
 </head>
 <body>
@@ -575,8 +1307,8 @@ html, body {
 <div class="bubble-atmosphere" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <audio id="ambientMusic" src="./musik.mp3" loop preload="auto"></audio>
 <button class="sound-orb" id="soundOrb" type="button" aria-label="Putar musik latar" aria-pressed="false"><span class="sound-orb-core"><span class="sound-icon">♫</span><span class="sound-bars"><i></i><i></i><i></i><i></i></span></span><span class="sound-label">SOUND OFF</span></button>
-<div id="loader"><div class="load-inner"><div class="load-mark">IKY.</div><div class="load-line"><i></i></div><div class="load-caption">Initializing creative universe · 2026</div></div></div>
-<nav><a class="brand" href="#home">IKY<span>.</span></a><div class="navlinks"><a href="#about">Tentang</a><a href="#work">Karya</a><a href="#achievement">Pencapaian</a><a href="#contact">Kontak</a></div><a class="nav-cta" href="#contact">Let's connect ↗</a></nav>
+<div id="loader"><div class="load-inner"><div class="load-mark">LOADING</div><div class="load-line"><i></i></div><div class="load-caption">Initializing creative universe · 2026</div></div></div>
+<nav><a class="brand" href="#home">ID<span>CARD</span></a><div class="navlinks"><a href="#about">Tentang</a><a href="#work">Karya</a><a href="#achievement">Pencapaian</a><a href="#contact">Kontak</a></div><a class="nav-cta" href="#contact">Let's connect ↗</a></nav>
 <main>
 <section class="hero wrap" id="home">
  <div class="hero-copy"><div class="eyebrow">Portfolio / 2026 — Risqie Kamal</div><h1>Build ideas.<br><span class="gradient">Make impact.</span></h1><p>Saya <b>Risqie Kamal</b>, dikenal sebagai <b>IKY</b> — pelajar SMA dan pengembang digital yang senang mengubah ide menjadi website, aplikasi, bot, serta pengalaman interaktif.</p><div class="hero-actions"><a class="btn primary" href="#work">Explore my work ↘</a><a class="btn" href="#about">Discover IKY</a></div><div class="hero-note"><span>CODE & CREATE</span><span>RUN • BUILD • REPEAT</span><span>ESTIMATED 14.11.2026</span></div></div>
@@ -589,7 +1321,13 @@ html, body {
      <stop offset=".34" stop-color="#111720"/><stop offset=".52" stop-color="#343d49"/>
      <stop offset=".72" stop-color="#171e28"/><stop offset="1" stop-color="#080b10"/>
     </linearGradient>
-    <linearGradient id="nylonTipGradient" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="ikyLanyardWeave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#080f1b"/><stop offset=".18" stop-color="#26384b"/>
+      <stop offset=".32" stop-color="#111d2b"/><stop offset=".50" stop-color="#34495b"/>
+      <stop offset=".68" stop-color="#172638"/><stop offset=".84" stop-color="#26394c"/>
+      <stop offset="1" stop-color="#080f1b"/>
+     </linearGradient>
+     <linearGradient id="nylonTipGradient" x1="0" y1="0" x2="0" y2="1">
      <stop offset="0" stop-color="#343d49" stop-opacity=".98"/>
      <stop offset=".58" stop-color="#151b24" stop-opacity=".9"/>
      <stop offset="1" stop-color="#a5b5a4" stop-opacity=".38"/>
@@ -612,31 +1350,33 @@ html, body {
   <div class="badge-clip" id="badgeClip" aria-hidden="true">
    <span class="clip-crimp"><i></i><b></b></span>
    <span class="clip-loop"></span>
-   <span class="clip-hook"></span>
-   <span class="clip-ring"></span>
+   <span class="clip-hook">
+    <i class="hook-neck"></i><i class="hook-barrel"></i><i class="hook-body"></i>
+    <i class="hook-gate"></i><i class="hook-pin"></i><i class="hook-nose"></i>
+   </span>
   </div>
   <div class="card-wrap" id="card" role="button" tabindex="0" aria-label="Tarik kartu identitas ke arah mana pun, atau ketuk sekali untuk melihat sisi belakang">
    <div class="id-card" id="idCard">
     <div class="face front">
      <div class="badge-hole" aria-hidden="true"><span class="hole-inner"></span><span class="hole-metal"></span></div>
-     <div class="badge-logo"><img src="./school-logo.jpg" alt="Logo sekolah"><div class="badge-logo-copy">PERSONAL ID<b>2579619</b></div></div>
+     <div class="badge-logo"><img src="./school-logo.jpg" alt="Logo sekolah"><div class="badge-logo-copy">PERSONAL IDENTITY<b>2579619</b></div></div>
      <div class="badge-photo-ring"><img src="./iky-photo.jpg" alt="Foto Risqie Kamal"></div>
      <div class="badge-green"></div>
      <div class="badge-name">RISQIE KAMAL</div>
      <div class="badge-role">CREATIVE DEVELOPER</div>
-     <div class="badge-details"><span>ID NUMBER</span><b>377810</b><span>FOCUS</span><b>WEB &amp; APPS</b><span>INTEREST</span><b>CODE · RUN · FISH</b><span>VALIDITY PERIOD</span><b>INFINITE</b></div>
-     <div class="badge-footer">IDEAS · DESIGN · INNOVATION</div>
+     <div class="badge-details"><span>ID NUMBER</span><b>8916370</b><span>FIELD</span><b>WEB &amp; DIGITAL</b><span>INTEREST</span><b>CODE · RUN · FISH</b><span>VALIDITY PERIOD</span><b>INFINITE</b></div>
+     <div class="badge-footer">PERSONAL PROFILE · SISWA SMA</div>
     </div>
     <div class="face back">
      <!-- THROUGH HOLE - BACK SIDE: aligned with front-side slot -->
      <div class="badge-hole" aria-hidden="true"><span class="hole-inner"></span><span class="hole-metal"></span></div>
      <div class="back-green-cap"><div class="back-brand"><img src="./school-logo.jpg" alt=""><b>2579619</b></div></div>
      <div class="back-content">
-      <img class="qris-image" src="data:image/png;base64,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" alt="QRIS untuk pembayaran" width="320" height="320"><div class="qris-label">SCAN TO PAY · QRIS</div>
-      <div class="back-thanks">Thank You</div>
+      <img class="qris-image" src="data:image/png;base64,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" alt="QRIS untuk pembayaran" width="320" height="320"><div class="qris-label">SCAN TO · QRIS</div>
+      <div class="back-thanks">Animasi Code</div>
       <p>This identity represents curiosity, creativity, and a passion for building digital experiences.</p>
       <p>Keep learning, keep creating, and turn every idea into something meaningful.</p>
-      <div class="back-bottom">RISQIE KAMAL · PERSONAL IDENTITY</div>
+      <div class="back-bottom">IKY · PERSONAL CREATIVE CREDENTIAL · 2026</div>
      </div>
     </div>
    </div>
@@ -709,7 +1449,7 @@ function drawTether(){
  const w=stage.clientWidth,anchorX=w/2,anchorY=8;
  const cardCenterX=w/2+cardX;
  const cardTop=(parseFloat(getComputedStyle(card).top)||214)+cardY;
- const clipX=cardCenterX,clipY=cardTop-64;
+ const clipX=cardCenterX,clipY=cardTop-70;
  const endX=clipX,endY=clipY+18;
  const dx=endX-anchorX,dy=endY-anchorY;
  const len=Math.max(1,Math.hypot(dx,dy)),ux=dx/len,uy=dy/len,nx=-uy,ny=ux;
